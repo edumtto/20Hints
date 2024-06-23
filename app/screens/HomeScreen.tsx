@@ -13,9 +13,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { Stack, useRouter } from 'expo-router';
 
 const items = [
-  { id: '1', title: 'Item 1' },
-  { id: '2', title: 'Item 2' },
-  { id: '3', title: 'Item 3' },
+  { id: '1', title: 'Item 1', icon: 'user' },
+  { id: '2', title: 'Item 2', icon: 'navigation' },
+  { id: '3', title: 'Item 3', icon: 'octagon' },
   // Add more items as needed
 ];
 
@@ -48,8 +48,10 @@ const HomeScreen: React.FC = () => {
       </View> */}
       <Stack.Screen
         options={{
-          title: 'Recipes',
-          headerRight: () => <Button title='Create' onPress={handleCreatePress} />
+          title: 'Cards',
+          headerRight: () => <View style={styles.createButton}>
+            <Button title='New Deck' onPress={handleCreatePress} />
+          </View>
         }}
       />
       <TextInput
@@ -59,6 +61,7 @@ const HomeScreen: React.FC = () => {
         onChangeText={setSearch}
       />
       <FlatList
+        horizontal={true}
         data={filteredItems}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
@@ -67,7 +70,7 @@ const HomeScreen: React.FC = () => {
             onPress={() => handleItemPress(item.id)}
           >
             <Text style={styles.itemTitle}>{item.title}</Text>
-            <Ionicons name="chevron-forward" size={24} color="black" />
+            <Ionicons name={ () => item.icon } size={24} color="black" />
           </TouchableOpacity>
         )}
       />
@@ -95,9 +98,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   createButton: {
-    backgroundColor: '#007bff',
-    padding: 10,
-    borderRadius: 5,
+    // backgroundColor: '#007bff',
+    paddingHorizontal: 16,
+    // borderRadius: 5,
   },
   createButtonText: {
     color: '#fff',
@@ -112,12 +115,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   itemContainer: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    padding: 24,
+    margin: 8,
+    // borderBottomWidth: 1,
+    // borderBottomColor: '#ccc',
+    backgroundColor: '#ccc',
+    borderColor: "#bbb",
+    borderWidth: 1,
+    borderRadius: 8
   },
   itemTitle: {
     fontSize: 18,
