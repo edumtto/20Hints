@@ -9,13 +9,17 @@ import {
   Button,
 } from 'react-native';
 // import { useNavigation } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome6 } from '@expo/vector-icons';
 import { Stack, useRouter } from 'expo-router';
 
+enum CardCategory {
+  Person, Place, Thing
+}
+
 const items = [
-  { id: '1', title: 'Item 1', icon: 'user' },
-  { id: '2', title: 'Item 2', icon: 'navigation' },
-  { id: '3', title: 'Item 3', icon: 'octagon' },
+  { id: '1', title: 'Item 1', category: CardCategory.Person },
+  { id: '2', title: 'Item 2', category: CardCategory.Place },
+  { id: '3', title: 'Item 3', category: CardCategory.Thing },
   // Add more items as needed
 ];
 
@@ -38,6 +42,17 @@ const HomeScreen: React.FC = () => {
     router.push('screens/CreateScreen')
   };
 
+  function CategoryIcon (category: CardCategory): React.JSX.Element {
+    switch (category) {
+      case CardCategory.Person: 
+        return <FontAwesome6 name='face-grin-wide'  size={24} color='black' />
+      case CardCategory.Place: 
+        return <FontAwesome6 name='location-dot'  size={24} color='black' />
+      case CardCategory.Thing: 
+        return <FontAwesome6 name='cube'  size={24} color='black' />
+    }
+  }
+
   return (
     <View style={styles.container}>
       {/* <View style={styles.navBar}>
@@ -48,9 +63,9 @@ const HomeScreen: React.FC = () => {
       </View> */}
       <Stack.Screen
         options={{
-          title: 'Cards',
+          title: 'Played Cards',
           headerRight: () => <View style={styles.createButton}>
-            <Button title='New Deck' onPress={handleCreatePress} />
+            <Button title='Pick Card' onPress={handleCreatePress} />
           </View>
         }}
       />
@@ -61,7 +76,7 @@ const HomeScreen: React.FC = () => {
         onChangeText={setSearch}
       />
       <FlatList
-        horizontal={true}
+
         data={filteredItems}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
@@ -69,8 +84,12 @@ const HomeScreen: React.FC = () => {
             style={styles.itemContainer}
             onPress={() => handleItemPress(item.id)}
           >
-            <Text style={styles.itemTitle}>{item.title}</Text>
-            <Ionicons name={ () => item.icon } size={24} color="black" />
+            <View style={styles.iconText}>
+              { CategoryIcon(item.category) }
+              <Text style={styles.itemTitle}>{item.title}</Text>
+            </View>
+            <Text>10 hints revealed</Text>
+            
           </TouchableOpacity>
         )}
       />
@@ -115,10 +134,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   itemContainer: {
-    flexDirection: 'column',
+    flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 24,
+    padding: 12,
     margin: 8,
     // borderBottomWidth: 1,
     // borderBottomColor: '#ccc',
@@ -130,6 +149,12 @@ const styles = StyleSheet.create({
   itemTitle: {
     fontSize: 18,
   },
+  iconText: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8
+  }
 });
 
 export default HomeScreen
