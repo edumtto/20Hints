@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { ActivityIndicator, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, Text, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Card, generateHintCard } from '../card-generator-service'
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, TextInput } from 'react-native-gesture-handler';
 
 
 const CreateScreen: React.FC = () => {
@@ -44,7 +44,7 @@ const CreateScreen: React.FC = () => {
     const [isHidden, setIsHidden] = useState(true);
     return <TouchableOpacity key={number} style={styles.hintContainer} onPress={() => setIsHidden(!isHidden)}>
       <Text style={styles.hintNumber}>{number}</Text>
-      <Text style={styles.hintText}>{isHidden ? '...': hint}</Text> 
+      <Text style={styles.hintText}>{isHidden ? '': hint}</Text> 
     </TouchableOpacity>
   }
 
@@ -56,8 +56,14 @@ const CreateScreen: React.FC = () => {
       let counter = 1
 
       return <ScrollView>
-        <Text style={styles.word}>{hintCard.word}</Text>
-        { hintCard.hints.map( (hint) => Hint(counter++, hint) )}
+        <View style={styles.container}>
+          <View style={styles.wordContainer}>
+            {/* <Text style={styles.word}>{hintCard.word}</Text> */}
+            <Text>The word is </Text>
+            <TextInput placeholder='???' style={{ backgroundColor: 'white', padding: 8, borderWidth: 1, borderColor: '#ccc'}}/>
+          </View>
+          { hintCard.hints.map( (hint) => Hint(counter++, hint) )}
+        </View>
       </ScrollView>
     }
     return <Text>Error</Text>
@@ -68,15 +74,28 @@ const CreateScreen: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
+      width: "100%",
+      maxWidth: 800,
+      marginHorizontal: 'auto',
+      backgroundColor: '#fff',
+      padding: 12,
+      margin: 16,
+      borderColor: '#ccc',
+      borderWidth: 1,
+      borderRadius: 8
+  },
+  wordContainer: {
     flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center',
+    margin: 'auto',
   },
   word: {
     // flexDirection: 'row',
     // justifyContent: 'space-around',
     textAlign: 'center',
     padding: 24,
+    fontSize: 24
   },
   hintContainer: {
     flex: 1,
@@ -86,8 +105,10 @@ const styles = StyleSheet.create({
   hintNumber: {
     height: 40,
     width: 40,
-    backgroundColor: 'gray',
+    backgroundColor: '#fff',
     borderRadius: 20,
+    borderColor: '#aaa',
+    borderWidth: 1,
     textAlign: 'center',
     alignContent: 'center'
   },

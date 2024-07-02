@@ -42,7 +42,7 @@ const HomeScreen: React.FC = () => {
 
   const handleCreatePress = () => {
     // navigation.navigate('screens/CreateScreen');
-    router.push('screens/CreateScreen')
+    router.push('screens/GuessScreen')
   };
 
   function CategoryIcon(category: CardCategory): React.JSX.Element {
