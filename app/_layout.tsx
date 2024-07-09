@@ -3,16 +3,24 @@ import { Stack } from "expo-router";
 export default function RootLayout() {
   return (
     <Stack 
-      screenOptions={{ 
+      screenOptions={{
+        headerShown: false,
+        headerStyle: {
+          backgroundColor: 'rgb(255 240 0)',
+        },
+        // headerTintColor: '#fff',
         headerTitleStyle: {
           fontSize: 24,
           fontWeight: 'bold'
         }
       }}
     >
-      {/* <Stack.Screen name="index" /> */}
-      <Stack.Screen
+      {/* <Stack.Screen
         name="screens/HomeScreen"
+        options={{ headerShown: true, headerTitle: 'Rules', header: () => null }}
+      /> */}
+      <Stack.Screen
+        name="screens/GameScreen"
         options={{ headerShown: true }}
       />
       <Stack.Screen
@@ -21,7 +29,7 @@ export default function RootLayout() {
       />
       <Stack.Screen
         name="screens/DetailScreen"
-        options={{ headerShown: true, headerTitle: 'Details' }}
+        options={{ headerShown: true, headerTitle: 'Details', presentation: 'modal'}}
       />
     </Stack>
   );
