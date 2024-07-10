@@ -11,38 +11,41 @@ import {
 // import { useNavigation } from '@react-navigation/native';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { Stack, useRouter } from 'expo-router';
+import { getHintCard, getRandomHintCardIndex } from '../card-database-service';
+import HintCard from '../HintCard';
 
 enum CardCategory {
   Person, Place, Thing
 }
 
-const items = [
-  { id: '1', title: 'Mickey Mouse', category: CardCategory.Person },
-  { id: '2', title: 'Sacramento', category: CardCategory.Place },
-  { id: '3', title: 'Baseball Bat', category: CardCategory.Thing },
-  { id: '4', title: 'Shakira', category: CardCategory.Person },
-  { id: '5', title: 'Mars', category: CardCategory.Place },
-  { id: '6', title: 'Eraser', category: CardCategory.Thing },
-  // Add more items as needed
-];
+interface PlayedCard {
+  id: number,
+  title: string,
+  category: CardCategory
+}
 
 const HomeScreen: React.FC = () => {
   const [search, setSearch] = useState('');
+  const [playedCards, setPlayedCards] = useState<PlayedCard[]>([]);
   // const navigation = useNavigation();
   const router = useRouter();
 
-  const filteredItems = items.filter(item =>
+  const filteredItems = playedCards.filter(item =>
     item.title.toLowerCase().includes(search.toLowerCase())
   );
 
-  const handleItemPress = (id: string) => {
-    // navigation.navigate('screens/DetailScreen', { itemId: id });
-    router.push({ pathname: `screens/DetailScreen`, params: { itemId: id } })
-  };
+  // const handleItemPress = (id: string) => {
+  //   // navigation.navigate('screens/DetailScreen', { itemId: id });
+  //   router.push({ pathname: `screens/DetailScreen`, params: { itemId: id } })
+  // };
 
-  const handleCreatePress = () => {
-    // navigation.navigate('screens/CreateScreen');
-    router.push('screens/GuessScreen')
+  const handleGuessPress = () => {
+    let hintCardIndex: number = getRandomHintCardIndex()
+    const hintCard = getHintCard(Number(hintCardIndex))
+    let newPlayedCard: PlayedCard = { id: playedCards.length, title: hintCard.word, category: CardCategory.Place }
+    setPlayedCards(playedCards.concat(newPlayedCard))
+    
+    router.navigate({pathname: 'screens/GuessScreen', params: { hintCardIndex: hintCardIndex }})
   };
 
   function CategoryIcon(category: CardCategory): React.JSX.Element {
@@ -118,7 +121,7 @@ const HomeScreen: React.FC = () => {
         options={{
           title: 'Played Cards',
           headerRight: () => <View style={styles.createButton}>
-            <Button title='Pick Card' onPress={handleCreatePress} />
+            <Button title='Pick Card' onPress={handleGuessPress} />
           </View>
         }}
       />
@@ -130,12 +133,12 @@ const HomeScreen: React.FC = () => {
       />
       <FlatList
         data={filteredItems}
-        keyExtractor={item => item.id}
+        keyExtractor={item => String(item.id)}
         scrollEnabled={true}
         renderItem={({ item }) => (
           <TouchableOpacity
             style={styles.itemContainer}
-            onPress={() => handleItemPress(item.id)}
+            // onPress={() => handleItemPress(item.id)}
           >
             <View style={styles.iconText}>
               {CategoryIcon(item.category)}

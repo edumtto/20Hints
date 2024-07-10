@@ -25,7 +25,7 @@ export default function RootLayout() {
       />
       <Stack.Screen
         name="screens/GuessScreen"
-        options={{ headerShown: true, headerTitle: 'Guess the Word' }}
+        options={{ headerShown: true, headerTitle: 'Guess the Word', presentation: 'fullScreenModal' }}
       />
       <Stack.Screen
         name="screens/DetailScreen"

@@ -1,3 +1,5 @@
+import HintCard from './HintCard'
+
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 // Access your API key as an environment variable (see "Set up your API key" above)
@@ -5,6 +7,7 @@ const genAI = new GoogleGenerativeAI("AIzaSyAsr_AjndnXFAFv9Hivy325-mUUEHWRuP4");
 
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 
+// I'm building a game where the player need to guess a word given a few hints. Write 21 very short hints for the specific place/location "Hollywood Sign" for this game. Make sure to make it challenging, not giving very easy clues/hints. Format your response as a JSON file, following this example:
 const prompt: string = `
   Select a random word that represents an object, a person or a place. 
   Generate a list of 20 short hints to that word.
@@ -19,13 +22,7 @@ const prompt: string = `
   }
 `
 
-export interface Card {
-  word: string;
-  hints: string[];
-}
-
-
-export async function generateHintCard(): Promise<Card> {
+export async function generateHintCard(): Promise<HintCard> {
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
@@ -45,7 +42,7 @@ export async function generateHintCard(): Promise<Card> {
 
     console.log(parsedData);
 
-  return parsedData as Card
+  return parsedData as HintCard
 }
 
 function parseJSONFromString(stringWithJSON: string) {

@@ -53,7 +53,6 @@ const HomeScreen: React.FC = () => {
   });
 
   const handlePlayPress = () => {
-    // navigation.navigate('screens/CreateScreen');
     router.push('screens/GameScreen')
   };
 
