@@ -1,4 +1,4 @@
-import HintCard from './HintCard'
+import { HintCard } from './secret-word'
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 

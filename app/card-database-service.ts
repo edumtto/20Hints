@@ -1,5 +1,5 @@
 import baseHintCardsJson from './baseHintCards.json'
-import HintCard from './HintCard'
+import { HintCard } from './secret-word'
 
 export function localBaseHintCards(): [HintCard] {
   return baseHintCardsJson.hint_cards as [HintCard]
