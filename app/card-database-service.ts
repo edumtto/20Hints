@@ -6,8 +6,8 @@ export function localBaseHintCards(): [HintCard] {
 }
 
 export function getRandomHintCardIndex(): number {
-  let hintCards = localBaseHintCards()
-  let randomIndex = Math.floor(Math.random() * hintCards.length)
+  let hintCardsLength = baseHintCardsJson.hint_cards.length
+  let randomIndex = Math.floor(Math.random() * hintCardsLength)
   return randomIndex
 }
 

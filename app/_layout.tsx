@@ -15,21 +15,13 @@ export default function RootLayout() {
         }
       }}
     >
-      {/* <Stack.Screen
-        name="screens/HomeScreen"
-        options={{ headerShown: true, headerTitle: 'Rules', header: () => null }}
-      /> */}
       <Stack.Screen
-        name="screens/GameScreen"
-        options={{ headerShown: true }}
+        name="screens/SetupScreen"
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="screens/GuessScreen"
         options={{ headerShown: true, headerTitle: 'Guess the Word', presentation: 'fullScreenModal' }}
-      />
-      <Stack.Screen
-        name="screens/DetailScreen"
-        options={{ headerShown: true, headerTitle: 'Details', presentation: 'modal'}}
       />
     </Stack>
   );

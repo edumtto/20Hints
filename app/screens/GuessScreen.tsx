@@ -5,6 +5,13 @@ import { useLocalSearchParams } from 'expo-router';
 import { getHintCard } from '../card-database-service';
 
 
+const OpeningGuessScreen: React.FC = () => {
+  return <View style={styles.openingClue}>
+    <Text style={styles.word}>{'The word is a'}</Text>
+    <Text style={styles.word}>{'Place'}</Text>
+  </View>
+}
+
 const GuessScreen: React.FC = () => {
   const { hintCardIndex } = useLocalSearchParams<{ hintCardIndex: string }>()
   const hintCard = getHintCard(Number(hintCardIndex))
@@ -42,6 +49,12 @@ const styles = StyleSheet.create({
       borderColor: '#ccc',
       borderWidth: 1,
       borderRadius: 8
+  },
+  openingClue: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    margin: 'auto',
   },
   wordContainer: {
     flex: 1,

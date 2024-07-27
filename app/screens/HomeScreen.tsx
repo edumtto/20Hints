@@ -53,7 +53,7 @@ const HomeScreen: React.FC = () => {
   });
 
   const handlePlayPress = () => {
-    router.push('screens/GameScreen')
+    router.push('screens/SetupScreen')
   };
 
   const RuleItem: React.FC<{index: number, text: string}> = (props) => {
