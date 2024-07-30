@@ -1,8 +1,8 @@
 import baseHintCardsJson from './baseHintCards.json'
-import { HintCard } from './secret-word'
+import { SecretWord } from './secret-word'
 
-export function localBaseHintCards(): [HintCard] {
-  return baseHintCardsJson.hint_cards as [HintCard]
+export function localBaseHintCards(): [SecretWord] {
+  return baseHintCardsJson.hint_cards as [SecretWord]
 }
 
 export function getRandomHintCardIndex(): number {
@@ -11,6 +11,6 @@ export function getRandomHintCardIndex(): number {
   return randomIndex
 }
 
-export function getHintCard(index: number): HintCard {
-  return baseHintCardsJson.hint_cards[index] as HintCard
+export function getSecretWord(index: number): SecretWord {
+  return baseHintCardsJson.hint_cards[index] as SecretWord
 }

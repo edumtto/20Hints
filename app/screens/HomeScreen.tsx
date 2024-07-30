@@ -22,7 +22,7 @@ const HomeScreen: React.FC = () => {
       padding: 20
     },
     ruleNumber: {
-      height: 40, 
+      height: 40,
       width: 40,
       borderRadius: 20,
       alignContent: 'center',
@@ -53,26 +53,26 @@ const HomeScreen: React.FC = () => {
   });
 
   const handlePlayPress = () => {
-    router.push('screens/SetupScreen')
+    router.push('screens/game/GameScreen')
   };
 
-  const RuleItem: React.FC<{index: number, text: string}> = (props) => {
+  const RuleItem: React.FC<{ index: number, text: string }> = (props) => {
     return <View style={{ flex: 1, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 8 }}>
       <Text style={styles.ruleNumber}>{props.index}</Text>
       <Text style={styles.ruleText}>{props.text}</Text>
     </View>
-  } 
+  }
 
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.title}>Rules</Text>
-        <RuleItem index={1} text={'Pick a card'}/>
-        <RuleItem index={2} text={'Reveal hints'}/>
-        <RuleItem index={3} text={'Guess the word'}/>
+        <RuleItem index={1} text={'Pick a card'} />
+        <RuleItem index={2} text={'Reveal hints'} />
+        <RuleItem index={3} text={'Guess the word'} />
       </View>
       <TouchableOpacity style={styles.playButton} onPress={() => handlePlayPress()}>
-         <Text style={styles.buttonTitle}>Play</Text>
+        <Text style={styles.buttonTitle}>Play</Text>
       </TouchableOpacity>
     </View>
   );

@@ -1,4 +1,4 @@
-import { HintCard } from './secret-word'
+import { SecretWord } from './secret-word'
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
@@ -22,7 +22,7 @@ const prompt: string = `
   }
 `
 
-export async function generateHintCard(): Promise<HintCard> {
+export async function generateHintCard(): Promise<SecretWord> {
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
@@ -42,7 +42,7 @@ export async function generateHintCard(): Promise<HintCard> {
 
     console.log(parsedData);
 
-  return parsedData as HintCard
+  return parsedData as SecretWord
 }
 
 function parseJSONFromString(stringWithJSON: string) {
