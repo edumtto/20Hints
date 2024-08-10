@@ -18,6 +18,8 @@ enum GameState {
 const GameScreen: React.FC = () => {
   const router = useRouter();
   const [gameState, setGameState] = useState(GameState.Setup)
+
+  console.log('Game screen update')
         
   function setGameSettings(dictionaries: number[], timeLength: number): void {
     setGameState(GameState.Guess)
@@ -45,6 +47,8 @@ const GameScreen: React.FC = () => {
     }
   }
 
+
+  console.log('Game screen update')
   return <View>
     <Stack.Screen
         options={{

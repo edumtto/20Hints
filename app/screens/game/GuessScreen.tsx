@@ -5,12 +5,6 @@ import { useLocalSearchParams } from 'expo-router';
 import { getSecretWord, getRandomHintCardIndex } from "../../card-database-service";
 import { SecretWord } from '../../secret-word';
 
-interface GuessScreenProps {
-  secretWord: SecretWord,
-  setSuccessGuess: () => void,
-  setTimeout: () => void,
-}
-
 // const OpeningGuessScreen: React.FC = () => {
 //   return <View style={styles.openingClue}>
 //     <Text style={styles.word}>{'The word is a'}</Text>
@@ -18,38 +12,75 @@ interface GuessScreenProps {
 //   </View>
 // }
 
+// Timer component
+
+interface TimerProps {
+  time: number
+}
+
+const TimerView: React.FC<TimerProps> = (props) => {
+  return <Text style={{ padding: 8, fontSize: 22 }}>{props.time}</Text>
+}
+
+// Hint component
+
+interface HintProps {
+  number: number
+  hint: string
+}
+
+const Hint: React.FC<HintProps> = (props) => {
+  return <View style={styles.hintContainer}>
+    <Text style={styles.hintNumber}>{props.number}</Text>
+    <Text style={styles.hintText}>{props.hint}</Text> 
+  </View>
+}
+
+// Guess screen
+
+interface GuessScreenProps {
+  secretWord: SecretWord,
+  setSuccessGuess: () => void,
+  setTimeout: () => void,
+}
+
 const GuessScreen: React.FC<GuessScreenProps> = (props) => {
   const [secretWord, _] = useState<SecretWord>(props.secretWord)
-  // const [nextHintIndex, setNextHintIndex] = useState<number>(0)
+  const [time, setTime] = useState<number>(0) // in seconds
+  const allowedGameTime = 60
+  const hintDisplayTime = 2
 
-  // useEffect(() => {
-  //   const interval = setInterval(revealNextHint, 1000);
-  //   return () => clearInterval(interval)
-  // })
-  
+  useEffect(() => {
+    console.log('use effect called')
+    const interval = setInterval(() => {
+      if (time < allowedGameTime) {
+        setTime(i => i + 1)
+      } else {
+        clearInterval(interval)
+      }
+    } , 1000);
+  },[])
 
-  // function revealNextHint(): void {
-  //   setNextHintIndex(nextHintIndex + 1)
-  // }
+  console.log('Guess screen update')
 
-  const Hint = (number: number, hint: string) => {
-    const [isHidden, setIsHidden] = useState(true);
-    return <TouchableOpacity key={number} style={styles.hintContainer} onPress={() => setIsHidden(!isHidden)}>
-      <Text style={styles.hintNumber}>{number}</Text>
-      <Text style={styles.hintText}>{isHidden ? '': hint}</Text> 
-    </TouchableOpacity>
+  const HintViews = () => {
+    const numberOfHintsDisplayed = Math.min(Math.floor(time / hintDisplayTime), props.secretWord.hints.length)
+    let counter = 1
+
+    return secretWord.hints
+      .slice(0,numberOfHintsDisplayed)
+      .map( (hint) => <Hint key={counter} number={counter++} hint={hint}/> )
   }
-
-  let counter = 1
 
   return <ScrollView>
     <View style={styles.container}>
       <View style={styles.wordContainer}>
+        <TimerView time={time}/>
         <Text style={styles.word}>{'?'}</Text>
         {/* <Text>The word is </Text>
         <TextInput placeholder='???' style={{ backgroundColor: 'white', padding: 8, borderWidth: 1, borderColor: '#ccc'}}/> */}
       </View>
-      { secretWord.hints.map( (hint) => Hint(counter++, hint) )}
+      <HintViews />
     </View>
   </ScrollView>
 }
