@@ -2,9 +2,11 @@ import {
   View,
   StyleSheet,
   Button,
+  Pressable,
 } from 'react-native';
 import { Stack, useRouter } from "expo-router";
 import { createContext } from 'react';
+import PrimaryButton from '../../PrimaryButton';
 
 interface SetupScreenProps {
   setGameSettings: (dictionaries: number[], timeLength: number) => void
@@ -26,16 +28,16 @@ const SetupScreen: React.FC<SetupScreenProps> = (props) => {
         }}
       />
 
-      <Button title='Start Game' onPress={handleStartGame} />
+      <PrimaryButton title={'Start Game'} onPress={() => handleStartGame()} />
     </View>
   )
 }
 
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignContent: 'center',
+    alignItems: 'center'
   },
 });
 

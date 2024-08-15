@@ -6,15 +6,21 @@ import {
   StyleSheet,
 } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
+import PrimaryButton from '../PrimaryButton';
 
 const HomeScreen: React.FC = () => {
   const router = useRouter();
 
   const styles = StyleSheet.create({
     container: {
-      padding: 0,
-      margin: 0,
+      // padding: 0,
+      // margin: 0,
       backgroundColor: '#ccc',
+      // alignItems: 'center'
+      display: 'flex',
+      height: '100%',
+      justifyContent: 'center',
+      alignItems: 'center'
     },
     title: {
       fontSize: 32,
@@ -71,9 +77,7 @@ const HomeScreen: React.FC = () => {
         <RuleItem index={2} text={'Reveal hints'} />
         <RuleItem index={3} text={'Guess the word'} />
       </View>
-      <TouchableOpacity style={styles.playButton} onPress={() => handlePlayPress()}>
-        <Text style={styles.buttonTitle}>Play</Text>
-      </TouchableOpacity>
+      <PrimaryButton title={'Play'} onPress={() => handlePlayPress()} />
     </View>
   );
 };
