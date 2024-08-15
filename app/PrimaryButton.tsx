@@ -1,5 +1,5 @@
 import React from 'react';
-import { GestureResponderEvent, Pressable, StyleSheet } from 'react-native';
+import { GestureResponderEvent, Pressable, StyleSheet, Text } from 'react-native';
 
 interface PrimaryButtonProps {
   title: string,
@@ -11,7 +11,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = (props) => {
     onPress={props.onPress}
     style={styles.primaryButton}
   >
-    {props.title}
+    <Text style={styles.buttonTitle}>{props.title}</Text>
   </Pressable>
 }
 
@@ -25,10 +25,13 @@ const styles = StyleSheet.create ({
     elevation: 3,
     backgroundColor: 'rgb(255 240 0)',
     margin: 20,
+    
+  },
+  buttonTitle: {
     fontSize: 24,
     fontWeight: 'bold',
     fontFamily: 'sans-serif'
-  },
+  }
 })
 
 export default PrimaryButton;
