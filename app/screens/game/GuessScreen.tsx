@@ -4,6 +4,7 @@ import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { useLocalSearchParams } from 'expo-router';
 import { getSecretWord, getRandomHintCardIndex } from "../../card-database-service";
 import { SecretWord } from '../../secret-word';
+import HintsAndScore from './HintsAndScore';
 
 // const OpeningGuessScreen: React.FC = () => {
 //   return <View style={styles.openingClue}>
@@ -12,29 +13,7 @@ import { SecretWord } from '../../secret-word';
 //   </View>
 // }
 
-// Timer component
 
-interface TimerProps {
-  time: number
-}
-
-const TimerView: React.FC<TimerProps> = (props) => {
-  return <Text style={{ padding: 8, fontSize: 22 }}>{props.time}</Text>
-}
-
-// Hint component
-
-interface HintProps {
-  number: number
-  hint: string
-}
-
-const Hint: React.FC<HintProps> = (props) => {
-  return <View style={styles.hintContainer}>
-    <Text style={styles.hintNumber}>{props.number}</Text>
-    <Text style={styles.hintText}>{props.hint}</Text> 
-  </View>
-}
 
 // Guess screen
 
@@ -46,57 +25,46 @@ interface GuessScreenProps {
 
 const GuessScreen: React.FC<GuessScreenProps> = (props) => {
   const [secretWord, _] = useState<SecretWord>(props.secretWord)
-  const [time, setTime] = useState<number>(0) // in seconds
-  const allowedGameTime = 60
-  const hintDisplayTime = 2
-
-  useEffect(() => {
-    console.log('use effect called')
-    const interval = setInterval(() => {
-      if (time < allowedGameTime) {
-        setTime(i => i + 1)
-      } else {
-        clearInterval(interval)
-      }
-    } , 1000);
-  },[])
+  const [isSuccessGuess, setSuccessGuess] = useState(false)
 
   console.log('Guess screen update')
 
-  const HintViews = () => {
-    const numberOfHintsDisplayed = Math.min(Math.floor(time / hintDisplayTime), props.secretWord.hints.length)
-    let counter = 1
+  const WordInput = () => 
+    <TextInput
+      editable
+      maxLength={40}
+      onChangeText={text => onChangeWordInput(text)}
+      placeholder='Enter with the word here'
+      style={[styles.wordInput, { color: isSuccessGuess ? 'green' : '#000' }]}
+      value={isSuccessGuess ? props.secretWord.word : undefined}
+      autoFocus={true}
+    />
 
-    return secretWord.hints
-      .slice(0,numberOfHintsDisplayed)
-      .map( (hint) => <Hint key={counter} number={counter++} hint={hint}/> )
+  function onChangeWordInput(text: string) {
+    if (text.toLowerCase() == secretWord.word.toLowerCase()) {
+      console.log("YOU WON!")
+      setSuccessGuess(true)
+      // props.setSuccessGuess()
+    }
   }
 
-  return <ScrollView>
-    <View style={styles.container}>
-      <View style={styles.wordContainer}>
-        <TimerView time={time}/>
-        <Text style={styles.word}>{'?'}</Text>
-        {/* <Text>The word is </Text>
-        <TextInput placeholder='???' style={{ backgroundColor: 'white', padding: 8, borderWidth: 1, borderColor: '#ccc'}}/> */}
-      </View>
-      <HintViews />
-    </View>
-  </ScrollView>
+  return <View style={styles.container}>
+    <HintsAndScore secretWord={secretWord} isTimerStopped={isSuccessGuess}/>
+    <WordInput />
+  </View>
+
+  
 }
 
 const styles = StyleSheet.create({
   container: {
-      width: "100%",
-      maxWidth: 800,
-      marginHorizontal: 'auto',
       backgroundColor: '#fff',
       padding: 12,
       margin: 16,
       borderColor: '#ccc',
       borderWidth: 1,
       borderRadius: 8,
-      flex: 1
+      // flex: 1
   },
   openingClue: {
     flex: 1,
@@ -104,38 +72,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 'auto',
   },
-  wordContainer: {
-    // flex: 1,
-    // flexDirection: 'row',
-    alignItems: 'center',
-    margin: 'auto',
-  },
-  word: {
-    // flexDirection: 'row',
-    // justifyContent: 'space-around',
-    textAlign: 'center',
-    padding: 24,
-    fontSize: 24
-  },
-  hintContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    padding:4,
-  },
-  hintNumber: {
-    height: 40,
-    width: 40,
+  wordInput: {
+    // position: 'absolute',
+    height: 48,
+    bottom: 16,
+    right: 16,
+    left: 16,
     backgroundColor: '#fff',
-    borderRadius: 20,
     borderColor: '#aaa',
-    borderWidth: 1,
-    textAlign: 'center',
-    alignContent: 'center'
-  },
-  hintText: {
-    alignContent: 'center',
-    paddingLeft: 8,
-    // backgroundColor: 'gray'
+    borderWidth: 2,
+    borderRadius: 8,
+    padding: 8,
+    margin: 8
   }
 });
 

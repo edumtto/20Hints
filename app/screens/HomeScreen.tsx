@@ -15,7 +15,7 @@ const HomeScreen: React.FC = () => {
     container: {
       // padding: 0,
       // margin: 0,
-      backgroundColor: '#ccc',
+      backgroundColor: '#3E2B77',
       // alignItems: 'center'
       display: 'flex',
       height: '100%',
@@ -25,11 +25,12 @@ const HomeScreen: React.FC = () => {
     title: {
       fontSize: 32,
       fontWeight: 'bold',
-      padding: 20
+      padding: 20,
+      color: '#fff'
     },
     ruleNumber: {
-      height: 40,
-      width: 40,
+      height: 30,
+      width: 30,
       borderRadius: 20,
       alignContent: 'center',
       textAlign: 'center',
@@ -39,8 +40,9 @@ const HomeScreen: React.FC = () => {
     },
     ruleText: {
       fontSize: 22,
-      fontWeight: 'normal',
+      fontWeight: '100',
       alignContent: 'center',
+      color: '#fff'
     },
     buttonTitle: {
       fontSize: 24,

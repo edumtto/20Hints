@@ -47,9 +47,8 @@ const GameScreen: React.FC = () => {
     }
   }
 
-
   console.log('Game screen update')
-  return <View>
+  return <View style={styles.container}>
     <Stack.Screen
         options={{
           title: 'Game Setup'
@@ -58,5 +57,16 @@ const GameScreen: React.FC = () => {
       <Content />
   </View>
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    height: '100%',
+    width: '100%',
+    // maxWidth: 800,
+    // marginHorizontal: 'auto',
+    backgroundColor: '#3E2B77'
+  }
+})
 
 export default GameScreen;

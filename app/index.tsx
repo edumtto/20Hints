@@ -15,8 +15,9 @@ export default function Index() {
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: "auto",
-    width: "100%",
-    maxWidth: 800
+    // marginHorizontal: "auto",
+    // width: "100%",
+    // maxWidth: 800
+    height: '100%'
   },
 });
