@@ -3,6 +3,7 @@ import { Text, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { SecretWord } from '../../secret-word';
 
+
 // Timer component
 
 interface TimerProps {
@@ -15,7 +16,7 @@ const TimerView: React.FC<TimerProps> = (props) => {
 
   const padZeroes = (num) => ('0' + num).slice(-2)
 
-  return <Text style={{ padding: 8, fontSize: 22 }}>{padZeroes(minutes) + ':' + padZeroes(seconds)}</Text>
+  return <Text style={styles.timer}>{padZeroes(minutes) + ':' + padZeroes(seconds)}</Text>
 }
 
 // Hint component
@@ -26,9 +27,16 @@ interface HintProps {
 }
 
 const Hint: React.FC<HintProps> = (props) => {
-  return <View style={styles.hintContainer}>
+  return <View style={styles.hintContainer} >
     <Text style={styles.hintNumber}>{props.number + '.'}</Text>
     <Text style={styles.hintText}>{props.hint}</Text> 
+  </View>
+}
+
+const LargeHint: React.FC<HintProps> = (props) => {
+  return <View style={styles.largeHintContainer} >
+    <Text style={styles.largeHintNumber}>{props.number + '.'}</Text>
+    <Text style={styles.largeHintText}>{props.hint}</Text> 
   </View>
 }
 
@@ -41,7 +49,8 @@ const HintsAndScore: React.FC<HintsAndScoreProps> = (props) => {
   const [secretWord, _] = useState<SecretWord>(props.secretWord)
   const [time, setTime] = useState<number>(0) // in seconds
   const allowedGameTime: number = 60
-  const hintDisplayTime = 2
+  const hintDisplayTime = 5
+
 
   useEffect(() => {
     
@@ -52,7 +61,7 @@ const HintsAndScore: React.FC<HintsAndScoreProps> = (props) => {
 
     const interval = setInterval(() => {
         setTime((time: number) => {
-          if (props.isTimerStopped || time > allowedGameTime) {
+          if (props.isTimerStopped || time >= allowedGameTime) {
             clearInterval(interval)
             return time
           }
@@ -64,28 +73,38 @@ const HintsAndScore: React.FC<HintsAndScoreProps> = (props) => {
   console.log('HintAndScore update, timer = ' + time)
 
   const GameStatusBar = () =>
-    <View style={styles.wordContainer}>
+    <View style={styles.toolbarContainer}>
         <TimerView time={time}/>
-        <Text style={styles.word}>{'The word is a place'}</Text>
+        <Text style={styles.wordDescription}>{'The word is a place'}</Text>
         {/* <Text>The word is </Text>
         <TextInput placeholder='???' style={{ backgroundColor: 'white', padding: 8, borderWidth: 1, borderColor: '#ccc'}}/> */}
      </View>
 
   const Hints = () => {
     const numberOfHintsDisplayed = Math.min(Math.floor(time / hintDisplayTime), props.secretWord.hints.length)
-    let counter = 1
+    let counter = numberOfHintsDisplayed
 
     return secretWord.hints
       .slice(0,numberOfHintsDisplayed)
-      .map( (hint) => <Hint key={counter} number={counter++} hint={hint}/> )
+      .reverse()
+      .map( (hint) => {
+        if (counter === numberOfHintsDisplayed) {
+          return <LargeHint key={counter} number={counter--} hint={hint} /> 
+        }
+        return <Hint key={counter} number={counter--} hint={hint} /> 
+      }
+        
+      )
   }
 
   return (
     <View>
     <GameStatusBar />
-    <ScrollView style={{flexGrow: 0, height: 500 }}  scrollEnabled={true} alwaysBounceVertical={true}>
-      <Hints />
-    </ScrollView>
+    <View style={{ height: 500}}>
+      <ScrollView style={{ flexGrow: 0 }}  scrollEnabled={true} alwaysBounceVertical={true}> 
+        <Hints />
+      </ScrollView>
+    </View>
   </View>
   )
 }
@@ -94,21 +113,24 @@ const styles = StyleSheet.create({
   container: {
     height: '100%'
   },
-  wordContainer: {
-    // flex: 1,
-    // flexDirection: 'row',
-    alignItems: 'center',
-    margin: 'auto',
+  toolbarContainer: {
+    borderBottomWidth: 0.5,
+    marginHorizontal: 8,
+    marginTop: 8
   },
-  word: {
-    // flexDirection: 'row',
-    // justifyContent: 'space-around',
+  timer: { 
+    fontSize: 22, 
+    textAlign: 'right',
+    fontWeight: 600,
+    fontFamily: 'monospace'
+  },
+  wordDescription: {
     textAlign: 'center',
-    padding: 24,
-    fontSize: 24
+    fontSize: 20,
+    fontWeight: 200,
+    marginBottom: 8
   },
   hintContainer: {
-    flex: 2,
     flexDirection: 'row',
     padding: 8,
   },
@@ -117,13 +139,33 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     textAlign: 'center',
     alignContent: 'center',
-    fontSize: 16
+    fontSize: 18,
   },
   hintText: {
     alignContent: 'center',
     paddingLeft: 8,
-    fontSize: 16
-    // backgroundColor: 'gray'
+    fontSize: 18,
+    fontWeight: 200
+  },
+  largeHintContainer: {
+    flexDirection: 'row',
+    paddingHorizontal: 8,
+    paddingVertical: 16,
+    marginVertical: 24
+  },
+  largeHintNumber: {
+    color: '#7F00E2',
+    borderRadius: 20,
+    textAlign: 'center',
+    alignContent: 'flex-start',
+    fontSize: 38,
+    fontWeight: 200
+  },
+  largeHintText: {
+    alignContent: 'center',
+    paddingLeft: 16,
+    fontSize: 38,
+    fontWeight: '300'
   },
 });
 

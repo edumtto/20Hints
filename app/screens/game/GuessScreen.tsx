@@ -5,6 +5,7 @@ import { useLocalSearchParams } from 'expo-router';
 import { getSecretWord, getRandomHintCardIndex } from "../../card-database-service";
 import { SecretWord } from '../../secret-word';
 import HintsAndScore from './HintsAndScore';
+import {Dimensions} from 'react-native';
 
 // const OpeningGuessScreen: React.FC = () => {
 //   return <View style={styles.openingClue}>
@@ -26,6 +27,7 @@ interface GuessScreenProps {
 const GuessScreen: React.FC<GuessScreenProps> = (props) => {
   const [secretWord, _] = useState<SecretWord>(props.secretWord)
   const [isSuccessGuess, setSuccessGuess] = useState(false)
+  const windowHeight = Dimensions.get('window').height
 
   console.log('Guess screen update')
 
@@ -64,7 +66,6 @@ const styles = StyleSheet.create({
       borderColor: '#ccc',
       borderWidth: 1,
       borderRadius: 8,
-      // flex: 1
   },
   openingClue: {
     flex: 1,
@@ -73,7 +74,6 @@ const styles = StyleSheet.create({
     margin: 'auto',
   },
   wordInput: {
-    // position: 'absolute',
     height: 48,
     bottom: 16,
     right: 16,
@@ -83,7 +83,11 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 8,
     padding: 8,
-    margin: 8
+    marginHorizontal: 8,
+    marginTop: 16,
+    marginBottom: 8,
+    fontWeight: 800,
+    fontFamily: 'monospace'
   }
 });
 
