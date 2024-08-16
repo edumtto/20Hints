@@ -43,10 +43,12 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
     />
 
   function onChangeWordInput(text: string) {
-    if (text.toLowerCase() == secretWord.word.toLowerCase()) {
+    if (!isSuccessGuess && text.toLowerCase() == secretWord.word.toLowerCase()) {
       console.log("YOU WON!")
       setSuccessGuess(true)
-      // props.setSuccessGuess()
+      setTimeout(() => {
+        props.setSuccessGuess()
+    }, 2000);
     }
   }
 
@@ -54,8 +56,6 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
     <HintsAndScore secretWord={secretWord} isTimerStopped={isSuccessGuess}/>
     <WordInput />
   </View>
-
-  
 }
 
 const styles = StyleSheet.create({
@@ -91,4 +91,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default GuessScreen
+export default GuessScreen;
