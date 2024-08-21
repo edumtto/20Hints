@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Text, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { useLocalSearchParams } from 'expo-router';
@@ -12,16 +12,36 @@ import { ResultsScreenProps } from './ResultsScreen';
 
 interface GuessScreenProps {
   secretWord: SecretWord,
-  setSuccessGuess: () => void,
+  setSuccessGuess: (ResultsScreenProps) => void,
   setTimeout: () => void,
 }
 
-const GuessScreen: React.FC<GuessScreenProps> = (props) => {
-  const [secretWord, _] = useState<SecretWord>(props.secretWord)
-  const [isSuccessGuess, setSuccessGuess] = useState(false)
-  const windowHeight = Dimensions.get('window').height
+const allowedGameTime: number = 120
+const hintDisplayTime = 6
+const totalNumberOfHints = 20
 
+const GuessScreen: React.FC<GuessScreenProps> = (props) => {
+  const [isSuccessGuess, setSuccessGuess] = useState(false)
+  const timeTrackerRef = useRef(0)
+  const windowHeight = Dimensions.get('window').height
+  const hintsRevealed = () => Math.min(1 + Math.floor(timeTrackerRef.current / hintDisplayTime), totalNumberOfHints)
   console.log('Guess screen update')
+
+  function onTimeout() {
+    console.log("YOU WON!")
+    const resultScreenProps: ResultsScreenProps = {isWordGuessed: true, timeSpent: timeTrackerRef.current, hintsRevealed: hintsRevealed()}
+    setSuccessGuess(true)
+    setTimeout(() => props.setSuccessGuess(resultScreenProps), 2000);
+  }
+
+  function onChangeWordInput(text: string) {
+    if (!isSuccessGuess && text.toLowerCase() == props.secretWord.word.toLowerCase()) {
+      console.log("YOU WON!")
+      const resultScreenProps: ResultsScreenProps = {isWordGuessed: true, timeSpent: timeTrackerRef.current, hintsRevealed: hintsRevealed()}
+      setSuccessGuess(true)
+      setTimeout(() => props.setSuccessGuess(resultScreenProps), 2000);
+    }
+  }
 
   const WordInput = () => 
     <TextInput
@@ -33,19 +53,14 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
       autoFocus={true}
     />
 
-  function onChangeWordInput(text: string) {
-    if (!isSuccessGuess && text.toLowerCase() == secretWord.word.toLowerCase()) {
-      console.log("YOU WON!")
-      const resultScreenProps: ResultsScreenProps = {isWordGuessed: true, timeSpent: 0, hintsRevealed: 0 }
-      setSuccessGuess(true)
-      setTimeout(() => {
-        props.setSuccessGuess()
-    }, 2000);
-    }
-  }
-
   return <View style={styles.container}>
-    <HintsAndScore secretWord={secretWord} isTimerStopped={isSuccessGuess}/>
+    <HintsAndScore 
+      secretWord={props.secretWord} 
+      isTimerStopped={isSuccessGuess} 
+      allowedGameTime={allowedGameTime} 
+      hintDisplayTime={hintDisplayTime}
+      onTimeUpdate={(time) => timeTrackerRef.current = time}
+    />
     <WordInput />
   </View>
 }

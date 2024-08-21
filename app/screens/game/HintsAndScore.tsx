@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Text, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { SecretWord } from '../../secret-word';
@@ -42,49 +42,47 @@ const LargeHint: React.FC<HintProps> = (props) => {
 
 interface HintsAndScoreProps {
   secretWord: SecretWord,
-  isTimerStopped: boolean
+  allowedGameTime: number,
+  hintDisplayTime: number,
+  isTimerStopped: boolean,
+  onTimeUpdate: (time: number) => void
 }
 
 const HintsAndScore: React.FC<HintsAndScoreProps> = (props) => {
-  const [secretWord, _] = useState<SecretWord>(props.secretWord)
-  const [time, setTime] = useState<number>(0) // in seconds
-  const allowedGameTime: number = 120
-  const hintDisplayTime = 6
-
+  const [elapsedTime, setElapsedTime] = useState<number>(0) // in seconds
 
   useEffect(() => {
-    
     if (props.isTimerStopped) {
       console.log('=> stop timer')
       return
     }
 
     const interval = setInterval(() => {
-        setTime((time: number) => {
-          if (props.isTimerStopped || time >= allowedGameTime) {
+      setElapsedTime((time: number) => {
+          if (props.isTimerStopped || time >= props.allowedGameTime) {
             clearInterval(interval)
             return time
           }
+          props.onTimeUpdate(time + 1)
           return time + 1
         })
     } , 1000)
   },[])
-
-  console.log('HintAndScore update, timer = ' + time)
+  console.log('HintAndScore update, timer = ' + elapsedTime)
 
   const GameStatusBar = () =>
     <View style={styles.toolbarContainer}>
-        <TimerView time={time}/>
+        <TimerView time={elapsedTime}/>
         <Text style={styles.wordDescription}>{'The word is a place'}</Text>
         {/* <Text>The word is </Text>
         <TextInput placeholder='???' style={{ backgroundColor: 'white', padding: 8, borderWidth: 1, borderColor: '#ccc'}}/> */}
      </View>
 
   const Hints = () => {
-    const numberOfHintsDisplayed = Math.min(1 + Math.floor(time / hintDisplayTime), props.secretWord.hints.length)
+    const numberOfHintsDisplayed = Math.min(1 + Math.floor(elapsedTime / props.hintDisplayTime), props.secretWord.hints.length)
     let counter = numberOfHintsDisplayed
 
-    return secretWord.hints
+    return props.secretWord.hints
       .slice(0,numberOfHintsDisplayed)
       .reverse()
       .map( (hint) => {
