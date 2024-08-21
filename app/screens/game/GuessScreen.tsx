@@ -6,6 +6,7 @@ import { getSecretWord, getRandomHintCardIndex } from "../../card-database-servi
 import { SecretWord } from '../../secret-word';
 import HintsAndScore from './HintsAndScore';
 import {Dimensions} from 'react-native';
+import { ResultsScreenProps } from './ResultsScreen';
 
 // Guess screen
 
@@ -24,7 +25,6 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
 
   const WordInput = () => 
     <TextInput
-      editable
       maxLength={40}
       onChangeText={text => onChangeWordInput(text)}
       placeholder='Enter with the word here'
@@ -36,6 +36,7 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
   function onChangeWordInput(text: string) {
     if (!isSuccessGuess && text.toLowerCase() == secretWord.word.toLowerCase()) {
       console.log("YOU WON!")
+      const resultScreenProps: ResultsScreenProps = {isWordGuessed: true, timeSpent: 0, hintsRevealed: 0 }
       setSuccessGuess(true)
       setTimeout(() => {
         props.setSuccessGuess()
