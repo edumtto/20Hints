@@ -48,8 +48,8 @@ interface HintsAndScoreProps {
 const HintsAndScore: React.FC<HintsAndScoreProps> = (props) => {
   const [secretWord, _] = useState<SecretWord>(props.secretWord)
   const [time, setTime] = useState<number>(0) // in seconds
-  const allowedGameTime: number = 60
-  const hintDisplayTime = 5
+  const allowedGameTime: number = 120
+  const hintDisplayTime = 6
 
 
   useEffect(() => {
@@ -81,7 +81,7 @@ const HintsAndScore: React.FC<HintsAndScoreProps> = (props) => {
      </View>
 
   const Hints = () => {
-    const numberOfHintsDisplayed = Math.min(Math.floor(time / hintDisplayTime), props.secretWord.hints.length)
+    const numberOfHintsDisplayed = Math.min(1 + Math.floor(time / hintDisplayTime), props.secretWord.hints.length)
     let counter = numberOfHintsDisplayed
 
     return secretWord.hints
@@ -93,8 +93,7 @@ const HintsAndScore: React.FC<HintsAndScoreProps> = (props) => {
         }
         return <Hint key={counter} number={counter--} hint={hint} /> 
       }
-        
-      )
+    )
   }
 
   return (
@@ -139,33 +138,34 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     textAlign: 'center',
     alignContent: 'center',
-    fontSize: 18,
+    fontSize: 28,
+    fontWeight: 100
   },
   hintText: {
     alignContent: 'center',
     paddingLeft: 8,
-    fontSize: 18,
+    fontSize: 28,
     fontWeight: 200
   },
   largeHintContainer: {
     flexDirection: 'row',
     paddingHorizontal: 8,
-    paddingVertical: 16,
-    marginVertical: 24
+    paddingVertical: 8,
+    marginTop: 24
   },
   largeHintNumber: {
     color: '#7F00E2',
     borderRadius: 20,
     textAlign: 'center',
     alignContent: 'flex-start',
-    fontSize: 38,
-    fontWeight: 200
+    fontSize: 32,
+    fontWeight: 300
   },
   largeHintText: {
     alignContent: 'center',
-    paddingLeft: 16,
-    fontSize: 38,
-    fontWeight: '300'
+    paddingLeft: 8,
+    fontSize: 32,
+    fontWeight: 400
   },
 });
 

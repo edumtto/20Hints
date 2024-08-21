@@ -7,15 +7,6 @@ import { SecretWord } from '../../secret-word';
 import HintsAndScore from './HintsAndScore';
 import {Dimensions} from 'react-native';
 
-// const OpeningGuessScreen: React.FC = () => {
-//   return <View style={styles.openingClue}>
-//     <Text style={styles.word}>{'The word is a'}</Text>
-//     <Text style={styles.word}>{'Place'}</Text>
-//   </View>
-// }
-
-
-
 // Guess screen
 
 interface GuessScreenProps {
@@ -87,7 +78,8 @@ const styles = StyleSheet.create({
     marginTop: 16,
     marginBottom: 8,
     fontWeight: 800,
-    fontFamily: 'monospace'
+    fontFamily: 'monospace',
+    fontSize: 32
   }
 });
 
