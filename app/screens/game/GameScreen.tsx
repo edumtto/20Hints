@@ -36,6 +36,10 @@ const GameScreen: React.FC = () => {
 
   }
 
+  function setNextGame() {
+    setGameState(GameState.Guess)
+  }
+
   const Content: React.FC = () => {
     switch (gameState) {
       case GameState.Setup:
@@ -46,7 +50,7 @@ const GameScreen: React.FC = () => {
         const newSecretWord = getSecretWord(Number(getRandomHintCardIndex()))
         return <GuessScreen secretWord={newSecretWord} setSuccessGuess={setSuccessGuess} setTimeout={setTimeout} />
       case GameState.Results:
-        return <ResultScreen isWordGuessed={resultRef.current.isWordGuessed} timeSpent={resultRef.current.timeSpent} hintsRevealed={resultRef.current.hintsRevealed}/>
+        return <ResultScreen isWordGuessed={resultRef.current.isWordGuessed} timeSpent={resultRef.current.timeSpent} hintsRevealed={resultRef.current.hintsRevealed} setNextGame={setNextGame}/>
     }
   }
 
