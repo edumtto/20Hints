@@ -3,23 +3,27 @@ import React from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 import PrimaryButton from '../../PrimaryButton';
 
-export interface ResultsScreenProps {
+export interface GameResultStats {
   isWordGuessed: boolean,
   timeSpent: number, // in seconds
   hintsRevealed: number,
+}
+
+export interface ResultsScreenProps {
+  stats: GameResultStats
   setNextGame: () => void
 }
 
 const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
 
   function getMessage(): [string, string] {
-    if (props.isWordGuessed == false) {
+    if (props.stats.isWordGuessed == false) {
       return ['Oh, no! You were so close.', 'Best luck next time']
     }
-    if (props.hintsRevealed < 5) {
-      return ['Impressive!', 'Only '+ props.hintsRevealed + ' hints used!']
+    if (props.stats.hintsRevealed < 5) {
+      return ['Impressive!', 'Only '+ props.stats.hintsRevealed + ' hints used!']
     }
-    if (props.hintsRevealed < 10) {
+    if (props.stats.hintsRevealed < 10) {
       return ['Great job!', 'You used less than half of the hints.']
     }
     return ['Good job!', 'You can train to guess even faster next time']
@@ -28,7 +32,7 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
   function handleStartNextGame() {
       props.setNextGame()
   }
-  
+
   const message = getMessage()
 
   const Stat: React.FC<{label: string, value: any}> = (props) => 
@@ -41,9 +45,9 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
     <Text style={styles.primatyText}>{message[0]}</Text>
     <Text style={styles.secondaryText}>{message[1]}</Text>
     <View style={styles.stats}>
-      <Stat label={'Word guessed'}  value={props.isWordGuessed ? '✓' : 'no'} />
-      <Stat label={'Hints revealed'}  value={props.hintsRevealed} />
-      <Stat label={'Time spent'}  value={props.timeSpent + 's'} />
+      <Stat label={'Word guessed'}  value={props.stats.isWordGuessed ? '✓' : 'no'} />
+      <Stat label={'Hints revealed'}  value={props.stats.hintsRevealed} />
+      <Stat label={'Time spent'}  value={props.stats.timeSpent + 's'} />
     </View>
     <PrimaryButton title={'Next Game'} onPress={() => handleStartNextGame()} />
   </View>

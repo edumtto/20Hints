@@ -7,7 +7,7 @@ import { Stack, useRouter } from "expo-router";
 import { createContext, useEffect, useRef, useState } from 'react';
 import SetupScreen from './SetupScreen';
 import GuessScreen from './GuessScreen';
-import ResultScreen, { ResultsScreenProps } from './ResultsScreen';
+import ResultScreen, { GameResultStats, ResultsScreenProps } from './ResultsScreen';
 import { getRandomHintCardIndex, getSecretWord } from '../../card-database-service';
 import { SecretWord } from '../../secret-word';
 
@@ -18,7 +18,7 @@ enum GameState {
 const GameScreen: React.FC = () => {
   const router = useRouter();
   const [gameState, setGameState] = useState(GameState.Setup)
-  const resultRef = useRef<ResultsScreenProps>({isWordGuessed: false, timeSpent: 0, hintsRevealed: 0})
+  const resultRef = useRef<GameResultStats>({isWordGuessed: false, timeSpent: 0, hintsRevealed: 0})
 
 
   console.log('Game screen update')
@@ -27,8 +27,8 @@ const GameScreen: React.FC = () => {
     setGameState(GameState.Guess)
   }
 
-  function setSuccessGuess(result: ResultsScreenProps): void {
-    resultRef.current = result
+  function setSuccessGuess(stats: GameResultStats): void {
+    resultRef.current = stats
     setGameState(GameState.Results)
   }
 
@@ -50,7 +50,7 @@ const GameScreen: React.FC = () => {
         const newSecretWord = getSecretWord(Number(getRandomHintCardIndex()))
         return <GuessScreen secretWord={newSecretWord} setSuccessGuess={setSuccessGuess} setTimeout={setTimeout} />
       case GameState.Results:
-        return <ResultScreen isWordGuessed={resultRef.current.isWordGuessed} timeSpent={resultRef.current.timeSpent} hintsRevealed={resultRef.current.hintsRevealed} setNextGame={setNextGame}/>
+        return <ResultScreen stats={resultRef.current} setNextGame={setNextGame}/>
     }
   }
 
