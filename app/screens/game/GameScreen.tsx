@@ -15,20 +15,45 @@ enum GameState {
   Setup, Intro, Guess, Results
 }
 
+interface GlobalGameSettings {
+  endScore: number
+}
+
+interface GlobalGameStats {
+  gamesPlayed: number
+  timeSpent: number
+  globalScore: number
+}
+
+// GAME SCREEN
+
 const GameScreen: React.FC = () => {
   const router = useRouter();
   const [gameState, setGameState] = useState(GameState.Setup)
-  const resultRef = useRef<GameResultStats>({isWordGuessed: false, timeSpent: 0, hintsRevealed: 0})
+  const gameSettingsRef = useRef<GlobalGameSettings>({endScore: Infinity})
+  const globalStatusRef = useRef<GlobalGameStats>({gamesPlayed: 0, timeSpent: 0, globalScore: 0})
+  const resultRef = useRef<GameResultStats>({isWordGuessed: false, timeSpent: 0, hintsRevealed: 0, score: 0})
 
 
   console.log('Game screen update')
 
-  function setGameSettings(dictionaries: number[], timeLength: number): void {
+  gameSettingsRef.current = {endScore: 120}
+
+  function setGameSettings(endScore: number): void {
+    gameSettingsRef.current = {endScore: endScore}
     setGameState(GameState.Guess)
   }
 
   function setSuccessGuess(stats: GameResultStats): void {
     resultRef.current = stats
+
+    const newGlobalStatus: GlobalGameStats = {
+      gamesPlayed: globalStatusRef.current.gamesPlayed + 1,
+      timeSpent: globalStatusRef.current.timeSpent + stats.timeSpent,
+      globalScore: globalStatusRef.current.globalScore + stats.score
+    }
+    globalStatusRef.current = newGlobalStatus
+
     setGameState(GameState.Results)
   }
 
@@ -48,9 +73,18 @@ const GameScreen: React.FC = () => {
         return <View>Intro</View>
       case GameState.Guess:
         const newSecretWord = getSecretWord(Number(getRandomHintCardIndex()))
-        return <GuessScreen secretWord={newSecretWord} setSuccessGuess={setSuccessGuess} setTimeout={setTimeout} />
+        return <GuessScreen 
+          secretWord={newSecretWord} 
+          setSuccessGuess={setSuccessGuess} 
+          setTimeout={setTimeout} 
+        />
       case GameState.Results:
-        return <ResultScreen stats={resultRef.current} setNextGame={setNextGame}/>
+        return <ResultScreen 
+          stats={resultRef.current} 
+          globalScore={globalStatusRef.current.globalScore} 
+          endScore={gameSettingsRef.current.endScore} 
+          setNextGame={setNextGame}
+        />
     }
   }
 

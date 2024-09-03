@@ -6,7 +6,7 @@ import { getSecretWord, getRandomHintCardIndex } from "../../card-database-servi
 import { SecretWord } from '../../secret-word';
 import HintsAndScore from './HintsAndScore';
 import {Dimensions} from 'react-native';
-import { ResultsScreenProps } from './ResultsScreen';
+import { GameResultStats, ResultsScreenProps } from './ResultsScreen';
 
 // Guess screen
 
@@ -27,19 +27,29 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
   const hintsRevealed = () => Math.min(1 + Math.floor(timeTrackerRef.current / hintDisplayTime), totalNumberOfHints)
   console.log('Guess screen update')
 
-  function onTimeout() {
-    console.log("YOU WON!")
-    const resultScreenProps: ResultsScreenProps = {isWordGuessed: true, timeSpent: timeTrackerRef.current, hintsRevealed: hintsRevealed()}
-    setSuccessGuess(true)
-    setTimeout(() => props.setSuccessGuess(resultScreenProps), 2000);
-  }
+  // function onTimeout() {
+  //   console.log("YOU WON!")
+  //   const stats: GameResultStats = {
+  //     isWordGuessed: true, 
+  //     timeSpent: timeTrackerRef.current, 
+  //     hintsRevealed: hintsRevealed(), 
+  //     score: totalNumberOfHints - hintsRevealed()
+  //   }
+  //   setSuccessGuess(true)
+  //   setTimeout(() => props.setSuccessGuess(stats), 2000);
+  // }
 
   function onChangeWordInput(text: string) {
     if (!isSuccessGuess && text.toLowerCase() == props.secretWord.word.toLowerCase()) {
       console.log("YOU WON!")
-      const resultScreenProps: ResultsScreenProps = {isWordGuessed: true, timeSpent: timeTrackerRef.current, hintsRevealed: hintsRevealed()}
+      const stats: GameResultStats = {
+        isWordGuessed: true, 
+        timeSpent: timeTrackerRef.current, 
+        hintsRevealed: hintsRevealed(),
+        score: totalNumberOfHints - hintsRevealed()
+      }
       setSuccessGuess(true)
-      setTimeout(() => props.setSuccessGuess(resultScreenProps), 2000);
+      setTimeout(() => props.setSuccessGuess(stats), 2000);
     }
   }
 

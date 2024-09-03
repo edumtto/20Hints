@@ -7,12 +7,28 @@ export interface GameResultStats {
   isWordGuessed: boolean,
   timeSpent: number, // in seconds
   hintsRevealed: number,
+  score: number
 }
 
 export interface ResultsScreenProps {
   stats: GameResultStats
+  globalScore: number
+  endScore: number
   setNextGame: () => void
 }
+
+const ScoreProgress: React.FC<{value: number, maxValue: number}> = (props) => {
+  return <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center'}}>
+    {/* <Text style={{ fontSize: 14, color: '#fff'}}>TOTAL SCORE</Text> */}
+  <View style={{ marginVertical: 16 }}>
+    <View style={{ height: 14, width: 200, backgroundColor: '#fff', borderWidth: 1, borderColor: 'black'}}></View>
+    <View style={{ height: 14, width: props.value, backgroundColor: '#000', position: 'absolute'}}></View>
+  </View>
+    <Text style={{ fontSize: 18, color: '#fff'}}>{props.value + '/' + props.maxValue}</Text>
+  </View  >
+}
+
+// RESULT SCREEN
 
 const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
 
@@ -42,12 +58,16 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
     </View>
 
   return <View style={styles.container}>
-    <Text style={styles.primatyText}>{message[0]}</Text>
+    <Text style={styles.primaryText}>{message[0]}</Text>
     <Text style={styles.secondaryText}>{message[1]}</Text>
-    <View style={styles.stats}>
-      <Stat label={'Word guessed'}  value={props.stats.isWordGuessed ? '✓' : 'no'} />
-      <Stat label={'Hints revealed'}  value={props.stats.hintsRevealed} />
-      <Stat label={'Time spent'}  value={props.stats.timeSpent + 's'} />
+    <View style={{paddingVertical: 32}}>
+      <Text style={styles.scoreText}>{'+' + props.stats.score + 'pts'}</Text>
+      {/* <View style={styles.stats}>
+        <Stat label={'Word guessed'}  value={props.stats.isWordGuessed ? '✓' : 'no'} />
+        <Stat label={'Hints revealed'}  value={props.stats.hintsRevealed} />
+        <Stat label={'Time spent'}  value={props.stats.timeSpent + 's'} />
+      </View> */}
+      <ScoreProgress value={props.globalScore} maxValue={props.endScore}/>
     </View>
     <PrimaryButton title={'Next Game'} onPress={() => handleStartNextGame()} />
   </View>
@@ -61,7 +81,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  primatyText: {
+  primaryText: {
     color: '#fff',
     fontSize: 48,
     marginBottom: 16
@@ -71,6 +91,10 @@ const styles = StyleSheet.create({
     fontSize: 28,
     marginBottom: 24,
     fontWeight: 200
+  },
+  scoreText: {
+    color: '#fff',
+    fontSize: 60,
   },
   stats: {
     flex: 1,

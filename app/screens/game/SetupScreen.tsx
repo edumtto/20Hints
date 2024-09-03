@@ -9,7 +9,7 @@ import { createContext } from 'react';
 import PrimaryButton from '../../PrimaryButton';
 
 interface SetupScreenProps {
-  setGameSettings: (dictionaries: number[], timeLength: number) => void
+  setGameSettings: (endScore: number) => void
 }
 
 const SetupScreen: React.FC<SetupScreenProps> = (props) => {
@@ -17,7 +17,7 @@ const SetupScreen: React.FC<SetupScreenProps> = (props) => {
 
   const handleStartGame = () => {
     //router.navigate({ pathname: 'screens/GuessScreen', params: { dictionaries: [0], timeLength: 100 } })
-    props.setGameSettings([0], 120)
+    props.setGameSettings(120)
   };
 
   return (
