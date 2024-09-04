@@ -36,6 +36,9 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
     if (props.stats.isWordGuessed == false) {
       return ['Oh, no! You were so close.', 'Best luck next time']
     }
+    if (props.stats.hintsRevealed == 1) {
+      return ['Unbelievable', 'Only '+ props.stats.hintsRevealed + ' hint used!']
+    }
     if (props.stats.hintsRevealed < 5) {
       return ['Impressive!', 'Only '+ props.stats.hintsRevealed + ' hints used!']
     }

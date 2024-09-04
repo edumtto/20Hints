@@ -12,7 +12,7 @@ import { getRandomHintCardIndex, getSecretWord } from '../../card-database-servi
 import { SecretWord } from '../../secret-word';
 
 enum GameState {
-  Setup, Intro, Guess, Results
+  Setup, Intro, Guess, Results, FinalResults
 }
 
 interface GlobalGameSettings {
@@ -30,14 +30,12 @@ interface GlobalGameStats {
 const GameScreen: React.FC = () => {
   const router = useRouter();
   const [gameState, setGameState] = useState(GameState.Setup)
-  const gameSettingsRef = useRef<GlobalGameSettings>({endScore: Infinity})
+  const gameSettingsRef = useRef<GlobalGameSettings>({endScore: 50})
   const globalStatusRef = useRef<GlobalGameStats>({gamesPlayed: 0, timeSpent: 0, globalScore: 0})
   const resultRef = useRef<GameResultStats>({isWordGuessed: false, timeSpent: 0, hintsRevealed: 0, score: 0})
 
 
   console.log('Game screen update')
-
-  gameSettingsRef.current = {endScore: 120}
 
   function setGameSettings(endScore: number): void {
     gameSettingsRef.current = {endScore: endScore}
@@ -54,7 +52,11 @@ const GameScreen: React.FC = () => {
     }
     globalStatusRef.current = newGlobalStatus
 
-    setGameState(GameState.Results)
+    if (globalStatusRef.current.globalScore >= gameSettingsRef.current.endScore) {
+      setGameState(GameState.FinalResults)
+    } else {
+      setGameState(GameState.Results)
+    }
   }
 
   function setTimeout(): void {
@@ -85,6 +87,8 @@ const GameScreen: React.FC = () => {
           endScore={gameSettingsRef.current.endScore} 
           setNextGame={setNextGame}
         />
+        case GameState.FinalResults:
+          return <View>The End</View>
     }
   }
 
