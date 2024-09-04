@@ -16,7 +16,7 @@ interface GuessScreenProps {
   setGuessTimeOver: (ResultsScreenProps) => void,
 }
 
-const allowedGameTime: number = 10
+const allowedGameTime: number = 120
 const hintDisplayTime = 6
 const totalNumberOfHints = 20
 
@@ -41,7 +41,7 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
   }
 
   function onChangeWordInput(text: string) {
-    if (!isSuccessGuess && text.toLowerCase() == props.secretWord.word.toLowerCase()) {
+    if (!isSuccessGuess && text == props.secretWord.word.toUpperCase()) {
       const stats: GameResultStats = {
         isWordGuessed: true, 
         timeSpent: timeTrackerRef.current, 
@@ -57,9 +57,10 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
     <TextInput
       maxLength={40}
       onChangeText={text => onChangeWordInput(text)}
-      placeholder='Enter with the word here'
+      placeholderTextColor='grey'
+      placeholder='Enter word here'
       style={[styles.wordInput, { color: isSuccessGuess ? 'green' : '#000' }]}
-      value={isSuccessGuess ? props.secretWord.word : undefined}
+      value={isSuccessGuess ? props.secretWord.word.toUpperCase() : undefined}
       autoFocus={true}
     />
 
@@ -105,7 +106,8 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     fontWeight: 800,
     fontFamily: 'monospace',
-    fontSize: 32
+    fontSize: 32,
+    textTransform: 'uppercase'
   }
 });
 
