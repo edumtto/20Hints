@@ -34,7 +34,7 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
 
   function getMessage(): [string, string] {
     if (props.stats.isWordGuessed == false) {
-      return ['Oh, no! You were so close.', 'Best luck next time']
+      return ['The time is over', 'Best luck next time']
     }
     if (props.stats.hintsRevealed == 1) {
       return ['Unbelievable', 'Only '+ props.stats.hintsRevealed + ' hint used!']
@@ -47,6 +47,8 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
     }
     return ['Good job!', 'You can train to guess even faster next time']
   }
+
+  const buttonTitle = props.stats.isWordGuessed == false ? 'Try again' : 'Next Game'
 
   function handleStartNextGame() {
       props.setNextGame()
@@ -64,7 +66,7 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
     <Text style={styles.primaryText}>{message[0]}</Text>
     <Text style={styles.secondaryText}>{message[1]}</Text>
     <View style={{paddingVertical: 32}}>
-      <Text style={styles.scoreText}>{'+' + props.stats.score + 'pts'}</Text>
+      <Text style={styles.scoreText}>{'+ ' + props.stats.score + ' pts'}</Text>
       {/* <View style={styles.stats}>
         <Stat label={'Word guessed'}  value={props.stats.isWordGuessed ? '✓' : 'no'} />
         <Stat label={'Hints revealed'}  value={props.stats.hintsRevealed} />
@@ -72,7 +74,7 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
       </View> */}
       <ScoreProgress value={props.globalScore} maxValue={props.endScore}/>
     </View>
-    <PrimaryButton title={'Next Game'} onPress={() => handleStartNextGame()} />
+    <PrimaryButton title={buttonTitle} onPress={() => handleStartNextGame()} />
   </View>
 }
 
@@ -98,6 +100,7 @@ const styles = StyleSheet.create({
   scoreText: {
     color: '#fff',
     fontSize: 60,
+    textAlign: 'center'
   },
   stats: {
     flex: 1,

@@ -60,8 +60,16 @@ const GameScreen: React.FC = () => {
     }
   }
 
-  function setTimeout(): void {
+  function setGuessTimeOver(stats: GameResultStats): void {
 
+    const newGlobalStatus: GlobalGameStats = {
+      gamesPlayed: globalStatusRef.current.gamesPlayed + 1,
+      timeSpent: globalStatusRef.current.timeSpent + stats.timeSpent,
+      globalScore: globalStatusRef.current.globalScore
+    }
+    globalStatusRef.current = newGlobalStatus
+
+    setGameState(GameState.Results)
   }
 
   function setNextGame() {
@@ -69,7 +77,6 @@ const GameScreen: React.FC = () => {
   }
 
   function setExit() {
-    console.log('won')
     router.push('../../')
   }
 
@@ -84,7 +91,7 @@ const GameScreen: React.FC = () => {
         return <GuessScreen 
           secretWord={newSecretWord} 
           setSuccessGuess={setSuccessGuess} 
-          setTimeout={setTimeout} 
+          setGuessTimeOver={setGuessTimeOver} 
         />
       case GameState.Results:
         return <ResultScreen 

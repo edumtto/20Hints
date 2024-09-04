@@ -13,10 +13,10 @@ import { GameResultStats, ResultsScreenProps } from './ResultsScreen';
 interface GuessScreenProps {
   secretWord: SecretWord,
   setSuccessGuess: (ResultsScreenProps) => void,
-  setTimeout: () => void,
+  setGuessTimeOver: (ResultsScreenProps) => void,
 }
 
-const allowedGameTime: number = 120
+const allowedGameTime: number = 10
 const hintDisplayTime = 6
 const totalNumberOfHints = 20
 
@@ -27,21 +27,21 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
   const hintsRevealed = () => Math.min(1 + Math.floor(timeTrackerRef.current / hintDisplayTime), totalNumberOfHints)
   console.log('Guess screen update')
 
-  // function onTimeout() {
-  //   console.log("YOU WON!")
-  //   const stats: GameResultStats = {
-  //     isWordGuessed: true, 
-  //     timeSpent: timeTrackerRef.current, 
-  //     hintsRevealed: hintsRevealed(), 
-  //     score: totalNumberOfHints - hintsRevealed()
-  //   }
-  //   setSuccessGuess(true)
-  //   setTimeout(() => props.setSuccessGuess(stats), 2000);
-  // }
+  function onTimeUpdate(time: number) {
+    timeTrackerRef.current = time
+    if (time >= allowedGameTime) {
+      const stats: GameResultStats = {
+        isWordGuessed: false, 
+        timeSpent: timeTrackerRef.current, 
+        hintsRevealed: hintsRevealed(),
+        score: 0
+      }
+      setTimeout(() => props.setGuessTimeOver(stats), 1000);
+    }
+  }
 
   function onChangeWordInput(text: string) {
     if (!isSuccessGuess && text.toLowerCase() == props.secretWord.word.toLowerCase()) {
-      console.log("YOU WON!")
       const stats: GameResultStats = {
         isWordGuessed: true, 
         timeSpent: timeTrackerRef.current, 
@@ -69,7 +69,7 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
       isTimerStopped={isSuccessGuess} 
       allowedGameTime={allowedGameTime} 
       hintDisplayTime={hintDisplayTime}
-      onTimeUpdate={(time) => timeTrackerRef.current = time}
+      onTimeUpdate={onTimeUpdate}
     />
     <WordInput />
   </View>

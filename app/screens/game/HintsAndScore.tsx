@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   toolbarContainer: {
     borderBottomWidth: 0.5,
     marginHorizontal: 8,
-    marginTop: 8
+    marginTop: 8,
   },
   timer: { 
     fontSize: 22, 
