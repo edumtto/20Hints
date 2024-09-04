@@ -40,7 +40,7 @@ const CircleButtonSelector: React.FC<{options: number[], selected: number, setSe
 
 const SetupScreen: React.FC<SetupScreenProps> = (props) => {
   const router = useRouter();
-  const maxScoreOptions = [50,70,100,150, 200]
+  const maxScoreOptions = [10,70,100,150, 200]
   const [maxScoreIndex, setMaxScoreIndex] = useState(0)
 
   const handleStartGame = () => {

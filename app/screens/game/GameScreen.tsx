@@ -10,6 +10,7 @@ import GuessScreen from './GuessScreen';
 import ResultScreen, { GameResultStats, ResultsScreenProps } from './ResultsScreen';
 import { getRandomHintCardIndex, getSecretWord } from '../../card-database-service';
 import { SecretWord } from '../../secret-word';
+import FinalResultScreen from './FinalResultsScreen';
 
 enum GameState {
   Setup, Intro, Guess, Results, FinalResults
@@ -67,6 +68,11 @@ const GameScreen: React.FC = () => {
     setGameState(GameState.Guess)
   }
 
+  function setExit() {
+    console.log('won')
+    router.push('../../')
+  }
+
   const Content: React.FC = () => {
     switch (gameState) {
       case GameState.Setup:
@@ -88,7 +94,13 @@ const GameScreen: React.FC = () => {
           setNextGame={setNextGame}
         />
         case GameState.FinalResults:
-          return <View>The End</View>
+          return <FinalResultScreen 
+          gamesPlayed={globalStatusRef.current.gamesPlayed} 
+          timeSpent={globalStatusRef.current.timeSpent}
+          globalScore={globalStatusRef.current.globalScore}
+          endScore={gameSettingsRef.current.endScore}
+          setExit={setExit}
+        />
     }
   }
 
