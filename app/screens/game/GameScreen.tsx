@@ -1,15 +1,10 @@
-import {
-  View,
-  StyleSheet,
-  Button,
-} from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Stack, useRouter } from "expo-router";
-import { createContext, useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import SetupScreen from './SetupScreen';
 import GuessScreen from './GuessScreen';
-import ResultScreen, { GameResultStats, ResultsScreenProps } from './ResultsScreen';
-import { getRandomHintCardIndex, getSecretWord } from '../../card-database-service';
-import { SecretWord } from '../../secret-word';
+import ResultScreen, { GameResultStats } from './ResultsScreen';
+import { getRandomSecretWord } from '../../wordSets/secretWordDatabase';
 import FinalResultScreen from './FinalResultsScreen';
 
 enum GameState {
@@ -87,11 +82,12 @@ const GameScreen: React.FC = () => {
       case GameState.Intro:
         return <View>Intro</View>
       case GameState.Guess:
-        const newSecretWord = getSecretWord(Number(getRandomHintCardIndex()))
+        const newSecretWord = getRandomSecretWord()
+        console.log("->>>>> " + newSecretWord)
         return <GuessScreen 
-          secretWord={newSecretWord} 
-          setSuccessGuess={setSuccessGuess} 
-          setGuessTimeOver={setGuessTimeOver} 
+          secretWord={newSecretWord}
+          setSuccessGuess={setSuccessGuess}
+          setGuessTimeOver={setGuessTimeOver}        
         />
       case GameState.Results:
         return <ResultScreen 

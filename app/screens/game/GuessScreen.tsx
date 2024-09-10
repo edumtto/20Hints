@@ -1,9 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Text, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { ScrollView, TextInput } from 'react-native-gesture-handler';
-import { useLocalSearchParams } from 'expo-router';
-import { getSecretWord, getRandomHintCardIndex } from "../../card-database-service";
-import { SecretWord } from '../../secret-word';
+import React, { useRef, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
+import { SecretWord, SecretWordCategory } from '../../wordSets/secretWord';
 import HintsAndScore from './HintsAndScore';
 import {Dimensions} from 'react-native';
 import { GameResultStats, ResultsScreenProps } from './ResultsScreen';
@@ -25,7 +23,8 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
   const timeTrackerRef = useRef(0)
   const windowHeight = Dimensions.get('window').height
   const hintsRevealed = () => Math.min(1 + Math.floor(timeTrackerRef.current / hintDisplayTime), totalNumberOfHints)
-  console.log('Guess screen update')
+  
+  console.log('Secret word: ' + props.secretWord.word)
 
   function onTimeUpdate(time: number) {
     timeTrackerRef.current = time
@@ -41,7 +40,7 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
   }
 
   function onChangeWordInput(text: string) {
-    if (!isSuccessGuess && text == props.secretWord.word.toUpperCase()) {
+    if (!isSuccessGuess && text.toUpperCase() == props.secretWord.word.toUpperCase()) {
       const stats: GameResultStats = {
         isWordGuessed: true, 
         timeSpent: timeTrackerRef.current, 
@@ -65,8 +64,8 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
     />
 
   return <View style={styles.container}>
-    <HintsAndScore 
-      secretWord={props.secretWord} 
+    <HintsAndScore
+      secretWord={props.secretWord}
       isTimerStopped={isSuccessGuess} 
       allowedGameTime={allowedGameTime} 
       hintDisplayTime={hintDisplayTime}

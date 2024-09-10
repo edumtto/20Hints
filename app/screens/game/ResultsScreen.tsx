@@ -1,7 +1,7 @@
 import { useLocalSearchParams } from 'expo-router';
 import React from 'react';
 import { Text, StyleSheet, View } from 'react-native';
-import PrimaryButton from '../../PrimaryButton';
+import PrimaryButton from '../../uiComponents/PrimaryButton';
 
 export interface GameResultStats {
   isWordGuessed: boolean,

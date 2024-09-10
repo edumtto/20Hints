@@ -1,0 +1,131 @@
+{
+  "category": "Person",
+  "setSize": 5,
+  "secretWords": [
+    {
+      "word": "Sherlock Holmes",
+      "hints": [
+        "A famous detective",
+        "Lives in London",
+        "Has a loyal assistant named Watson",
+        "Known for his keen observation skills",
+        "Has a signature pipe and deerstalker hat",
+        "Often solves crimes with a magnifying glass",
+        "Lives at 221B Baker Street",
+        "Has a nemesis named Moriarty",
+        "A character created by Sir Arthur Conan Doyle",
+        "Appears in many novels and short stories",
+        "Is known for his logical thinking",
+        "Often solves crimes with a clever deduction",
+        "Is a fictional character",
+        "Has a distinctive appearance",
+        "Is a symbol of intelligence and deduction",
+        "Is often seen as a gentleman",
+        "Is a popular character in literature and media",
+        "Has a reputation for being eccentric",
+        "Is a role model for many",
+        "Has been portrayed by many actors"
+      ]
+    },
+    {
+      "word": "Captain America",
+      "hints": [
+        "A superhero from Marvel Comics",
+        "Enhanced with a super serum",
+        "Wields a vibranium shield",
+        "Often leads the Avengers",
+        "His real name is Steve Rogers",
+        "From Brooklyn, New York",
+        "A symbol of American values",
+        "Fought in World War II",
+        "Has a distinctive costume with a star on his chest",
+        "Has been portrayed by Chris Evans in the MCU",
+        "Is known for his unwavering patriotism",
+        "Is often seen as a moral compass",
+        "Has a long-standing rivalry with Red Skull",
+        "Has a close friendship with Bucky Barnes",
+        "Is a member of the Howling Commandos",
+        "Has appeared in numerous comics, movies, and TV shows",
+        "Is a popular figure in pop culture",
+        "Has a timeless appeal",
+        "Is a symbol of hope and perseverance",
+        "Is a role model for many"
+      ]
+    },
+    {
+      "word": "Cleopatra",
+      "hints": [
+        "A queen of ancient Egypt",
+        "Famous for her relationship with Julius Caesar",
+        "Had a son with Mark Antony",
+        "Known for her beauty and intelligence",
+        "Committed suicide by snakebite",
+        "Was a powerful ruler",
+        "Lived in Alexandria",
+        "Was defeated by Octavian",
+        "Has been portrayed in many movies and plays",
+        "Is a symbol of femininity and power",
+        "Was a contemporary of Julius Caesar and Mark Antony",
+        "Was involved in the Roman Civil War",
+        "Is often associated with the Nile River",
+        "Is known for her extravagant lifestyle",
+        "Has been the subject of many historical works",
+        "Is a popular figure in literature and art",
+        "Is a symbol of ancient Egypt",
+        "Has been portrayed by many actresses",
+        "Is a complex historical figure",
+        "Is a role model for many women"
+      ]
+    },
+    {
+      "word": "Einstein",
+      "hints": [
+        "A famous physicist",
+        "Developed the theory of relativity",
+        "Won the Nobel Prize in Physics",
+        "Had a distinctive hairstyle",
+        "Is known for his equation E=mc²",
+        "Was born in Germany",
+        "Escaped Nazi Germany",
+        "Worked at the Institute for Advanced Study",
+        "Was a pacifist",
+        "Is associated with the atomic bomb",
+        "Was a child prodigy",
+        "Had a quirky personality",
+        "Was a Jewish refugee",
+        "Is a symbol of intelligence",
+        "Has been portrayed in many movies and TV shows",
+        "Is a popular figure in pop culture",
+        "Has a timeless appeal",
+        "Is a role model for many",
+        "Is a symbol of scientific achievement",
+        "Has influenced generations of scientists"
+      ]
+    },
+    {
+      "word": "Leonardo da Vinci",
+      "hints": [
+        "A famous Italian artist, scientist, and inventor",
+        "Painted the Mona Lisa",
+        "Created the Last Supper",
+        "Designed the flying machine",
+        "Was a polymath",
+        "Lived during the Renaissance",
+        "Was a student of Verrocchio",
+        "Was known for his anatomical drawings",
+        "Designed the Vitruvian Man",
+        "Was a sculptor and architect",
+        "Was a member of the Florentine School",
+        "Was a patron of the arts",
+        "Was known for his innovative ideas",
+        "Was a pioneer of scientific research",
+        "Was a symbol of the Renaissance",
+        "Has been the subject of many studies",
+        "Has been portrayed in many movies and TV shows",
+        "Is a popular figure in pop culture",
+        "Has a timeless appeal",
+        "Is a role model for many"
+      ]
+    }
+  ]
+}

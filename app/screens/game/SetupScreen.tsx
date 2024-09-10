@@ -6,13 +6,21 @@ import {
 } from 'react-native';
 import { Stack, useRouter } from "expo-router";
 import { createContext, useState } from 'react';
-import PrimaryButton from '../../PrimaryButton';
+import PrimaryButton from '../../uiComponents/PrimaryButton';
 
 interface SetupScreenProps {
   setGameSettings: (endScore: number) => void
 }
 
-const CircleButtonSelector: React.FC<{options: number[], selected: number, setSelected: (index: number) => void}> = (props) => {
+// interface WordSet {
+//   name: string,
+//   color: string,
+//   src: string
+// }
+
+// const WordSetSelector: React.FC<{}>
+
+const MaxScoreSelector: React.FC<{options: number[], selected: number, setSelected: (index: number) => void}> = (props) => {
   return <View style={{paddingVertical: 40}}>
       <Text style={{fontSize: 28, marginVertical: 16, color: 'white'}}>Max Score</Text>
       <View style={{flex:1, flexDirection: 'row', justifyContent: 'space-between', width: 340}}>
@@ -58,7 +66,7 @@ const SetupScreen: React.FC<SetupScreenProps> = (props) => {
           title: 'Game Setup'
         }}
       />
-      <CircleButtonSelector options={maxScoreOptions} selected={maxScoreIndex} setSelected={setMaxScoreSelected}/>
+      <MaxScoreSelector options={maxScoreOptions} selected={maxScoreIndex} setSelected={setMaxScoreSelected}/>
       <PrimaryButton title={'Start Game'} onPress={() => handleStartGame()} />
     </View>
   )

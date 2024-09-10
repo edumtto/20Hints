@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesome6 } from '@expo/vector-icons';
-import { SecretWordCategory } from './secret-word';
+import { SecretWordCategory } from '../wordSets/secretWord';
 
 const CategoryIcon: React.FC = (category: SecretWordCategory) => {
   switch (category) {

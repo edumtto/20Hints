@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Text, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
-import { SecretWord } from '../../secret-word';
-
+import { SecretWord } from '../../wordSets/secretWord';
 
 // Timer component
 
@@ -73,7 +72,7 @@ const HintsAndScore: React.FC<HintsAndScoreProps> = (props) => {
   const GameStatusBar = () =>
     <View style={styles.toolbarContainer}>
         <TimerView time={elapsedTime}/>
-        <Text style={styles.wordDescription}>{'The word is a place'}</Text>
+        <Text style={styles.wordDescription}>{'The word is a '+ props.secretWord.category}</Text>
         {/* <Text>The word is </Text>
         <TextInput placeholder='???' style={{ backgroundColor: 'white', padding: 8, borderWidth: 1, borderColor: '#ccc'}}/> */}
      </View>

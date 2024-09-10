@@ -2,11 +2,10 @@ import React from 'react';
 import {
   View,
   Text,
-  TouchableOpacity,
   StyleSheet,
 } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
-import PrimaryButton from '../PrimaryButton';
+import PrimaryButton from '../uiComponents/PrimaryButton';
 
 const HomeScreen: React.FC = () => {
   const router = useRouter();

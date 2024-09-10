@@ -1,5 +1,7 @@
-{ "hint_cards":
-  [
+{
+  "category": "Place",
+  "setSize": 5,
+  "secretWords": [
     { 
       "word": "Lighthouse",
       "hints":[

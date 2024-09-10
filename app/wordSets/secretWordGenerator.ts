@@ -1,4 +1,4 @@
-import { SecretWord } from './secret-word'
+import { SecretWord } from './secretWord'
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
