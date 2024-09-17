@@ -1,6 +1,6 @@
 
 export enum SecretWordCategory {
-  Person, Place, Thing
+  Person = "Person", Place = "Place", Thing = "Thing"
 }
 
 export interface SecretWord {

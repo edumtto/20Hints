@@ -67,7 +67,7 @@ const HintsAndScore: React.FC<HintsAndScoreProps> = (props) => {
         })
     } , 1000)
   },[])
-  console.log('HintAndScore update, timer = ' + elapsedTime)
+  // console.log('HintAndScore update, timer = ' + elapsedTime)
 
   const GameStatusBar = () =>
     <View style={styles.toolbarContainer}>

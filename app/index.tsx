@@ -3,6 +3,7 @@ import { Platform, StyleSheet } from "react-native";
 import { Stack } from 'expo-router';
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import HomeScreen2 from "./screens/HomeScreen2";
 
 
 export default function Index() {

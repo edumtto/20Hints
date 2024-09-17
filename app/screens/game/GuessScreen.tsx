@@ -1,10 +1,11 @@
-import React, { useRef, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { useRef, useState, memo } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { SecretWord, SecretWordCategory } from '../../wordSets/secretWord';
 import HintsAndScore from './HintsAndScore';
 import {Dimensions} from 'react-native';
 import { GameResultStats, ResultsScreenProps } from './ResultsScreen';
+import { levenshteinDistance } from '../../wordDistance';
 
 // Guess screen
 
@@ -20,11 +21,12 @@ const totalNumberOfHints = 20
 
 const GuessScreen: React.FC<GuessScreenProps> = (props) => {
   const [isSuccessGuess, setSuccessGuess] = useState(false)
+  // const [inputCloseness, setInputCloseness] = useState(0)
   const timeTrackerRef = useRef(0)
-  const windowHeight = Dimensions.get('window').height
+  // const windowHeight = Dimensions.get('window').height
   const hintsRevealed = () => Math.min(1 + Math.floor(timeTrackerRef.current / hintDisplayTime), totalNumberOfHints)
   
-  console.log('Secret word: ' + props.secretWord.word)
+  // console.log('Secret word: ' + props.secretWord.word)
 
   function onTimeUpdate(time: number) {
     timeTrackerRef.current = time
@@ -39,8 +41,9 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
     }
   }
 
-  function onChangeWordInput(text: string) {
-    if (!isSuccessGuess && text.toUpperCase() == props.secretWord.word.toUpperCase()) {
+  function onChangeWordInput(input: string) {
+    // setInputCloseness(computeInputCloseness(input))
+    if (!isSuccessGuess && input.toUpperCase() == props.secretWord.word.toUpperCase()) {
       const stats: GameResultStats = {
         isWordGuessed: true, 
         timeSpent: timeTrackerRef.current, 
@@ -52,17 +55,41 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
     }
   }
 
-  const WordInput = () => 
-    <TextInput
-      maxLength={40}
-      onChangeText={text => onChangeWordInput(text)}
-      placeholderTextColor='grey'
-      placeholder='Enter word here'
-      style={[styles.wordInput, { color: isSuccessGuess ? 'green' : '#000' }]}
-      value={isSuccessGuess ? props.secretWord.word.toUpperCase() : undefined}
-      autoFocus={true}
-    />
+  function computeInputCloseness(input: string) {
+    if (input == '') {
+      return 0
+    }
 
+    const wordLenth = props.secretWord.word.length
+    const inputDistance = levenshteinDistance(props.secretWord.word, input)
+    console.log(props.secretWord.word + ', ' + input + ' : ' + inputDistance)
+    
+    if (inputDistance >= wordLenth) {
+      return 0
+    } else if (inputDistance == 0) {
+      return 100
+    } else {
+      return (wordLenth - inputDistance) * 100 / wordLenth
+    }
+  }
+
+  const WordInput = () => {
+    return <View 
+      style={{ flex: 0 }}
+    >
+      <TextInput
+        maxLength={40}
+        onChangeText={text => onChangeWordInput(text)}
+        placeholderTextColor='grey'
+        placeholder='Enter word here'
+        style={[styles.wordInput, { color: isSuccessGuess ? 'green' : '#000' }]}
+        value={isSuccessGuess ? props.secretWord.word.toUpperCase() : undefined}
+        autoFocus={true}
+      />
+    </View>
+  }
+    
+    
   return <View style={styles.container}>
     <HintsAndScore
       secretWord={props.secretWord}
@@ -72,6 +99,8 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
       onTimeUpdate={onTimeUpdate}
     />
     <WordInput />
+    {/* <View style={{ height: 2, backgroundColor: 'red', marginHorizontal: 8, width: `${inputCloseness}%` }}></View> */}
+    {/* <Text>{inputCloseness}%</Text> */}
   </View>
 }
 
@@ -106,7 +135,7 @@ const styles = StyleSheet.create({
     fontWeight: 800,
     fontFamily: 'monospace',
     fontSize: 32,
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
   }
 });
 
