@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
 import { Stack, useRouter } from "expo-router";
 import { useRef, useState } from 'react';
 import SetupScreen from './SetupScreen';
@@ -108,7 +108,7 @@ const GameScreen: React.FC = () => {
   }
 
   console.log('Game screen update')
-  return <View style={styles.mainContainer}>
+  return <SafeAreaView style={styles.mainContainer}>
     <View style={styles.gameContainer}>
       <Stack.Screen
         options={{
@@ -117,7 +117,7 @@ const GameScreen: React.FC = () => {
       />
       <Content />
     </View>
-  </View>
+  </SafeAreaView>
 }
 
 const styles = StyleSheet.create({

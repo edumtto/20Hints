@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 import PrimaryButton from '../uiComponents/PrimaryButton';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const HomeScreen: React.FC = () => {
   const router = useRouter();
@@ -30,7 +31,8 @@ const HomeScreen: React.FC = () => {
     ruleNumber: {
       height: 30,
       width: 30,
-      borderRadius: 20,
+      borderRadius: 15,
+      overflow: 'hidden',
       alignContent: 'center',
       textAlign: 'center',
       backgroundColor: '#fff',
@@ -64,22 +66,24 @@ const HomeScreen: React.FC = () => {
   };
 
   const RuleItem: React.FC<{ index: number, text: string }> = (props) => {
-    return <View style={{ flex: 1, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 8 }}>
+    return <View style={{ flex: 1, flexDirection: 'row', flexShrink: 1, paddingHorizontal: 20, paddingVertical: 8 }}>
       <Text style={styles.ruleNumber}>{props.index}</Text>
       <Text style={styles.ruleText}>{props.text}</Text>
     </View>
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+       
       <View>
-        <Text style={styles.title}>Rules</Text>
-        <RuleItem index={1} text={'Pick a card'} />
-        <RuleItem index={2} text={'Reveal hints'} />
-        <RuleItem index={3} text={'Guess the word'} />
+        <Text style={styles.title}>20 Hints</Text>
+        <RuleItem index={1} text={'Check hints'} />
+        <RuleItem index={2} text={'Guess the secret word'} />
+        <RuleItem index={3} text={'Accumulate points'} />
+        <PrimaryButton title={'Play'} onPress={() => handlePlayPress()} />
       </View>
-      <PrimaryButton title={'Play'} onPress={() => handlePlayPress()} />
-    </View>
+      
+    </SafeAreaView>
   );
 };
 

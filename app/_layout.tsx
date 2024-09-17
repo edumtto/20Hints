@@ -16,7 +16,7 @@ export default function RootLayout() {
       }}
     >
       <Stack.Screen
-        name="HomeScreen"
+        name="screens/HomeScreen"
         options={{ headerShown: false }}
       />
       <Stack.Screen

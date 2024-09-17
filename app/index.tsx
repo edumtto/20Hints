@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     // marginHorizontal: "auto",
     // width: "100%",
     // maxWidth: 800
-    height: '100%'
+    height: '100%',
+    backgroundColor: 'blue'
   },
 });

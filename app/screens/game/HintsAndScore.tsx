@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Text, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { ScrollView, TextInput } from 'react-native-gesture-handler';
+import { Text, StyleSheet, View, ScrollView, TextInput} from 'react-native';
 import { SecretWord } from '../../wordSets/secretWord';
 
 // Timer component

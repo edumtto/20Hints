@@ -1,9 +1,8 @@
 import React, { useRef, useState, memo } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import { StyleSheet, View, Text, TextInput } from 'react-native';
 import { SecretWord, SecretWordCategory } from '../../wordSets/secretWord';
 import HintsAndScore from './HintsAndScore';
-import {Dimensions} from 'react-native';
+// import {Dimensions} from 'react-native';
 import { GameResultStats, ResultsScreenProps } from './ResultsScreen';
 import { levenshteinDistance } from '../../wordDistance';
 

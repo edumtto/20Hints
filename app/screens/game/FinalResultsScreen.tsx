@@ -1,6 +1,6 @@
 import { useLocalSearchParams } from 'expo-router';
 import React from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View, SafeAreaView } from 'react-native';
 import PrimaryButton from '../../uiComponents/PrimaryButton';
 
 export interface GameResultStats {
@@ -28,7 +28,7 @@ const FinalResultScreen: React.FC<FinalResultsScreenProps> = (props) => {
       <Text style={{ fontSize: 24, color: '#fff'}}>{props.value}</Text>
     </View>
 
-  return <View style={styles.container}>
+  return <SafeAreaView style={styles.container}>
     <Text style={styles.primaryText}>{'You Won'}</Text>
     <View style={{paddingVertical: 32}}>
       <View style={styles.stats}>
@@ -38,7 +38,7 @@ const FinalResultScreen: React.FC<FinalResultsScreenProps> = (props) => {
       </View>
     </View>
     <PrimaryButton title={'Exit'} onPress={() => props.setExit()} />
-  </View>
+  </SafeAreaView>
 }
 
 const styles = StyleSheet.create({
