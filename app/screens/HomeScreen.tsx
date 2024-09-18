@@ -20,7 +20,8 @@ const HomeScreen: React.FC = () => {
       display: 'flex',
       height: '100%',
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      
     },
     title: {
       fontSize: 32,

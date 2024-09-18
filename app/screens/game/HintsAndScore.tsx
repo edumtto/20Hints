@@ -95,7 +95,7 @@ const HintsAndScore: React.FC<HintsAndScoreProps> = (props) => {
   return (
     <View>
     <GameStatusBar />
-    <View style={{ height: 500}}>
+    <View style={styles.hintsScrollView}>
       <ScrollView style={{ flexGrow: 0 }}  scrollEnabled={true} alwaysBounceVertical={true}> 
         <Hints />
       </ScrollView>
@@ -124,6 +124,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 200,
     marginBottom: 8
+  },
+  hintsScrollView: {
+    height: 500
   },
   hintContainer: {
     flexDirection: 'row',

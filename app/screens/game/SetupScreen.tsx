@@ -7,6 +7,7 @@ import {
 import { Stack, useRouter } from "expo-router";
 import { createContext, useState } from 'react';
 import PrimaryButton from '../../uiComponents/PrimaryButton';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface SetupScreenProps {
   setGameSettings: (endScore: number) => void
@@ -31,6 +32,7 @@ const MaxScoreSelector: React.FC<{options: number[], selected: number, setSelect
                 width: 60, 
                 height: 60, 
                 borderRadius: 30, 
+                overflow: 'hidden',
                 backgroundColor: index == props.selected ? 'yellow':'white', 
                 textAlign: 'center', 
                 fontSize: 24,
@@ -60,7 +62,7 @@ const SetupScreen: React.FC<SetupScreenProps> = (props) => {
     setMaxScoreIndex(index)
   }
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Stack.Screen
         options={{
           title: 'Game Setup'
@@ -68,7 +70,7 @@ const SetupScreen: React.FC<SetupScreenProps> = (props) => {
       />
       <MaxScoreSelector options={maxScoreOptions} selected={maxScoreIndex} setSelected={setMaxScoreSelected}/>
       <PrimaryButton title={'Start Game'} onPress={() => handleStartGame()} />
-    </View>
+    </SafeAreaView>
   )
 }
 

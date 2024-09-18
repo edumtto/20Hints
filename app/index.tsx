@@ -9,7 +9,7 @@ import HomeScreen2 from "./screens/HomeScreen2";
 export default function Index() {
   return (
     <SafeAreaView style={styles.container}>
-      <HomeScreen />
+      <HomeScreen2 />
     </SafeAreaView>
   );
 }
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     // marginHorizontal: "auto",
     // width: "100%",
     // maxWidth: 800
-    height: '100%',
-    backgroundColor: 'blue'
+    // height: '100%',
+    // backgroundColor: 'transparent'
   },
 });

@@ -62,7 +62,7 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
       <Text style={{ fontSize: 24, color: '#fff'}}>{props.value}</Text>
     </View>
 
-  return <SafeAreaView style={styles.container}>
+  return <View style={styles.container}>
     <Text style={styles.primaryText}>{message[0]}</Text>
     <Text style={styles.secondaryText}>{message[1]}</Text>
     <View style={{paddingVertical: 32}}>
@@ -75,7 +75,7 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
       <ScoreProgress value={props.globalScore} maxValue={props.endScore}/>
     </View>
     <PrimaryButton title={buttonTitle} onPress={() => handleStartNextGame()} />
-  </SafeAreaView>
+  </View>
 }
 
 const styles = StyleSheet.create({

@@ -1,4 +1,4 @@
-import { View, StyleSheet, SafeAreaView } from 'react-native';
+import { View, StyleSheet, SafeAreaView, Dimensions } from 'react-native';
 import { Stack, useRouter } from "expo-router";
 import { useRef, useState } from 'react';
 import SetupScreen from './SetupScreen';
@@ -29,7 +29,7 @@ const GameScreen: React.FC = () => {
   const gameSettingsRef = useRef<GlobalGameSettings>({endScore: 50})
   const globalStatusRef = useRef<GlobalGameStats>({gamesPlayed: 0, timeSpent: 0, globalScore: 0})
   const resultRef = useRef<GameResultStats>({isWordGuessed: false, timeSpent: 0, hintsRevealed: 0, score: 0})
-
+  
 
   console.log('Game screen update')
 
@@ -83,7 +83,7 @@ const GameScreen: React.FC = () => {
         return <View>Intro</View>
       case GameState.Guess:
         const newSecretWord = getRandomSecretWord()
-        console.log("->>>>> " + newSecretWord)
+        // console.log("->>>>> " + newSecretWord)
         return <GuessScreen 
           secretWord={newSecretWord}
           setSuccessGuess={setSuccessGuess}
@@ -107,34 +107,33 @@ const GameScreen: React.FC = () => {
     }
   }
 
-  console.log('Game screen update')
-  return <SafeAreaView style={styles.mainContainer}>
-    <View style={styles.gameContainer}>
+  const styles = StyleSheet.create({
+    mainContainer: {
+      height: '100%',
+      // backgroundColor: '#3E2B77',
+      display: 'flex',
+      justifyContent: 'center',
+      // alignItems: 'center'
+    },
+    gameContainer: {
+      // flex: 1, 
+      width: '100%',
+      maxWidth: 800,
+      marginHorizontal: 'auto',
+    }
+  })
+
+  // console.log('Game screen update')
+  return <View style={styles.mainContainer}>
+    <SafeAreaView style={styles.gameContainer} onLayout={({ nativeEvent: layout }) => console.log(layout.layout)}>
       <Stack.Screen
-        options={{
-          title: 'Game Setup'
-        }}
+        options={{title: 'Game Setup'}}
       />
       <Content />
-    </View>
-  </SafeAreaView>
+    </SafeAreaView>
+  </View>
 }
 
-const styles = StyleSheet.create({
-  mainContainer: {
-    height: '100%',
-    backgroundColor: '#3E2B77',
-    display: 'flex',
-    justifyContent: 'center',
-    // alignItems: 'center'
-  },
-  gameContainer: {
-    // flex: 1, 
-    width: '100%',
-    maxWidth: 800,
-    marginHorizontal: 'auto',
-    backgroundColor: 'white'
-  }
-})
+
 
 export default GameScreen;

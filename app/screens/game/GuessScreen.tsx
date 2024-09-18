@@ -5,6 +5,7 @@ import HintsAndScore from './HintsAndScore';
 // import {Dimensions} from 'react-native';
 import { GameResultStats, ResultsScreenProps } from './ResultsScreen';
 import { levenshteinDistance } from '../../wordDistance';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Guess screen
 
@@ -20,9 +21,10 @@ const totalNumberOfHints = 20
 
 const GuessScreen: React.FC<GuessScreenProps> = (props) => {
   const [isSuccessGuess, setSuccessGuess] = useState(false)
-  // const [inputCloseness, setInputCloseness] = useState(0)
+  const [inputValue, setInputValue] = useState('')
   const timeTrackerRef = useRef(0)
-  // const windowHeight = Dimensions.get('window').height
+  const inputClosenessRef = useRef(0)
+  // 
   const hintsRevealed = () => Math.min(1 + Math.floor(timeTrackerRef.current / hintDisplayTime), totalNumberOfHints)
   
   // console.log('Secret word: ' + props.secretWord.word)
@@ -41,8 +43,13 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
   }
 
   function onChangeWordInput(input: string) {
-    // setInputCloseness(computeInputCloseness(input))
-    if (!isSuccessGuess && input.toUpperCase() == props.secretWord.word.toUpperCase()) {
+    const inputUpperCase = input.toUpperCase()
+    const wordUpperCase = props.secretWord.word.toUpperCase()
+
+    inputClosenessRef.current = computeInputCloseness(inputUpperCase, wordUpperCase)
+    setInputValue(input)
+
+    if (!isSuccessGuess && inputUpperCase == wordUpperCase) {
       const stats: GameResultStats = {
         isWordGuessed: true, 
         timeSpent: timeTrackerRef.current, 
@@ -54,15 +61,14 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
     }
   }
 
-  function computeInputCloseness(input: string) {
+  function computeInputCloseness(input: string, word: string) {
     if (input == '') {
       return 0
     }
 
-    const wordLenth = props.secretWord.word.length
-    const inputDistance = levenshteinDistance(props.secretWord.word, input)
-    console.log(props.secretWord.word + ', ' + input + ' : ' + inputDistance)
-    
+    const wordLenth = word.length
+    const inputDistance = levenshteinDistance(input, word)
+    console.log(props.secretWord.word + ' - ' + input + ' : ' + inputDistance)
     if (inputDistance >= wordLenth) {
       return 0
     } else if (inputDistance == 0) {
@@ -72,24 +78,19 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
     }
   }
 
-  const WordInput = () => {
-    return <View 
-      style={{ flex: 0 }}
-    >
-      <TextInput
-        maxLength={40}
-        onChangeText={text => onChangeWordInput(text)}
-        placeholderTextColor='grey'
-        placeholder='Enter word here'
-        style={[styles.wordInput, { color: isSuccessGuess ? 'green' : '#000' }]}
-        value={isSuccessGuess ? props.secretWord.word.toUpperCase() : undefined}
-        autoFocus={true}
-      />
-    </View>
-  }
+  const WordInput = () => 
+    <TextInput
+      maxLength={40}
+      onChangeText={text => onChangeWordInput(text)}
+      placeholderTextColor='grey'
+      placeholder='Enter word here'
+      style={[styles.wordInput, { color: isSuccessGuess ? 'green' : '#000' }]}
+      value={inputValue}
+      editable={!isSuccessGuess}
+      autoFocus={true}
+    />
     
-    
-  return <View style={styles.container}>
+  return <SafeAreaView style={styles.container}>
     <HintsAndScore
       secretWord={props.secretWord}
       isTimerStopped={isSuccessGuess} 
@@ -97,17 +98,18 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
       hintDisplayTime={hintDisplayTime}
       onTimeUpdate={onTimeUpdate}
     />
+    {/* <Text>{inputClosenessRef.current}%</Text> */}
     <WordInput />
-    {/* <View style={{ height: 2, backgroundColor: 'red', marginHorizontal: 8, width: `${inputCloseness}%` }}></View> */}
-    {/* <Text>{inputCloseness}%</Text> */}
-  </View>
+    <View style={{ height: 2, backgroundColor: 'red', marginHorizontal: 0, width: `${inputClosenessRef.current}%` }}></View>
+    
+  </SafeAreaView>
 }
 
 const styles = StyleSheet.create({
   container: {
       backgroundColor: '#fff',
-      padding: 12,
-      margin: 16,
+      padding: 8,
+      marginHorizontal: 8,
       borderColor: '#ccc',
       borderWidth: 1,
       borderRadius: 8,
@@ -120,7 +122,7 @@ const styles = StyleSheet.create({
   },
   wordInput: {
     height: 48,
-    bottom: 16,
+    bottom: 8,
     right: 16,
     left: 16,
     backgroundColor: '#fff',
