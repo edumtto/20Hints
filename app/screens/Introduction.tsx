@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Dimensions } fr
 import { LinearGradient } from 'expo-linear-gradient';
 import { Svg, Path, Circle } from 'react-native-svg';
 import { useRouter } from 'expo-router';
+import PrimaryButton from '../uiComponents/PrimaryButton';
 
 const { width, height } = Dimensions.get('window');
 
@@ -22,6 +23,12 @@ const FileIcon = () => (
 );
 
 const IntroductionScreen: React.FC = () => {
+  const router = useRouter()
+
+  const handlePlayPress = () => {
+    router.push('screens/game/GameScreen')
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
@@ -39,9 +46,7 @@ const IntroductionScreen: React.FC = () => {
             <FileIcon />
             <FileIcon />
           </View>
-          <TouchableOpacity style={styles.playButton} onPress={() => console.log('press')}>
-            <Text style={styles.playButtonText}>Investigate</Text>
-          </TouchableOpacity>
+          <PrimaryButton title={'Investigate'} onPress={() => handlePlayPress()} />
         </View>
       </LinearGradient>
     </SafeAreaView>
@@ -50,6 +55,8 @@ const IntroductionScreen: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
+    // display: 'flex',
+    // height: '100%'
   },
   gradient: {
     // flex: 1,
@@ -57,7 +64,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   content: {
-    // width: width * 0.9,
+    width: '90%',
     alignItems: 'center',
     justifyContent: 'space-around',
     // flex: 1,
@@ -84,46 +91,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%',
-  },
-  playButton: {
-    backgroundColor: '#e74c3c',
-    paddingVertical: height * 0.02,
-    paddingHorizontal: width * 0.1,
-    borderRadius: 25,
-    elevation: 5,
-  },
-  playButtonText: {
-    fontSize: Math.min(height * 0.035, 24),
-    fontWeight: 'bold',
-    color: '#ecf0f1',
-    fontFamily: 'Courier',
-  },
+  }
 });
 
 export default IntroductionScreen;
 
-// import React from 'react';
-// import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-// import { LinearGradient } from 'expo-linear-gradient';
-
-// const IntroductionScreen: React.FC = () => {
-//   return (
-//     <LinearGradient
-//       colors={['#4c669f', '#3b5998', '#192f6a']}
-//       style={styles.container}
-//     >
-//       <View style={styles.content}>
-//         <Text style={styles.title}>20 Hints</Text>
-//         <Text style={styles.description}>
-//           Read the hints and guess the secret words. Earn more points using less hints to guess the right word.
-//         </Text>
-//         <TouchableOpacity style={styles.playButton} onPress={() => console.log('press')}>
-//           <Text style={styles.playButtonText}>Play</Text>
-//         </TouchableOpacity>
-//       </View>
-//     </LinearGradient>
-//   );
-// };
 
 // const styles = StyleSheet.create({
 //   container: {

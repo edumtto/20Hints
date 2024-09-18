@@ -16,10 +16,6 @@ export default function RootLayout() {
       }}
     >
       <Stack.Screen
-        name="screens/HomeScreen"
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
         name="screens/game/GameScreen"
         options={{ headerShown: false }}
       />

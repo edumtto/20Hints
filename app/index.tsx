@@ -3,13 +3,13 @@ import { Platform, StyleSheet } from "react-native";
 import { Stack } from 'expo-router';
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import HomeScreen2 from "./screens/HomeScreen2";
+import IntroductionScreen from "./screens/Introduction";
 
 
 export default function Index() {
   return (
     <SafeAreaView style={styles.container}>
-      <HomeScreen2 />
+      <IntroductionScreen />
     </SafeAreaView>
   );
 }
