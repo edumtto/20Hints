@@ -5,7 +5,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
-import PrimaryButton from '../uiComponents/PrimaryButton';
+import PrimaryButton from '../../uiComponents/PrimaryButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const HomeScreen: React.FC = () => {

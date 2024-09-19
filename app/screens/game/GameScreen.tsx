@@ -6,6 +6,7 @@ import GuessScreen from './GuessScreen';
 import ResultScreen, { GameResultStats } from './ResultsScreen';
 import { getRandomSecretWord } from '../../wordSets/secretWordDatabase';
 import FinalResultScreen from './FinalResultsScreen';
+import GameSettingsScreen from './Setup';
 
 enum GameState {
   Setup, Intro, Guess, Results, FinalResults
@@ -78,7 +79,8 @@ const GameScreen: React.FC = () => {
   const Content: React.FC = () => {
     switch (gameState) {
       case GameState.Setup:
-        return <SetupScreen setGameSettings={setGameSettings} />
+        return <GameSettingsScreen onSaveSettings={() => console.log('saved')} />
+        //return <SetupScreen setGameSettings={setGameSettings} />
       case GameState.Intro:
         return <View>Intro</View>
       case GameState.Guess:

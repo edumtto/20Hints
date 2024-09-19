@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Svg, Path, Circle } from 'react-native-svg';
 import { useRouter } from 'expo-router';
@@ -136,5 +136,3 @@ export default IntroductionScreen;
 //     color: '#192f6a',
 //   },
 // });
-
-// export default IntroductionScreen;

@@ -1,4 +1,4 @@
-import HomeScreen from "./screens/HomeScreen";
+import HomeScreen from "./screens/old/HomeScreen";
 import { Platform, StyleSheet } from "react-native";
 import { Stack } from 'expo-router';
 import React from "react";
