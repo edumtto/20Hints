@@ -1,12 +1,11 @@
 import { View, StyleSheet, SafeAreaView, Dimensions } from 'react-native';
 import { Stack, useRouter } from "expo-router";
 import { useRef, useState } from 'react';
-import SetupScreen from './SetupScreen';
 import GuessScreen from './GuessScreen';
 import ResultScreen, { GameResultStats } from './ResultsScreen';
 import { getRandomSecretWord } from '../../wordSets/secretWordDatabase';
 import FinalResultScreen from './FinalResultsScreen';
-import GameSettingsScreen from './Setup';
+import GameSettingsScreen, { WordSets } from './Setup';
 
 enum GameState {
   Setup, Intro, Guess, Results, FinalResults
@@ -22,20 +21,40 @@ interface GlobalGameStats {
   globalScore: number
 }
 
+interface GameSettings {
+  endScore: number
+  showClosenessIndicator: boolean
+  wordSets:  WordSets
+}
+
 // GAME SCREEN
 
 const GameScreen: React.FC = () => {
+  const defaultGameSettings: GameSettings = {
+    endScore: 50, 
+    showClosenessIndicator: false,
+    wordSets: {
+      Places: true,
+      Things: true,
+      People: true,
+      Animals: false,
+      Food: false,
+      Sports: false
+    }
+  }
+
   const router = useRouter();
   const [gameState, setGameState] = useState(GameState.Setup)
-  const gameSettingsRef = useRef<GlobalGameSettings>({endScore: 50})
   const globalStatusRef = useRef<GlobalGameStats>({gamesPlayed: 0, timeSpent: 0, globalScore: 0})
   const resultRef = useRef<GameResultStats>({isWordGuessed: false, timeSpent: 0, hintsRevealed: 0, score: 0})
+  const gameSettingsRef = useRef<GameSettings>(defaultGameSettings)
   
 
   console.log('Game screen update')
 
-  function setGameSettings(endScore: number): void {
-    gameSettingsRef.current = {endScore: endScore}
+  function setGameSettings(endScore: number, showClosenessIndicator: boolean, wordSets: WordSets ): void {
+    console.log("setGameSettings")
+    gameSettingsRef.current = { endScore: endScore, showClosenessIndicator: showClosenessIndicator, wordSets: wordSets }
     setGameState(GameState.Guess)
   }
 
@@ -79,7 +98,7 @@ const GameScreen: React.FC = () => {
   const Content: React.FC = () => {
     switch (gameState) {
       case GameState.Setup:
-        return <GameSettingsScreen onSaveSettings={() => console.log('saved')} />
+        return <GameSettingsScreen onSaveSettings={setGameSettings} />
         //return <SetupScreen setGameSettings={setGameSettings} />
       case GameState.Intro:
         return <View>Intro</View>

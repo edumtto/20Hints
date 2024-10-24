@@ -4,6 +4,15 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Svg, Path, Circle } from 'react-native-svg';
 import PrimaryButton from '../../uiComponents/PrimaryButton';
 
+export interface WordSets {
+  Places: boolean;
+  Things: boolean;
+  People: boolean;
+  Animals: boolean;
+  Food: boolean;
+  Sports: boolean;
+}
+
 const { width, height } = Dimensions.get('window');
 
 const SettingsIcon = () => (
@@ -65,9 +74,9 @@ const WordSetIcon = ({ name, isSelected, onPress }) => {
 };
 
 const GameSettingsScreen = ({ onSaveSettings }) => {
-  const [maxPoints, setMaxPoints] = useState(100);
+  const [endScore, setEndScore] = useState(100);
   const [showClosenessIndicator, setShowClosenessIndicator] = useState(true);
-  const [wordSets, setWordSets] = useState({
+  const [wordSets, setWordSets] = useState<WordSets>({
     'Places': true,
     'Things': true,
     'People': true,
@@ -79,7 +88,8 @@ const GameSettingsScreen = ({ onSaveSettings }) => {
   const pointOptions = [50, 100, 125, 150, 200];
 
   const handleSave = () => {
-    onSaveSettings({ maxPoints, showClosenessIndicator });
+    console.log("saving")
+    onSaveSettings({ endScore, showClosenessIndicator, wordSets });
   };
 
   const toggleWordSet = (set) => {
@@ -104,13 +114,13 @@ const GameSettingsScreen = ({ onSaveSettings }) => {
                   key={points}
                   style={[
                     styles.segment,
-                    maxPoints === points && styles.selectedSegment,
+                    endScore === points && styles.selectedSegment,
                   ]}
-                  onPress={() => setMaxPoints(points)}
+                  onPress={() => setEndScore(points)}
                 >
                   <Text style={[
                     styles.segmentText,
-                    maxPoints === points && styles.selectedSegmentText,
+                    endScore === points && styles.selectedSegmentText,
                   ]}>
                     {points}
                   </Text>
