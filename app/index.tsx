@@ -8,9 +8,7 @@ import IntroductionScreen from "./screens/Introduction";
 
 export default function Index() {
   return (
-    <SafeAreaView style={styles.container}>
       <IntroductionScreen />
-    </SafeAreaView>
   );
 }
 

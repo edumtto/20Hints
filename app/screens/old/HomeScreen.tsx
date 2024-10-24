@@ -63,7 +63,7 @@ const HomeScreen: React.FC = () => {
   });
 
   const handlePlayPress = () => {
-    router.push('screens/game/GameScreen')
+    router.push('screens/game/Play')
   };
 
   const RuleItem: React.FC<{ index: number, text: string }> = (props) => {

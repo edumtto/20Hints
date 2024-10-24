@@ -53,7 +53,6 @@ const GameScreen: React.FC = () => {
   console.log('Game screen update')
 
   function setGameSettings(endScore: number, showClosenessIndicator: boolean, wordSets: WordSets ): void {
-    console.log("setGameSettings")
     gameSettingsRef.current = { endScore: endScore, showClosenessIndicator: showClosenessIndicator, wordSets: wordSets }
     setGameState(GameState.Guess)
   }
@@ -99,12 +98,10 @@ const GameScreen: React.FC = () => {
     switch (gameState) {
       case GameState.Setup:
         return <GameSettingsScreen onSaveSettings={setGameSettings} />
-        //return <SetupScreen setGameSettings={setGameSettings} />
       case GameState.Intro:
         return <View>Intro</View>
       case GameState.Guess:
         const newSecretWord = getRandomSecretWord()
-        // console.log("->>>>> " + newSecretWord)
         return <GuessScreen 
           secretWord={newSecretWord}
           setSuccessGuess={setSuccessGuess}
@@ -131,7 +128,6 @@ const GameScreen: React.FC = () => {
   const styles = StyleSheet.create({
     mainContainer: {
       height: '100%',
-      // backgroundColor: '#3E2B77',
       display: 'flex',
       justifyContent: 'center',
       // alignItems: 'center'
@@ -144,14 +140,13 @@ const GameScreen: React.FC = () => {
     }
   })
 
-  // console.log('Game screen update')
   return <View style={styles.mainContainer}>
-    <SafeAreaView style={styles.gameContainer} onLayout={({ nativeEvent: layout }) => console.log(layout.layout)}>
+    <View style={styles.gameContainer} onLayout={({ nativeEvent: layout }) => console.log(layout.layout)}>
       <Stack.Screen
         options={{title: 'Game Setup'}}
       />
       <Content />
-    </SafeAreaView>
+    </View>
   </View>
 }
 

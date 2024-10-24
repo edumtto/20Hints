@@ -26,7 +26,7 @@ const IntroductionScreen: React.FC = () => {
   const router = useRouter()
 
   const handlePlayPress = () => {
-    router.push('screens/game/GameScreen')
+    router.push('screens/game/Play')
   };
 
   return (
@@ -56,7 +56,8 @@ const IntroductionScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     // display: 'flex',
-    // height: '100%'
+    // height: '100%',
+    backgroundColor: '#2c3e50'
   },
   gradient: {
     // flex: 1,

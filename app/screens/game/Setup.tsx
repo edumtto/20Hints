@@ -88,7 +88,6 @@ const GameSettingsScreen = ({ onSaveSettings }) => {
   const pointOptions = [50, 100, 125, 150, 200];
 
   const handleSave = () => {
-    console.log("saving")
     onSaveSettings({ endScore, showClosenessIndicator, wordSets });
   };
 
@@ -163,6 +162,7 @@ const GameSettingsScreen = ({ onSaveSettings }) => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#2c3e50'
   },
   gradient: {
     justifyContent: 'center',
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     // flex: 1,
     paddingVertical: height * 0.05,
-    height: '100%'
+    height: '100%',
   },
   title: {
     fontSize: Math.min(height * 0.05, 36),
