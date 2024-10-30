@@ -7,6 +7,7 @@ import ResultScreen, { GameResultStats } from './ResultsScreen';
 import { getRandomSecretWord } from '../../wordSets/secretWordDatabase';
 import FinalResultScreen from './FinalResultsScreen';
 import GameSettingsScreen, { WordSets } from './Setup';
+import HintsScreen2, { CategoryType } from './HintsScreen2';
 
 enum GameState {
   Setup, Intro, Guess, Results, FinalResults
@@ -103,6 +104,13 @@ const GameScreen: React.FC = () => {
         return <View>Intro</View>
       case GameState.Guess:
         const newSecretWord = getRandomSecretWord()
+        // return <HintsScreen2
+        // category={CategoryType.Place}
+        // hints={newSecretWord.hints.slice(0, 5)}
+        // onExit={setExit}
+        // onGuess={(a) => console.log(a)}
+
+        // />
         return <HintsScreen
           secretWord={newSecretWord}
           onExit={setExit}

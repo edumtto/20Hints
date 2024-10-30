@@ -62,7 +62,7 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
       <Text style={{ fontSize: 24, color: '#fff'}}>{props.value}</Text>
     </View>
 
-  return <View style={styles.container}>
+  return <SafeAreaView style={styles.container}>
     <Text style={styles.primaryText}>{message[0]}</Text>
     <Text style={styles.secondaryText}>{message[1]}</Text>
     <View style={{paddingVertical: 32}}>
@@ -72,16 +72,16 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
         <Stat label={'Hints revealed'}  value={props.stats.hintsRevealed} />
         <Stat label={'Time spent'}  value={props.stats.timeSpent + 's'} />
       </View> */}
-      <ScoreProgress value={props.globalScore} maxValue={props.endScore}/>
+      {/* <ScoreProgress value={props.globalScore} maxValue={props.endScore}/> */}
     </View>
     <PrimaryButton title={buttonTitle} onPress={() => handleStartNextGame()} />
-  </View>
+  </SafeAreaView>
 }
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#3E2B77',
-    display: 'flex',
+    // display: 'flex',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',

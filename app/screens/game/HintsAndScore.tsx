@@ -1,23 +1,69 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Text, StyleSheet, View, ScrollView, TextInput} from 'react-native';
-import { SecretWord } from '../../wordSets/secretWord';
+import { Text, StyleSheet, View, ScrollView, TextInput, TouchableOpacity, Dimensions} from 'react-native';
+import { SecretWord, SecretWordCategory } from '../../wordSets/secretWord';
+import { Feather } from '@expo/vector-icons';
 
-// Timer component
+const { width, height } = Dimensions.get('window');
+
+// Enums and Types
+interface CategoryIconConfig {
+  iconPath: keyof typeof Feather.glyphMap;
+  iconColor: string;
+}
+
+interface CategoryIconProps {
+  category: SecretWordCategory;
+}
+
+type CategoryIconConfigMap = {
+  [key in SecretWordCategory]: CategoryIconConfig;
+};
+
+// Component configurations
+const CATEGORY_CONFIGS: CategoryIconConfigMap = {
+  [SecretWordCategory.Place]: {
+    iconPath: 'map-pin',
+    iconColor: '#1abc9c'
+  },
+  [SecretWordCategory.Person]: {
+    iconPath: 'user',
+    iconColor: '#e67e22'
+  },
+  [SecretWordCategory.Thing]: {
+    iconPath: 'box',
+    iconColor: '#9b59b6'
+  }
+};
+
+// Components
+const CategoryIcon: React.FC<CategoryIconProps> = ({ category }) => {
+  const config = CATEGORY_CONFIGS[category] ?? {
+    iconPath: 'help-circle',
+    iconColor: '#bdc3c7'
+  };
+
+  return (
+    <Feather 
+      name={config.iconPath} 
+      size={24} 
+      color={config.iconColor} 
+    />
+  );
+};
+
 
 interface TimerProps {
   time: number
 }
 
-const TimerView: React.FC<TimerProps> = (props) => {
-  const minutes = Math.floor(props.time / 60)
-  const seconds = props.time - (minutes * 60)
+// const TimerView: React.FC<TimerProps> = (props) => {
+//   const minutes = Math.floor(props.time / 60)
+//   const seconds = props.time - (minutes * 60)
 
-  const padZeroes = (num) => ('0' + num).slice(-2)
+//   const padZeroes = (num) => ('0' + num).slice(-2)
 
-  return <Text style={styles.timer}>{padZeroes(minutes) + ':' + padZeroes(seconds)}</Text>
-}
-
-// Hint component
+//   return <Text style={styles.timer}>{padZeroes(minutes) + ':' + padZeroes(seconds)}</Text>
+// }
 
 interface HintProps {
   number: number
@@ -25,28 +71,22 @@ interface HintProps {
 }
 
 const Hint: React.FC<HintProps> = (props) => {
-  return <View style={styles.hintContainer} >
-    <Text style={styles.hintNumber}>{props.number + '.'}</Text>
-    <Text style={styles.hintText}>{props.hint}</Text> 
-  </View>
+  return <Text key={props.number} style={styles.hintText}>
+    {props.number}. {props.hint}
+  </Text>
 }
 
-const LargeHint: React.FC<HintProps> = (props) => {
-  return <View style={styles.largeHintContainer} >
-    <Text style={styles.largeHintNumber}>{props.number + '.'}</Text>
-    <Text style={styles.largeHintText}>{props.hint}</Text> 
-  </View>
+interface HintsAndHeaderProps {
+  secretWord: SecretWord;
+  allowedGameTime: number;
+  hintDisplayTime: number;
+  isTimerStopped: boolean;
+  onTimeUpdate: (time: number) => void;
+  onExit: () => void
 }
 
-interface HintsAndScoreProps {
-  secretWord: SecretWord,
-  allowedGameTime: number,
-  hintDisplayTime: number,
-  isTimerStopped: boolean,
-  onTimeUpdate: (time: number) => void
-}
-
-const HintsAndScore: React.FC<HintsAndScoreProps> = (props) => {
+// Screen
+const HintsAndHeader: React.FC<HintsAndHeaderProps> = (props) => {
   const [elapsedTime, setElapsedTime] = useState<number>(0) // in seconds
 
   useEffect(() => {
@@ -66,47 +106,89 @@ const HintsAndScore: React.FC<HintsAndScoreProps> = (props) => {
         })
     } , 1000)
   },[])
-  // console.log('HintAndScore update, timer = ' + elapsedTime)
 
-  const GameStatusBar = () =>
-    <View style={styles.toolbarContainer}>
-        <TimerView time={elapsedTime}/>
-        <Text style={styles.wordDescription}>{'The word is a '+ props.secretWord.category}</Text>
-        {/* <Text>The word is </Text>
-        <TextInput placeholder='???' style={{ backgroundColor: 'white', padding: 8, borderWidth: 1, borderColor: '#ccc'}}/> */}
-     </View>
+  const formatTime = (seconds: number): string => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+  };
+  
+  const HeaderBar = () =>
+    <View style={styles.header}>
+
+          <TouchableOpacity onPress={props.onExit} style={styles.exitButton}>
+            <Feather name="x" size={24} color="#ecf0f1" />
+          </TouchableOpacity>
+
+          <View style={styles.categoryContainer}>
+            <CategoryIcon category={props.secretWord.category} />
+            <Text style={styles.categoryText}>{props.secretWord.category}</Text>
+          </View>
+
+          <View style={styles.timeContainer}>
+            <Text style={styles.timeText}>{formatTime(elapsedTime)}</Text>
+          </View>
+          
+        </View>
 
   const Hints = () => {
     const numberOfHintsDisplayed = Math.min(1 + Math.floor(elapsedTime / props.hintDisplayTime), props.secretWord.hints.length)
-    let counter = numberOfHintsDisplayed
 
     return props.secretWord.hints
       .slice(0,numberOfHintsDisplayed)
-      .reverse()
-      .map( (hint) => {
-        if (counter === numberOfHintsDisplayed) {
-          return <LargeHint key={counter} number={counter--} hint={hint} /> 
-        }
-        return <Hint key={counter} number={counter--} hint={hint} /> 
-      }
+      // .reverse()
+      .map( (value, index) =>
+        <Hint key={index} number={index + 1} hint={value} /> 
     )
   }
 
   return (
     <View>
-    <GameStatusBar />
-    <View style={styles.hintsScrollView}>
-      <ScrollView style={{ flexGrow: 0 }}  scrollEnabled={true} alwaysBounceVertical={true}> 
-        <Hints />
-      </ScrollView>
-    </View>
+    <HeaderBar />
+    <ScrollView style={styles.hintsContainer}  scrollEnabled={true} alwaysBounceVertical={true}> 
+      <Hints />
+    </ScrollView>
   </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%'
+    // height: '100%'
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: width * 0.05,
+    paddingVertical: height * 0.02,
+  },
+  timeContainer: {
+    backgroundColor: '#e74c3c',
+    width: 80,
+    alignItems: 'center',
+    // paddingHorizontal: width * 0.03,
+    paddingVertical: height * 0.01,
+    borderRadius: 15,
+  },
+  timeText: {
+    color: '#ecf0f1',
+    fontWeight: 'bold',
+    fontSize: Math.min(height * 0.025, 18),
+    fontFamily: 'Courier'
+  },
+  categoryContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#2980b9',
+    paddingHorizontal: width * 0.03,
+    paddingVertical: height * 0.01,
+    borderRadius: 15,
+  },
+  categoryText: {
+    color: '#ecf0f1',
+    marginLeft: width * 0.02,
+    fontSize: Math.min(height * 0.025, 18),
   },
   toolbarContainer: {
     borderBottomWidth: 0.5,
@@ -125,47 +207,19 @@ const styles = StyleSheet.create({
     fontWeight: 200,
     marginBottom: 8
   },
-  hintsScrollView: {
-    height: 500
-  },
-  hintContainer: {
-    flexDirection: 'row',
-    padding: 8,
-  },
-  hintNumber: {
-    color: '#7F00E2',
-    borderRadius: 20,
-    textAlign: 'center',
-    alignContent: 'center',
-    fontSize: 28,
-    fontWeight: 100
+  hintsContainer: {
+    // flex: 1,
+    paddingHorizontal: width * 0.05,
   },
   hintText: {
-    alignContent: 'center',
-    paddingLeft: 8,
-    fontSize: 28,
-    fontWeight: 200
+    color: '#ecf0f1',
+    fontSize: Math.min(height * 0.025, 18),
+    fontFamily: 'Courier',
+    marginVertical: height * 0.01,
   },
-  largeHintContainer: {
-    flexDirection: 'row',
-    paddingHorizontal: 8,
-    paddingVertical: 8,
-    marginTop: 24
-  },
-  largeHintNumber: {
-    color: '#7F00E2',
-    borderRadius: 20,
-    textAlign: 'center',
-    alignContent: 'flex-start',
-    fontSize: 32,
-    fontWeight: 300
-  },
-  largeHintText: {
-    alignContent: 'center',
-    paddingLeft: 8,
-    fontSize: 32,
-    fontWeight: 400
+  exitButton: {
+    padding: width * 0.02,
   },
 });
 
-export default HintsAndScore;
+export default HintsAndHeader;

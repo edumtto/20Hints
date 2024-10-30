@@ -44,7 +44,7 @@ const FinalResultScreen: React.FC<FinalResultsScreenProps> = (props) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#3E2B77',
-    display: 'flex',
+    // display: 'flex',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',

@@ -5,24 +5,11 @@ import { Feather } from '@expo/vector-icons';
 import { SecretWord, SecretWordCategory } from '../../wordSets/secretWord';
 import { GameResultStats, ResultsScreenProps } from './ResultsScreen';
 import { levenshteinDistance } from '../../wordDistance';
+import HintsAndHeader from './HintsAndScore';
 
 const { width, height } = Dimensions.get('window');
 
-// Enums and Types
-interface CategoryIconConfig {
-  iconPath: keyof typeof Feather.glyphMap;
-  iconColor: string;
-}
-
-type CategoryIconConfigMap = {
-  [key in SecretWordCategory]: CategoryIconConfig;
-};
-
 // Props Interfaces
-interface CategoryIconProps {
-  category: SecretWordCategory;
-}
-
 interface KeyboardProps {
   onKeyPress: (key: string) => void;
   disabledKeys?: string[];
@@ -36,21 +23,6 @@ interface HintsScreenProps {
 }
 
 // Component configurations
-const CATEGORY_CONFIGS: CategoryIconConfigMap = {
-  [SecretWordCategory.Place]: {
-    iconPath: 'map-pin',
-    iconColor: '#1abc9c'
-  },
-  [SecretWordCategory.Person]: {
-    iconPath: 'user',
-    iconColor: '#e67e22'
-  },
-  [SecretWordCategory.Thing]: {
-    iconPath: 'box',
-    iconColor: '#9b59b6'
-  }
-};
-
 const KEYBOARD_LAYOUT: string[][] = [
   ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
   ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
@@ -62,21 +34,6 @@ const hintDisplayTime = 6
 const totalNumberOfHints = 20
 
 // Components
-const CategoryIcon: React.FC<CategoryIconProps> = ({ category }) => {
-  const config = CATEGORY_CONFIGS[category] ?? {
-    iconPath: 'help-circle',
-    iconColor: '#bdc3c7'
-  };
-
-  return (
-    <Feather 
-      name={config.iconPath} 
-      size={24} 
-      color={config.iconColor} 
-    />
-  );
-};
-
 const Keyboard: React.FC<KeyboardProps> = ({ onKeyPress, disabledKeys = [] }) => {
   return (
     <View style={styles.keyboardContainer}>
@@ -175,25 +132,17 @@ const HintsScreen: React.FC<HintsScreenProps> = (props) => {
       editable={!isSuccessGuess}
     />
 
-  const formatTime = (seconds: number): string => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
-  };
-
   const handleKeyPress = (key: string): void => {
     const newGuess = guess + key;
     setGuess(newGuess);
     onChangeGuessInput(newGuess)
   };
 
-  // const handleSubmitGuess = (): void => {
-  //   if (guess.trim()) {
-  //     onGuess(guess.trim());
-  //     setGuess('');
-  //     setUsedLetters([]);
-  //   }
-  // };
+  const handleClearGuess = (): void => {
+    if (guess !== '') {
+      setGuess(guess.slice(0, -1))
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -201,7 +150,7 @@ const HintsScreen: React.FC<HintsScreenProps> = (props) => {
         colors={['#2c3e50', '#34495e', '#2c3e50']}
         style={styles.gradient}
       >
-        <View style={styles.header}>
+        {/* <View style={styles.header}>
 
           <TouchableOpacity onPress={props.onExit} style={styles.exitButton}>
             <Feather name="x" size={24} color="#ecf0f1" />
@@ -216,25 +165,35 @@ const HintsScreen: React.FC<HintsScreenProps> = (props) => {
             <Text style={styles.timeText}>{formatTime(elapsedTime)}</Text>
           </View>
           
-        </View>
+        </View> */}
 
-        <ScrollView style={styles.hintsContainer}>
-          {/* {props.secretWord.hints.map((hint, index) => (
+        {/* <ScrollView style={styles.hintsContainer}>
+          {props.secretWord.hints.map((hint, index) => (
             <Text key={index} style={styles.hintText}>
               {index + 1}. {hint}
             </Text>
-          ))} */}
-        </ScrollView>
-
+          ))}
+        </ScrollView> */}
+        <View style={{ flex: 1 }}>
+          <HintsAndHeader
+            secretWord={props.secretWord}
+            isTimerStopped={isSuccessGuess} 
+            allowedGameTime={allowedGameTime} 
+            hintDisplayTime={hintDisplayTime}
+            onTimeUpdate={onTimeUpdate}
+            onExit={props.onExit}
+          />
+        </View>
+         
         <View style={styles.inputContainer}>
           <View style={styles.guessContainer}>
             <GuessInput />
-            {/* <TouchableOpacity 
-              style={styles.submitButton}
-              onPress={handleSubmitGuess}
+            <TouchableOpacity 
+              style={styles.backspaceButton}
+              onPress={handleClearGuess}
             >
-              <Feather name="check" size={24} color="#ecf0f1" />
-            </TouchableOpacity> */}
+              <Feather name="delete" size={24} color="#ecf0f1" />
+            </TouchableOpacity>
           </View>
           <Keyboard 
             onKeyPress={handleKeyPress}
@@ -255,57 +214,13 @@ const styles = StyleSheet.create({
     // flex: 1,
     height: '100%'
   },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: width * 0.05,
-    paddingVertical: height * 0.02,
-  },
-  timeContainer: {
-    backgroundColor: '#e74c3c',
-    paddingHorizontal: width * 0.03,
-    paddingVertical: height * 0.01,
-    borderRadius: 15,
-  },
-  timeText: {
-    color: '#ecf0f1',
-    fontWeight: 'bold',
-    fontSize: Math.min(height * 0.025, 18),
-  },
-  categoryContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#2980b9',
-    paddingHorizontal: width * 0.03,
-    paddingVertical: height * 0.01,
-    borderRadius: 15,
-  },
-  categoryText: {
-    color: '#ecf0f1',
-    marginLeft: width * 0.02,
-    fontSize: Math.min(height * 0.025, 18),
-  },
-  exitButton: {
-    padding: width * 0.02,
-  },
-  hintsContainer: {
-    flex: 1,
-    paddingHorizontal: width * 0.05,
-  },
-  hintText: {
-    color: '#ecf0f1',
-    fontSize: Math.min(height * 0.025, 18),
-    fontFamily: 'Courier',
-    marginVertical: height * 0.01,
-  },
   inputContainer: {
     paddingVertical: height * 0.02,
   },
   guessContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: width * 0.05,
+    paddingHorizontal: 8,
     marginBottom: height * 0.02,
   },
   guessInput: {
@@ -318,8 +233,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Courier',
     marginRight: width * 0.02,
   },
-  submitButton: {
-    backgroundColor: '#27ae60',
+  backspaceButton: {
+    backgroundColor: '#70748C',
     width: height * 0.06,
     height: height * 0.06,
     borderRadius: height * 0.03,
@@ -335,7 +250,7 @@ const styles = StyleSheet.create({
     marginVertical: height * 0.005,
   },
   keyButton: {
-    backgroundColor: '#34495e',
+    backgroundColor: '#70748C',
     paddingHorizontal: width * 0.03,
     paddingVertical: height * 0.015,
     borderRadius: 10,
@@ -355,3 +270,12 @@ const styles = StyleSheet.create({
 });
 
 export default HintsScreen;
+
+// 34495e light gray
+// #C7E83C yellow
+// #3CE88E green #27ae60
+// #3CE8C9 green blue
+// #9C3428 brown, #935D57
+// #E83C68 pink
+// #E86C3C orange
+// #70748C light gray
