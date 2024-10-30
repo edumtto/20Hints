@@ -2,6 +2,7 @@ import { View, StyleSheet, SafeAreaView, Dimensions } from 'react-native';
 import { Stack, useRouter } from "expo-router";
 import { useRef, useState } from 'react';
 import GuessScreen from './GuessScreen';
+import HintsScreen from './HintsScreen';
 import ResultScreen, { GameResultStats } from './ResultsScreen';
 import { getRandomSecretWord } from '../../wordSets/secretWordDatabase';
 import FinalResultScreen from './FinalResultsScreen';
@@ -17,7 +18,7 @@ interface GlobalGameSettings {
 
 interface GlobalGameStats {
   gamesPlayed: number
-  timeSpent: number
+  elapsedTime: number
   globalScore: number
 }
 
@@ -45,8 +46,8 @@ const GameScreen: React.FC = () => {
 
   const router = useRouter();
   const [gameState, setGameState] = useState(GameState.Setup)
-  const globalStatusRef = useRef<GlobalGameStats>({gamesPlayed: 0, timeSpent: 0, globalScore: 0})
-  const resultRef = useRef<GameResultStats>({isWordGuessed: false, timeSpent: 0, hintsRevealed: 0, score: 0})
+  const globalStatusRef = useRef<GlobalGameStats>({gamesPlayed: 0, elapsedTime: 0, globalScore: 0})
+  const resultRef = useRef<GameResultStats>({isWordGuessed: false, elapsedTime: 0, hintsRevealed: 0, score: 0})
   const gameSettingsRef = useRef<GameSettings>(defaultGameSettings)
   
 
@@ -62,7 +63,7 @@ const GameScreen: React.FC = () => {
 
     const newGlobalStatus: GlobalGameStats = {
       gamesPlayed: globalStatusRef.current.gamesPlayed + 1,
-      timeSpent: globalStatusRef.current.timeSpent + stats.timeSpent,
+      elapsedTime: globalStatusRef.current.elapsedTime + stats.elapsedTime,
       globalScore: globalStatusRef.current.globalScore + stats.score
     }
     globalStatusRef.current = newGlobalStatus
@@ -78,7 +79,7 @@ const GameScreen: React.FC = () => {
 
     const newGlobalStatus: GlobalGameStats = {
       gamesPlayed: globalStatusRef.current.gamesPlayed + 1,
-      timeSpent: globalStatusRef.current.timeSpent + stats.timeSpent,
+      elapsedTime: globalStatusRef.current.elapsedTime + stats.elapsedTime,
       globalScore: globalStatusRef.current.globalScore
     }
     globalStatusRef.current = newGlobalStatus
@@ -102,11 +103,18 @@ const GameScreen: React.FC = () => {
         return <View>Intro</View>
       case GameState.Guess:
         const newSecretWord = getRandomSecretWord()
-        return <GuessScreen 
+        return <HintsScreen
           secretWord={newSecretWord}
-          setSuccessGuess={setSuccessGuess}
-          setGuessTimeOver={setGuessTimeOver}        
+          onExit={setExit}
+          onTimeout={setGuessTimeOver}
+          onSuccessGuess={setSuccessGuess}
         />
+        
+        // return <GuessScreen 
+        //   secretWord={newSecretWord}
+        //   setSuccessGuess={setSuccessGuess}
+        //   setGuessTimeOver={setGuessTimeOver}        
+        // />
       case GameState.Results:
         return <ResultScreen 
           stats={resultRef.current} 
@@ -117,7 +125,7 @@ const GameScreen: React.FC = () => {
         case GameState.FinalResults:
           return <FinalResultScreen 
           gamesPlayed={globalStatusRef.current.gamesPlayed} 
-          timeSpent={globalStatusRef.current.timeSpent}
+          timeSpent={globalStatusRef.current.elapsedTime}
           globalScore={globalStatusRef.current.globalScore}
           endScore={gameSettingsRef.current.endScore}
           setExit={setExit}

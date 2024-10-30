@@ -5,7 +5,7 @@ import PrimaryButton from '../../uiComponents/PrimaryButton';
 
 export interface GameResultStats {
   isWordGuessed: boolean,
-  timeSpent: number, // in seconds
+  elapsedTime: number, // in seconds
   hintsRevealed: number,
   score: number
 }

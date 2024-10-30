@@ -34,7 +34,7 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
     if (time >= allowedGameTime) {
       const stats: GameResultStats = {
         isWordGuessed: false, 
-        timeSpent: timeTrackerRef.current, 
+        elapsedTime: timeTrackerRef.current, 
         hintsRevealed: hintsRevealed(),
         score: 0
       }
@@ -52,7 +52,7 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
     if (!isSuccessGuess && inputUpperCase == wordUpperCase) {
       const stats: GameResultStats = {
         isWordGuessed: true, 
-        timeSpent: timeTrackerRef.current, 
+        elapsedTime: timeTrackerRef.current, 
         hintsRevealed: hintsRevealed(),
         score: totalNumberOfHints - hintsRevealed()
       }
