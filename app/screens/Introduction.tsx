@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#2c3e50',
     alignItems: 'center',
+    justifyContent: 'space-around'
   },
   gradient: {
     // flex: 1,
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     // flex: 1,
     paddingVertical: height * 0.05,
     // paddingHorizontal: 16,
-    maxWidth: 800,
+    maxWidth: 1024,
     height: '100%',
     gap: Platform.OS === 'web' ? 42 : 0
   },
