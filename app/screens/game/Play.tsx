@@ -150,7 +150,7 @@ const GameScreen: React.FC = () => {
     gameContainer: {
       // flex: 1, 
       width: '100%',
-      maxWidth: 800,
+      // maxWidth: 800,
       marginHorizontal: 'auto',
     }
   })

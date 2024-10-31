@@ -162,14 +162,13 @@ const GameSettingsScreen = ({ onSaveSettings }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#2c3e50'
+    backgroundColor: '#2c3e50',
   },
   gradient: {
     justifyContent: 'center',
     alignItems: 'center',
   },
   content: {
-    // width: width * 0.9,
     alignItems: 'center',
     justifyContent: 'space-around',
     // flex: 1,

@@ -118,6 +118,7 @@ const HintsAndHeader: React.FC<HintsAndHeaderProps> = (props) => {
 
       <TouchableOpacity onPress={props.onExit} style={styles.exitButton}>
         <Feather name="x" size={24} color="#ecf0f1" />
+        <Text style={styles.timeText}>Exit</Text>
       </TouchableOpacity>
 
       <View style={styles.categoryContainer}>
@@ -218,7 +219,11 @@ const styles = StyleSheet.create({
     marginVertical: height * 0.01,
   },
   exitButton: {
+    flexDirection: 'row',
     padding: width * 0.02,
+    borderRadius: 15,
+    backgroundColor: '#70748C',
+    alignItems: 'center',
   },
 });
 
