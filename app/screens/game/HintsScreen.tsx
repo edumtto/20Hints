@@ -47,7 +47,7 @@ const Keyboard: React.FC<KeyboardProps> = ({ onKeyPress, disabledKeys = [] }) =>
                 // disabledKeys.includes(key) && styles.keyButtonDisabled
               ]}
               onPress={() => onKeyPress(key)}
-              // disabled={disabledKeys.includes(key)}
+            // disabled={disabledKeys.includes(key)}
             >
               <Text style={styles.keyText}>{key}</Text>
             </TouchableOpacity>
@@ -60,13 +60,12 @@ const Keyboard: React.FC<KeyboardProps> = ({ onKeyPress, disabledKeys = [] }) =>
 
 const HintsScreen: React.FC<HintsScreenProps> = (props) => {
   const timeTrackerRef = useRef(0)
-  const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [guess, setGuess] = useState<string>('');
-  const inputClosenessRef = useRef(0)
+  const inputClosenessRef = useRef(0) // Interval [0...1]
   const [isSuccessGuess, setSuccessGuess] = useState(false)
 
   const hintsRevealed = () => Math.min(
-    1 + Math.floor(timeTrackerRef.current / hintDisplayTime), 
+    1 + Math.floor(timeTrackerRef.current / hintDisplayTime),
     totalNumberOfHints
   )
 
@@ -74,8 +73,8 @@ const HintsScreen: React.FC<HintsScreenProps> = (props) => {
     timeTrackerRef.current = time
     if (time >= allowedGameTime) {
       const stats: GameResultStats = {
-        isWordGuessed: false, 
-        elapsedTime: timeTrackerRef.current, 
+        isWordGuessed: false,
+        elapsedTime: timeTrackerRef.current,
         hintsRevealed: hintsRevealed(),
         score: 0
       }
@@ -92,8 +91,8 @@ const HintsScreen: React.FC<HintsScreenProps> = (props) => {
 
     if (!isSuccessGuess && inputUpperCase == wordUpperCase) {
       const stats: GameResultStats = {
-        isWordGuessed: true, 
-        elapsedTime: timeTrackerRef.current, 
+        isWordGuessed: true,
+        elapsedTime: timeTrackerRef.current,
         hintsRevealed: hintsRevealed(),
         score: totalNumberOfHints - hintsRevealed()
       }
@@ -113,13 +112,13 @@ const HintsScreen: React.FC<HintsScreenProps> = (props) => {
     if (inputDistance >= wordLenth) {
       return 0
     } else if (inputDistance == 0) {
-      return 100
+      return 1
     } else {
-      return (wordLenth - inputDistance) * 100 / wordLenth
+      return (wordLenth - inputDistance) / wordLenth
     }
   }
 
-  const GuessInput = () => 
+  const GuessInput = () =>
     <TextInput
       style={[styles.guessInput, { color: isSuccessGuess ? 'green' : '#000' }]}
       value={guess}
@@ -140,7 +139,9 @@ const HintsScreen: React.FC<HintsScreenProps> = (props) => {
 
   const handleClearGuess = (): void => {
     if (guess !== '') {
-      setGuess(guess.slice(0, -1))
+      let newGuess = guess.slice(0, -1)
+      setGuess(newGuess)
+      onChangeGuessInput(newGuess)
     }
   };
 
@@ -150,54 +151,34 @@ const HintsScreen: React.FC<HintsScreenProps> = (props) => {
         colors={['#2c3e50', '#34495e', '#2c3e50']}
         style={styles.gradient}
       >
-        {/* <View style={styles.header}>
-
-          <TouchableOpacity onPress={props.onExit} style={styles.exitButton}>
-            <Feather name="x" size={24} color="#ecf0f1" />
-          </TouchableOpacity>
-
-          <View style={styles.categoryContainer}>
-            <CategoryIcon category={props.secretWord.category} />
-            <Text style={styles.categoryText}>{props.secretWord.category}</Text>
-          </View>
-
-          <View style={styles.timeContainer}>
-            <Text style={styles.timeText}>{formatTime(elapsedTime)}</Text>
-          </View>
-          
-        </View> */}
-
-        {/* <ScrollView style={styles.hintsContainer}>
-          {props.secretWord.hints.map((hint, index) => (
-            <Text key={index} style={styles.hintText}>
-              {index + 1}. {hint}
-            </Text>
-          ))}
-        </ScrollView> */}
         <View style={{ flex: 1 }}>
           <HintsAndHeader
             secretWord={props.secretWord}
-            isTimerStopped={isSuccessGuess} 
-            allowedGameTime={allowedGameTime} 
+            isTimerStopped={isSuccessGuess}
+            allowedGameTime={allowedGameTime}
             hintDisplayTime={hintDisplayTime}
             onTimeUpdate={onTimeUpdate}
             onExit={props.onExit}
           />
         </View>
-         
+
         <View style={styles.inputContainer}>
           <View style={styles.guessContainer}>
             <GuessInput />
-            <TouchableOpacity 
-              style={styles.backspaceButton}
-              onPress={handleClearGuess}
-            >
+            <TouchableOpacity style={styles.backspaceButton} onPress={handleClearGuess}>
               <Feather name="delete" size={24} color="#ecf0f1" />
             </TouchableOpacity>
           </View>
-          <Keyboard 
+
+          <View style={{ 
+            width: inputClosenessRef.current * width, 
+            height: 4, 
+            backgroundColor: inputClosenessRef.current > 0.7 ? '#3CE8C9' : '#27ae60'
+          }}></View>
+
+          <Keyboard
             onKeyPress={handleKeyPress}
-            // disabledKeys={usedLetters}
+          // disabledKeys={usedLetters}
           />
         </View>
       </LinearGradient>
@@ -221,7 +202,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 8,
-    marginBottom: height * 0.02,
+    marginBottom: 14,
   },
   guessInput: {
     flex: 1,
@@ -243,6 +224,7 @@ const styles = StyleSheet.create({
   },
   keyboardContainer: {
     alignItems: 'center',
+    marginTop: 8
   },
   keyboardRow: {
     flexDirection: 'row',

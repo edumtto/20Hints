@@ -26,14 +26,14 @@ interface GlobalGameStats {
 interface GameSettings {
   endScore: number
   showClosenessIndicator: boolean
-  wordSets:  WordSets
+  wordSets: WordSets
 }
 
 // GAME SCREEN
 
 const GameScreen: React.FC = () => {
   const defaultGameSettings: GameSettings = {
-    endScore: 50, 
+    endScore: 50,
     showClosenessIndicator: false,
     wordSets: {
       Places: true,
@@ -47,14 +47,14 @@ const GameScreen: React.FC = () => {
 
   const router = useRouter();
   const [gameState, setGameState] = useState(GameState.Setup)
-  const globalStatusRef = useRef<GlobalGameStats>({gamesPlayed: 0, elapsedTime: 0, globalScore: 0})
-  const resultRef = useRef<GameResultStats>({isWordGuessed: false, elapsedTime: 0, hintsRevealed: 0, score: 0})
+  const globalStatusRef = useRef<GlobalGameStats>({ gamesPlayed: 0, elapsedTime: 0, globalScore: 0 })
+  const resultRef = useRef<GameResultStats>({ isWordGuessed: false, elapsedTime: 0, hintsRevealed: 0, score: 0 })
   const gameSettingsRef = useRef<GameSettings>(defaultGameSettings)
-  
+
 
   console.log('Game screen update')
 
-  function setGameSettings(endScore: number, showClosenessIndicator: boolean, wordSets: WordSets ): void {
+  function setGameSettings(endScore: number, showClosenessIndicator: boolean, wordSets: WordSets): void {
     gameSettingsRef.current = { endScore: endScore, showClosenessIndicator: showClosenessIndicator, wordSets: wordSets }
     setGameState(GameState.Guess)
   }
@@ -109,7 +109,6 @@ const GameScreen: React.FC = () => {
         // hints={newSecretWord.hints.slice(0, 5)}
         // onExit={setExit}
         // onGuess={(a) => console.log(a)}
-
         // />
         return <HintsScreen
           secretWord={newSecretWord}
@@ -117,22 +116,22 @@ const GameScreen: React.FC = () => {
           onTimeout={setGuessTimeOver}
           onSuccessGuess={setSuccessGuess}
         />
-        
-        // return <GuessScreen 
-        //   secretWord={newSecretWord}
-        //   setSuccessGuess={setSuccessGuess}
-        //   setGuessTimeOver={setGuessTimeOver}        
-        // />
+
+      // return <GuessScreen 
+      //   secretWord={newSecretWord}
+      //   setSuccessGuess={setSuccessGuess}
+      //   setGuessTimeOver={setGuessTimeOver}        
+      // />
       case GameState.Results:
-        return <ResultScreen 
-          stats={resultRef.current} 
-          globalScore={globalStatusRef.current.globalScore} 
-          endScore={gameSettingsRef.current.endScore} 
+        return <ResultScreen
+          stats={resultRef.current}
+          globalScore={globalStatusRef.current.globalScore}
+          endScore={gameSettingsRef.current.endScore}
           setNextGame={setNextGame}
         />
-        case GameState.FinalResults:
-          return <FinalResultScreen 
-          gamesPlayed={globalStatusRef.current.gamesPlayed} 
+      case GameState.FinalResults:
+        return <FinalResultScreen
+          gamesPlayed={globalStatusRef.current.gamesPlayed}
           timeSpent={globalStatusRef.current.elapsedTime}
           globalScore={globalStatusRef.current.globalScore}
           endScore={gameSettingsRef.current.endScore}
@@ -159,7 +158,7 @@ const GameScreen: React.FC = () => {
   return <View style={styles.mainContainer}>
     <View style={styles.gameContainer} onLayout={({ nativeEvent: layout }) => console.log(layout.layout)}>
       <Stack.Screen
-        options={{title: 'Game Setup'}}
+        options={{ title: 'Game Setup' }}
       />
       <Content />
     </View>

@@ -26,15 +26,15 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
   const inputClosenessRef = useRef(0)
   // 
   const hintsRevealed = () => Math.min(1 + Math.floor(timeTrackerRef.current / hintDisplayTime), totalNumberOfHints)
-  
+
   // console.log('Secret word: ' + props.secretWord.word)
 
   function onTimeUpdate(time: number) {
     timeTrackerRef.current = time
     if (time >= allowedGameTime) {
       const stats: GameResultStats = {
-        isWordGuessed: false, 
-        elapsedTime: timeTrackerRef.current, 
+        isWordGuessed: false,
+        elapsedTime: timeTrackerRef.current,
         hintsRevealed: hintsRevealed(),
         score: 0
       }
@@ -51,8 +51,8 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
 
     if (!isSuccessGuess && inputUpperCase == wordUpperCase) {
       const stats: GameResultStats = {
-        isWordGuessed: true, 
-        elapsedTime: timeTrackerRef.current, 
+        isWordGuessed: true,
+        elapsedTime: timeTrackerRef.current,
         hintsRevealed: hintsRevealed(),
         score: totalNumberOfHints - hintsRevealed()
       }
@@ -78,7 +78,7 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
     }
   }
 
-  const WordInput = () => 
+  const WordInput = () =>
     <TextInput
       maxLength={40}
       onChangeText={text => onChangeWordInput(text)}
@@ -89,30 +89,30 @@ const GuessScreen: React.FC<GuessScreenProps> = (props) => {
       editable={!isSuccessGuess}
       autoFocus={true}
     />
-    
+
   return <SafeAreaView style={styles.container}>
     <HintsAndHeader
       secretWord={props.secretWord}
-      isTimerStopped={isSuccessGuess} 
-      allowedGameTime={allowedGameTime} 
+      isTimerStopped={isSuccessGuess}
+      allowedGameTime={allowedGameTime}
       hintDisplayTime={hintDisplayTime}
       onTimeUpdate={onTimeUpdate}
     />
     {/* <Text>{inputClosenessRef.current}%</Text> */}
     <WordInput />
     <View style={{ height: 2, backgroundColor: 'red', marginHorizontal: 0, width: `${inputClosenessRef.current}%` }}></View>
-    
+
   </SafeAreaView>
 }
 
 const styles = StyleSheet.create({
   container: {
-      backgroundColor: '#fff',
-      padding: 8,
-      marginHorizontal: 8,
-      borderColor: '#ccc',
-      borderWidth: 1,
-      borderRadius: 8,
+    backgroundColor: '#fff',
+    padding: 8,
+    marginHorizontal: 8,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 8,
   },
   openingClue: {
     flex: 1,

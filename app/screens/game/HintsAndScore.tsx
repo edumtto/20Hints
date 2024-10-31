@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Text, StyleSheet, View, ScrollView, TextInput, TouchableOpacity, Dimensions} from 'react-native';
+import { Text, StyleSheet, View, ScrollView, TextInput, TouchableOpacity, Dimensions } from 'react-native';
 import { SecretWord, SecretWordCategory } from '../../wordSets/secretWord';
 import { Feather } from '@expo/vector-icons';
 
@@ -43,10 +43,10 @@ const CategoryIcon: React.FC<CategoryIconProps> = ({ category }) => {
   };
 
   return (
-    <Feather 
-      name={config.iconPath} 
-      size={24} 
-      color={config.iconColor} 
+    <Feather
+      name={config.iconPath}
+      size={24}
+      color={config.iconColor}
     />
   );
 };
@@ -97,58 +97,58 @@ const HintsAndHeader: React.FC<HintsAndHeaderProps> = (props) => {
 
     const interval = setInterval(() => {
       setElapsedTime((time: number) => {
-          if (props.isTimerStopped || time >= props.allowedGameTime) {
-            clearInterval(interval)
-            return time
-          }
-          props.onTimeUpdate(time + 1)
-          return time + 1
-        })
-    } , 1000)
-  },[])
+        if (props.isTimerStopped || time >= props.allowedGameTime) {
+          clearInterval(interval)
+          return time
+        }
+        props.onTimeUpdate(time + 1)
+        return time + 1
+      })
+    }, 1000)
+  }, [])
 
   const formatTime = (seconds: number): string => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
     return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
   };
-  
+
   const HeaderBar = () =>
     <View style={styles.header}>
 
-          <TouchableOpacity onPress={props.onExit} style={styles.exitButton}>
-            <Feather name="x" size={24} color="#ecf0f1" />
-          </TouchableOpacity>
+      <TouchableOpacity onPress={props.onExit} style={styles.exitButton}>
+        <Feather name="x" size={24} color="#ecf0f1" />
+      </TouchableOpacity>
 
-          <View style={styles.categoryContainer}>
-            <CategoryIcon category={props.secretWord.category} />
-            <Text style={styles.categoryText}>{props.secretWord.category}</Text>
-          </View>
+      <View style={styles.categoryContainer}>
+        <CategoryIcon category={props.secretWord.category} />
+        <Text style={styles.categoryText}>{props.secretWord.category}</Text>
+      </View>
 
-          <View style={styles.timeContainer}>
-            <Text style={styles.timeText}>{formatTime(elapsedTime)}</Text>
-          </View>
-          
-        </View>
+      <View style={styles.timeContainer}>
+        <Text style={styles.timeText}>{formatTime(elapsedTime)}</Text>
+      </View>
+
+    </View>
 
   const Hints = () => {
     const numberOfHintsDisplayed = Math.min(1 + Math.floor(elapsedTime / props.hintDisplayTime), props.secretWord.hints.length)
 
     return props.secretWord.hints
-      .slice(0,numberOfHintsDisplayed)
+      .slice(0, numberOfHintsDisplayed)
       // .reverse()
-      .map( (value, index) =>
-        <Hint key={index} number={index + 1} hint={value} /> 
-    )
+      .map((value, index) =>
+        <Hint key={index} number={index + 1} hint={value} />
+      )
   }
 
   return (
     <View>
-    <HeaderBar />
-    <ScrollView style={styles.hintsContainer}  scrollEnabled={true} alwaysBounceVertical={true}> 
-      <Hints />
-    </ScrollView>
-  </View>
+      <HeaderBar />
+      <ScrollView style={styles.hintsContainer} scrollEnabled={true} alwaysBounceVertical={true}>
+        <Hints />
+      </ScrollView>
+    </View>
   )
 }
 
@@ -195,8 +195,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
     marginTop: 8,
   },
-  timer: { 
-    fontSize: 22, 
+  timer: {
+    fontSize: 22,
     textAlign: 'right',
     fontWeight: 600,
     fontFamily: 'monospace'

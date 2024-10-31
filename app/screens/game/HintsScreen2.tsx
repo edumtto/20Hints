@@ -68,10 +68,10 @@ const CategoryIcon: React.FC<CategoryIconProps> = ({ category }) => {
   };
 
   return (
-    <Feather 
-      name={config.iconPath} 
-      size={24} 
-      color={config.iconColor} 
+    <Feather
+      name={config.iconPath}
+      size={24}
+      color={config.iconColor}
     />
   );
 };
@@ -177,14 +177,14 @@ const HintsScreen2: React.FC<GameHintsScreenProps> = ({
               returnKeyType="done"
               onSubmitEditing={handleSubmitGuess}
             />
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.submitButton}
               onPress={handleSubmitGuess}
             >
               <Feather name="check" size={24} color="#ecf0f1" />
             </TouchableOpacity>
           </View>
-          <Keyboard 
+          <Keyboard
             onKeyPress={handleKeyPress}
             disabledKeys={usedLetters}
           />
