@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Text, StyleSheet, View, ScrollView, TextInput, TouchableOpacity, Dimensions } from 'react-native';
+import { Text, StyleSheet, View, ScrollView, TextInput, TouchableOpacity, Dimensions, Pressable } from 'react-native';
 import { SecretWord, SecretWordCategory } from '../../wordSets/secretWord';
 import { Feather } from '@expo/vector-icons';
 
@@ -116,10 +116,10 @@ const HintsAndHeader: React.FC<HintsAndHeaderProps> = (props) => {
   const HeaderBar = () =>
     <View style={styles.header}>
 
-      <TouchableOpacity onPress={props.onExit} style={styles.exitButton}>
+      <Pressable onPress={props.onExit} style={styles.exitButton}>
         <Feather name="x" size={24} color="#ecf0f1" />
         <Text style={styles.timeText}>Exit</Text>
-      </TouchableOpacity>
+      </Pressable>
 
       <View style={styles.categoryContainer}>
         <CategoryIcon category={props.secretWord.category} />

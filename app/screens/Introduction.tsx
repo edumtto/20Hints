@@ -26,7 +26,7 @@ const IntroductionScreen: React.FC = () => {
   const router = useRouter()
 
   const handlePlayPress = () => {
-    router.push('screens/game/Play')
+    router.push('screens/game/Setup')
   };
 
   return (

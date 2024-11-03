@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Dimensions, TouchableOpacity, Switch, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Dimensions, Switch, ScrollView, Pressable } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Svg, Path, Circle } from 'react-native-svg';
 import PrimaryButton from '../../uiComponents/PrimaryButton';
+import { useRouter } from 'expo-router';
 
 export interface WordSets {
   Places: boolean;
@@ -64,16 +65,18 @@ const WordSetIcon = ({ name, isSelected, onPress }) => {
   };
 
   return (
-    <TouchableOpacity style={[styles.wordSetItem, isSelected && styles.selectedWordSetItem]} onPress={onPress}>
+    <Pressable style={[styles.wordSetItem, isSelected && styles.selectedWordSetItem]} onPress={onPress}>
       <View style={styles.iconContainer}>
         {icons[name]}
       </View>
       <Text style={[styles.wordSetText, isSelected && styles.selectedWordSetText]}>{name}</Text>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
-const GameSettingsScreen = ({ onSaveSettings }) => {
+const GameSettingsScreen = () => {
+  const router = useRouter()
+  
   const [endScore, setEndScore] = useState(100);
   const [showClosenessIndicator, setShowClosenessIndicator] = useState(true);
   const [wordSets, setWordSets] = useState<WordSets>({
@@ -88,7 +91,15 @@ const GameSettingsScreen = ({ onSaveSettings }) => {
   const pointOptions = [50, 100, 125, 150, 200];
 
   const handleSave = () => {
-    onSaveSettings({ endScore, showClosenessIndicator, wordSets });
+    router.push({
+      pathname:'screens/game/Play', 
+      params: {
+        endScore: endScore, 
+        showCloseness: showClosenessIndicator ? 1 : 0, 
+        wordSets: Object.values(wordSets).filter( value => value).map( (_, index) =>  index)
+      }
+    })
+    // onSaveSettings({ endScore, showClosenessIndicator, wordSets });
   };
 
   const toggleWordSet = (set) => {
@@ -109,7 +120,7 @@ const GameSettingsScreen = ({ onSaveSettings }) => {
             <Text style={styles.settingTitle}>Max Points per Round</Text>
             <View style={styles.segmentedControl}>
               {pointOptions.map((points) => (
-                <TouchableOpacity
+                <Pressable
                   key={points}
                   style={[
                     styles.segment,
@@ -123,7 +134,7 @@ const GameSettingsScreen = ({ onSaveSettings }) => {
                   ]}>
                     {points}
                   </Text>
-                </TouchableOpacity>
+                </Pressable>
               ))}
             </View>
           </View>
@@ -162,7 +173,9 @@ const GameSettingsScreen = ({ onSaveSettings }) => {
 
 const styles = StyleSheet.create({
   container: {
+    height: '100%',
     backgroundColor: '#2c3e50',
+    justifyContent: 'space-around',
   },
   gradient: {
     justifyContent: 'center',

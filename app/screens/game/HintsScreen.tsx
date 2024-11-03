@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, SafeAreaView, Dimensions, ScrollView } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, Text, TextInput, StyleSheet, SafeAreaView, Dimensions, ScrollView, Pressable } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
-import { SecretWord, SecretWordCategory } from '../../wordSets/secretWord';
+import { SecretWord } from '../../wordSets/secretWord';
 import { GameResultStats, ResultsScreenProps } from './ResultsScreen';
 import { levenshteinDistance } from '../../wordDistance';
 import HintsAndHeader from './HintsAndScore';
@@ -40,7 +40,7 @@ const Keyboard: React.FC<KeyboardProps> = ({ onKeyPress, disabledKeys = [] }) =>
       {KEYBOARD_LAYOUT.map((row, rowIndex) => (
         <View key={rowIndex} style={styles.keyboardRow}>
           {row.map((key) => (
-            <TouchableOpacity
+            <Pressable
               key={key}
               style={[
                 styles.keyButton,
@@ -50,7 +50,7 @@ const Keyboard: React.FC<KeyboardProps> = ({ onKeyPress, disabledKeys = [] }) =>
             // disabled={disabledKeys.includes(key)}
             >
               <Text style={styles.keyText}>{key}</Text>
-            </TouchableOpacity>
+            </Pressable>
           ))}
         </View>
       ))}
@@ -108,7 +108,7 @@ const HintsScreen: React.FC<HintsScreenProps> = (props) => {
 
     const wordLenth = word.length
     const inputDistance = levenshteinDistance(input, word)
-    console.log(props.secretWord.word + ' - ' + input + ' : ' + inputDistance)
+    // console.log(props.secretWord.word + ' - ' + input + ' : ' + inputDistance)
     if (inputDistance >= wordLenth) {
       return 0
     } else if (inputDistance == 0) {
@@ -128,7 +128,7 @@ const HintsScreen: React.FC<HintsScreenProps> = (props) => {
       maxLength={30}
       // returnKeyType="done"
       // onSubmitEditing={handleSubmitGuess}
-      editable={!isSuccessGuess}
+      // editable={!isSuccessGuess}
     />
 
   const handleKeyPress = (key: string): void => {
@@ -165,9 +165,9 @@ const HintsScreen: React.FC<HintsScreenProps> = (props) => {
         <View style={styles.inputContainer}>
           <View style={styles.guessContainer}>
             <GuessInput />
-            <TouchableOpacity style={styles.backspaceButton} onPress={handleClearGuess}>
+            <Pressable style={styles.backspaceButton} onPress={handleClearGuess}>
               <Feather name="delete" size={24} color="#ecf0f1" />
-            </TouchableOpacity>
+            </Pressable>
           </View>
 
           <View style={{ 
