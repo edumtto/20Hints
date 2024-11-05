@@ -42,12 +42,8 @@ const Keyboard: React.FC<KeyboardProps> = ({ onKeyPress, disabledKeys = [] }) =>
           {row.map((key) => (
             <Pressable
               key={key}
-              style={[
-                styles.keyButton,
-                // disabledKeys.includes(key) && styles.keyButtonDisabled
-              ]}
+              style={({ pressed }) => [styles.keyButton, {opacity:pressed ? 0.5 : 1}]}
               onPress={() => onKeyPress(key)}
-            // disabled={disabledKeys.includes(key)}
             >
               <Text style={styles.keyText}>{key}</Text>
             </Pressable>
@@ -108,7 +104,6 @@ const HintsScreen: React.FC<HintsScreenProps> = (props) => {
 
     const wordLenth = word.length
     const inputDistance = levenshteinDistance(input, word)
-    // console.log(props.secretWord.word + ' - ' + input + ' : ' + inputDistance)
     if (inputDistance >= wordLenth) {
       return 0
     } else if (inputDistance == 0) {
@@ -178,7 +173,6 @@ const HintsScreen: React.FC<HintsScreenProps> = (props) => {
 
           <Keyboard
             onKeyPress={handleKeyPress}
-          // disabledKeys={usedLetters}
           />
         </View>
       </LinearGradient>

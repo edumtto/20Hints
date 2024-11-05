@@ -18,13 +18,13 @@ export interface ResultsScreenProps {
 }
 
 const ScoreProgress: React.FC<{value: number, maxValue: number}> = (props) => {
-  return <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center'}}>
+  return <View style={{ flexDirection: 'column', alignItems: 'center' }}>
     {/* <Text style={{ fontSize: 14, color: '#fff'}}>TOTAL SCORE</Text> */}
   <View style={{ marginVertical: 16 }}>
     <View style={{ height: 14, width: 200, backgroundColor: '#fff', borderWidth: 1, borderColor: 'black'}}></View>
     <View style={{ height: 14, width: props.value, backgroundColor: '#000', position: 'absolute'}}></View>
   </View>
-    <Text style={{ fontSize: 18, color: '#fff'}}>{props.value + '/' + props.maxValue}</Text>
+    <Text style={{ fontSize: 18, fontFamily: 'Courier', color: '#fff'}}>{props.value + '/' + props.maxValue}</Text>
   </View  >
 }
 
@@ -34,7 +34,7 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
 
   function getMessage(): [string, string] {
     if (props.stats.isWordGuessed == false) {
-      return ['The time is over', 'Best luck next time']
+      return ['Time over', 'Best luck next time']
     }
     if (props.stats.hintsRevealed == 1) {
       return ['Unbelievable', 'Only '+ props.stats.hintsRevealed + ' hint used!']
@@ -58,8 +58,8 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
 
   const Stat: React.FC<{label: string, value: any}> = (props) => 
     <View style={styles.statsRow}>
-      <Text style={{ fontSize: 24, color: '#fff', fontWeight: 300 }}>{props.label}</Text>
-      <Text style={{ fontSize: 24, color: '#fff'}}>{props.value}</Text>
+      <Text style={{ fontSize: 24, color: '#fff', fontFamily: 'Courier', fontWeight: 300 }}>{props.label}</Text>
+      <Text style={{ fontSize: 24, color: '#3CE88E', fontFamily: 'Courier',}}>{props.value}</Text>
     </View>
 
   return <SafeAreaView style={styles.container}>
@@ -67,11 +67,11 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
     <Text style={styles.secondaryText}>{message[1]}</Text>
     <View style={{paddingVertical: 32}}>
       <Text style={styles.scoreText}>{'+ ' + props.stats.score + ' pts'}</Text>
-      {/* <View style={styles.stats}>
+      <View style={styles.stats}>
         <Stat label={'Word guessed'}  value={props.stats.isWordGuessed ? '✓' : 'no'} />
         <Stat label={'Hints revealed'}  value={props.stats.hintsRevealed} />
-        <Stat label={'Time spent'}  value={props.stats.timeSpent + 's'} />
-      </View> */}
+        <Stat label={'Time spent'}  value={props.stats.elapsedTime + 's'} />
+      </View>
       <ScoreProgress value={props.globalScore} maxValue={props.endScore}/>
     </View>
     <PrimaryButton title={buttonTitle} onPress={() => handleStartNextGame()} />
@@ -80,7 +80,7 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#3E2B77',
+    backgroundColor: '#2c3e50',
     // display: 'flex',
     height: '100%',
     justifyContent: 'center',
@@ -89,34 +89,37 @@ const styles = StyleSheet.create({
   primaryText: {
     color: '#fff',
     fontSize: 48,
-    marginBottom: 16
+    marginBottom: 16,
+    fontFamily: 'Courier',
   },
   secondaryText: {
-    color: 'rgb(255 240 0)',
+    color: '#C7E83C',
     fontSize: 28,
     marginBottom: 24,
-    fontWeight: 200
+    fontWeight: 200,
+    fontFamily: 'Courier',
   },
   scoreText: {
     color: '#fff',
     fontSize: 60,
-    textAlign: 'center'
+    textAlign: 'center',
+    fontFamily: 'Courier'
   },
   stats: {
-    flex: 1,
+    // flex: 1,
     flexDirection: 'column',
     padding: 12,
     margin: 16,
-    borderColor: '#ccc',
+    borderColor: '#70748C',
     borderWidth: 1,
     borderRadius: 8,
-    minWidth: 300
+    minWidth: 300,
   },
   statsRow: {
-    flex: 1,
+    // flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 8
+    padding: 8,
   }
 })
 
