@@ -72,7 +72,7 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
         <Stat label={'Hints revealed'}  value={props.stats.hintsRevealed} />
         <Stat label={'Time spent'}  value={props.stats.timeSpent + 's'} />
       </View> */}
-      {/* <ScoreProgress value={props.globalScore} maxValue={props.endScore}/> */}
+      <ScoreProgress value={props.globalScore} maxValue={props.endScore}/>
     </View>
     <PrimaryButton title={buttonTitle} onPress={() => handleStartNextGame()} />
   </SafeAreaView>

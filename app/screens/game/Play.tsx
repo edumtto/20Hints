@@ -36,7 +36,7 @@ const GameScreen: React.FC = () => {
   gameSettingsRef.current = { 
     endScore: Number(params.endScore), 
     showClosenessIndicator: params.showCloseness == '1', 
-    wordSets: Array(params.wordSets).map(Number)
+    wordSets: Array(params.wordSets ?? []).map(Number)
   }
 
   console.log('Game screen update')
@@ -110,9 +110,9 @@ const GameScreen: React.FC = () => {
   }
 
   return <View style={styles.mainContainer}>
-    <View style={styles.gameContainer}> {/* onLayout={({ nativeEvent: layout }) => console.log(layout.layout)} */}
+    <View style={styles.gameContainer}>
       <Stack.Screen
-        options={{ title: 'Game Setup' }}
+        options={{ title: 'Game Setup' }}  
       />
       <Content />
     </View>
@@ -123,14 +123,11 @@ const styles = StyleSheet.create({
   mainContainer: {
     height: '100%',
     display: 'flex',
-    justifyContent: 'center',
-    // alignItems: 'center'
+    justifyContent: 'center'
   },
   gameContainer: {
-    // flex: 1, 
     width: '100%',
-    // maxWidth: 800,
-    marginHorizontal: 'auto',
+    marginHorizontal: 'auto'
   }
 })
 

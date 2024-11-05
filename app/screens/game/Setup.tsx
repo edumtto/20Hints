@@ -65,7 +65,7 @@ const WordSetIcon = ({ name, isSelected, onPress }) => {
   };
 
   return (
-    <Pressable style={[styles.wordSetItem, isSelected && styles.selectedWordSetItem]} onPress={onPress}>
+    <Pressable style={[styles.wordSetItem, isSelected]} onPress={onPress}>
       <View style={styles.iconContainer}>
         {icons[name]}
       </View>
@@ -122,16 +122,10 @@ const GameSettingsScreen = () => {
               {pointOptions.map((points) => (
                 <Pressable
                   key={points}
-                  style={[
-                    styles.segment,
-                    endScore === points && styles.selectedSegment,
-                  ]}
+                  style={[styles.segment, endScore === points && styles.selectedSegment]}
                   onPress={() => setEndScore(points)}
                 >
-                  <Text style={[
-                    styles.segmentText,
-                    endScore === points && styles.selectedSegmentText,
-                  ]}>
+                  <Text style={[styles.segmentText, endScore === points && styles.selectedSegmentText]}>
                     {points}
                   </Text>
                 </Pressable>
@@ -251,9 +245,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 8
-  },
-  selectedWordSetItem: {
-    
   },
   selectedWordSetText: {
     color: '#ecf0f1',
