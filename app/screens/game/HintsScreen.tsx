@@ -29,7 +29,7 @@ const KEYBOARD_LAYOUT: string[][] = [
   ['Z', 'X', 'C', 'V', 'B', 'N', 'M', ' ']
 ];
 
-const allowedGameTime: number = 10
+const allowedGameTime: number = 100
 const hintDisplayTime = 6
 const totalNumberOfHints = 20
 

@@ -19,11 +19,10 @@ export interface ResultsScreenProps {
 
 const ScoreProgress: React.FC<{value: number, maxValue: number}> = (props) => {
   return <View style={{ flexDirection: 'column', alignItems: 'center' }}>
-    {/* <Text style={{ fontSize: 14, color: '#fff'}}>TOTAL SCORE</Text> */}
-  <View style={{ marginVertical: 16 }}>
-    <View style={{ height: 14, width: 200, backgroundColor: '#fff', borderWidth: 1, borderColor: 'black'}}></View>
-    <View style={{ height: 14, width: props.value, backgroundColor: '#000', position: 'absolute'}}></View>
-  </View>
+    <View style={{ marginVertical: 16 }}>
+      <View style={{ height: 16, width: 200, backgroundColor: '#34495e', borderRadius: 8}}></View>
+      <View style={{ height: 16, width: props.value, backgroundColor: '#3CE88E', position: 'absolute', borderRadius: 8, borderWidth: 3, borderColor: '#34495e'}}></View>
+    </View>
     <Text style={{ fontSize: 18, fontFamily: 'Courier', color: '#fff'}}>{props.value + '/' + props.maxValue}</Text>
   </View  >
 }
@@ -34,7 +33,7 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
 
   function getMessage(): [string, string] {
     if (props.stats.isWordGuessed == false) {
-      return ['Time over', 'Best luck next time']
+      return ['Time\'s up', 'Best luck next time']
     }
     if (props.stats.hintsRevealed == 1) {
       return ['Unbelievable', 'Only '+ props.stats.hintsRevealed + ' hint used!']
@@ -43,9 +42,9 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
       return ['Impressive!', 'Only '+ props.stats.hintsRevealed + ' hints used!']
     }
     if (props.stats.hintsRevealed < 10) {
-      return ['Great job!', 'You used less than half of the hints.']
+      return ['Great job!', 'You were fast.']
     }
-    return ['Good job!', 'You can train to guess even faster next time']
+    return ['Good job!', 'You got it right']
   }
 
   const buttonTitle = props.stats.isWordGuessed == false ? 'Try again' : 'Next Game'
@@ -63,8 +62,11 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
     </View>
 
   return <SafeAreaView style={styles.container}>
-    <Text style={styles.primaryText}>{message[0]}</Text>
-    <Text style={styles.secondaryText}>{message[1]}</Text>
+    <View style={{ alignItems: 'center', paddingHorizontal: 16}}>
+      <Text style={styles.primaryText}>{message[0]}</Text>
+      <Text style={styles.secondaryText}>{message[1]}</Text>
+    </View>
+
     <View style={{paddingVertical: 32}}>
       <Text style={styles.scoreText}>{'+ ' + props.stats.score + ' pts'}</Text>
       <View style={styles.stats}>
@@ -84,7 +86,7 @@ const styles = StyleSheet.create({
     // display: 'flex',
     height: '100%',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   primaryText: {
     color: '#fff',
