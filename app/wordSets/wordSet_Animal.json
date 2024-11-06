@@ -1,0 +1,31 @@
+{
+  "category": "Animal",
+  "setSize": 1,
+  "secretWords": [
+    {
+      "word": "giraffe",
+      "hints": [
+      "I have spots",
+      "My neck is very long",
+      "I'm the tallest land animal",
+      "I live in Africa",
+      "I eat leaves from trees",
+      "My tongue is purple-black",
+      "I can run up to 35 mph",
+      "I sleep less than 2 hours a day",
+      "My pattern is unique like fingerprints",
+      "I'm a herbivore",
+      "I can be up to 20 feet tall",
+      "My offspring is called a calf",
+      "I live in groups called towers",
+      "My legs are taller than most humans",
+      "I have small horns called ossicones",
+      "I rarely make any sounds",
+      "My heart weighs about 25 pounds",
+      "I have excellent eyesight",
+      "My tongue is about 20 inches long",
+      "I give birth standing up"
+      ]
+    }
+  ]
+}

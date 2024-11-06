@@ -32,11 +32,11 @@ const GameScreen: React.FC = () => {
   const globalStatusRef = useRef<GlobalGameStats>({ gamesPlayed: 0, elapsedTime: 0, globalScore: 0 })
   const gameSettingsRef = useRef<GameSettings>({ endScore: 50, showClosenessIndicator: false, wordSets: [0, 1, 2] })
 
-  const params = useLocalSearchParams<{ endScore: string, showCloseness: string, wordSets: string[] }>();
+  const params = useLocalSearchParams<{ endScore: string, showCloseness: string, wordSets: string }>();
   gameSettingsRef.current = { 
     endScore: Number(params.endScore), 
     showClosenessIndicator: params.showCloseness == '1', 
-    wordSets: Array(params.wordSets ?? []).map(Number)
+    wordSets: params.wordSets.split(',').map(Number)
   }
 
   console.log('Game screen update')
@@ -59,7 +59,6 @@ const GameScreen: React.FC = () => {
   }
 
   function setGuessTimeOver(stats: GameResultStats): void {
-
     const newGlobalStatus: GlobalGameStats = {
       gamesPlayed: globalStatusRef.current.gamesPlayed + 1,
       elapsedTime: globalStatusRef.current.elapsedTime + stats.elapsedTime,
@@ -82,7 +81,7 @@ const GameScreen: React.FC = () => {
     switch (gameState) {
 
       case GameState.Guess:
-        const newSecretWord = getRandomSecretWord()
+        const newSecretWord = getRandomSecretWord(gameSettingsRef.current.wordSets)
         return <HintsScreen
           secretWord={newSecretWord}
           onExit={setExit}

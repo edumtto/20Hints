@@ -1,0 +1,31 @@
+{
+  "category": "Food",
+  "setSize": 1,
+  "secretWords": [
+    {
+      "word": "avocado",
+      "hints": [
+      "Green inside",
+      "Has a large pit",
+      "Native to Mexico",
+      "Main ingredient in guacamole",
+      "Grows on trees",
+      "Often on toast",
+      "High in healthy fats",
+      "Creamy texture",
+      "Pear-shaped",
+      "Dark bumpy skin",
+      "Called 'alligator pear'",
+      "Popular in California rolls",
+      "Ripens after picking",
+      "Browns when cut",
+      "Used in smoothies",
+      "Contains vitamin E",
+      "Can be used as egg substitute",
+      "Has its own emoji 🥑",
+      "Name comes from Nahuatl word",
+      "Often sliced in salads"
+      ]
+    }
+  ]
+}

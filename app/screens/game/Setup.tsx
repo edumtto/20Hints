@@ -75,11 +75,12 @@ const WordSetIcon = ({ name, isSelected, onPress }) => {
 };
 
 const GameSettingsScreen = () => {
+  const pointOptions = [50, 100, 125, 150, 200];
   const router = useRouter()
   
   const [endScore, setEndScore] = useState(100);
   const [showClosenessIndicator, setShowClosenessIndicator] = useState(true);
-  const [wordSets, setWordSets] = useState<WordSets>({
+  const [wordSets, setWordSets] = useState({
     'Places': true,
     'Things': true,
     'People': true,
@@ -88,18 +89,23 @@ const GameSettingsScreen = () => {
     'Sports': false,
   });
 
-  const pointOptions = [50, 100, 125, 150, 200];
-
   const handleSave = () => {
+    const selectedSets: number[] = []
+    const values = Object.values(wordSets)
+    for (let i=0; i < values.length; i++) {
+      if (values[i]) {
+        selectedSets.push(i)
+      } 
+    }
+    
     router.push({
       pathname:'screens/game/Play', 
       params: {
         endScore: endScore, 
         showCloseness: showClosenessIndicator ? 1 : 0, 
-        wordSets: Object.values(wordSets).filter( value => value).map( (_, index) =>  index)
+        wordSets: selectedSets
       }
     })
-    // onSaveSettings({ endScore, showClosenessIndicator, wordSets });
   };
 
   const toggleWordSet = (set) => {
@@ -134,17 +140,6 @@ const GameSettingsScreen = () => {
           </View>
 
           <View style={styles.settingSection}>
-            <Text style={styles.settingTitle}>Word Closeness Indicator</Text>
-            <Switch
-              trackColor={{ false: "#767577", true: "#81b0ff" }}
-              thumbColor={showClosenessIndicator ? "#f5dd4b" : "#f4f3f4"}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={setShowClosenessIndicator}
-              value={showClosenessIndicator}
-            />
-          </View>
-
-          <View style={styles.settingSection}>
             <Text style={styles.settingTitle}>Word Sets</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.wordSetCarousel}>
               {Object.entries(wordSets).map(([set, isSelected]) => (
@@ -156,6 +151,17 @@ const GameSettingsScreen = () => {
                 />
               ))}
             </ScrollView>
+          </View>
+
+          <View style={styles.settingSection}>
+            <Text style={styles.settingTitle}>Word Closeness Indicator</Text>
+            <Switch
+              trackColor={{ false: "#767577", true: "#ecf0f1" }}
+              thumbColor={showClosenessIndicator ? "#e74c3c" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={setShowClosenessIndicator}
+              value={showClosenessIndicator}
+            />
           </View>
 
           <PrimaryButton title='Save Settings' onPress={handleSave} />
