@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Text, StyleSheet, View, ScrollView, TextInput, TouchableOpacity, Dimensions, Pressable } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text, StyleSheet, View, ScrollView, Dimensions, Pressable } from 'react-native';
 import { SecretWord, SecretWordCategory } from '../../wordSets/secretWord';
 import { Feather } from '@expo/vector-icons';
 
@@ -50,7 +50,6 @@ const CategoryIcon: React.FC<CategoryIconProps> = ({ category }) => {
     />
   );
 };
-
 
 interface TimerProps {
   time: number

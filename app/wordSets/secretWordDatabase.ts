@@ -4,7 +4,7 @@ import thingWordSet from './wordSet_Thing.json'
 import animalWordSet from './wordSet_Animal.json'
 import foodWordSet from './wordSet_Food.json'
 import sportsWordSet from './wordSet_Sport.json'
-import { SecretWord, SecretWordCategory, SecretWordEntry, SecretWordIndex, SecretWordSet } from './secretWord'
+import { SecretWord, SecretWordCategory, SecretWordEntry, SecretWordSet } from './secretWord'
 
 const availableWordSets: SecretWordSet[] = [placeWordSet, thingWordSet, personWordSet, animalWordSet, foodWordSet, sportsWordSet]
 
@@ -12,7 +12,6 @@ const randomIndex: (size: number) => number = size => Math.floor(Math.random() *
 
 export function getRandomSecretWord(wordSetIds: number[]): SecretWord {
   const sets: SecretWordSet[] = wordSetIds.map( value => availableWordSets[value])
-  // console.log('geting random word in ' + sets.length + ' sets')
   const randomSet = sets[randomIndex(sets.length)]
   const randomEntryIndex = randomIndex(randomSet.setSize)
   const entry = randomSet.secretWords[randomEntryIndex] as SecretWordEntry

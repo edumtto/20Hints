@@ -1,8 +1,8 @@
-import { useLocalSearchParams } from 'expo-router';
 import React from 'react';
 import { Text, StyleSheet, View, SafeAreaView } from 'react-native';
 import PrimaryButton from '../../uiComponents/PrimaryButton';
 
+// Props Interfaces
 export interface GameResultStats {
   isWordGuessed: boolean,
   elapsedTime: number, // in seconds
@@ -10,13 +10,14 @@ export interface GameResultStats {
   score: number
 }
 
-export interface ResultsScreenProps {
+export interface ScoreScreenProps {
   stats: GameResultStats
   globalScore: number
   endScore: number
   setNextGame: () => void
 }
 
+// Components
 const ScoreProgress: React.FC<{value: number, maxValue: number}> = (props) => {
   return <View style={{ flexDirection: 'column', alignItems: 'center' }}>
     <View style={{ marginVertical: 16 }}>
@@ -27,11 +28,15 @@ const ScoreProgress: React.FC<{value: number, maxValue: number}> = (props) => {
   </View  >
 }
 
-// RESULT SCREEN
+const Stat: React.FC<{label: string, value: any}> = (props) => 
+  <View style={styles.statsRow}>
+    <Text style={{ fontSize: 24, color: '#fff', fontFamily: 'Courier', fontWeight: 300 }}>{props.label}</Text>
+    <Text style={{ fontSize: 24, color: '#3CE88E', fontFamily: 'Courier',}}>{props.value}</Text>
+  </View>
 
-const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
-
-  function getMessage(): [string, string] {
+// Screen
+const ScoreScreen: React.FC<ScoreScreenProps> = (props) => {
+  const message: [string, string] = (() => {
     if (props.stats.isWordGuessed == false) {
       return ['Time\'s up', 'Best luck next time']
     }
@@ -45,21 +50,13 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
       return ['Great job!', 'You were fast.']
     }
     return ['Good job!', 'You got it right']
-  }
+  })()
 
   const buttonTitle = props.stats.isWordGuessed == false ? 'Try again' : 'Next Game'
 
   function handleStartNextGame() {
       props.setNextGame()
   }
-
-  const message = getMessage()
-
-  const Stat: React.FC<{label: string, value: any}> = (props) => 
-    <View style={styles.statsRow}>
-      <Text style={{ fontSize: 24, color: '#fff', fontFamily: 'Courier', fontWeight: 300 }}>{props.label}</Text>
-      <Text style={{ fontSize: 24, color: '#3CE88E', fontFamily: 'Courier',}}>{props.value}</Text>
-    </View>
 
   return <SafeAreaView style={styles.container}>
     <View style={{ alignItems: 'center', paddingHorizontal: 16}}>
@@ -83,7 +80,6 @@ const ResultScreen: React.FC<ResultsScreenProps> = (props) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#2c3e50',
-    // display: 'flex',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center'
@@ -108,7 +104,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Courier'
   },
   stats: {
-    // flex: 1,
     flexDirection: 'column',
     padding: 12,
     margin: 16,
@@ -118,11 +113,10 @@ const styles = StyleSheet.create({
     minWidth: 300,
   },
   statsRow: {
-    // flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 8,
   }
 })
 
-export default ResultScreen;
+export default ScoreScreen;

@@ -1,10 +1,10 @@
 import { View, StyleSheet } from 'react-native';
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useRef, useState } from 'react';
-import HintsScreen from './HintsScreen';
-import ResultScreen, { GameResultStats } from './ResultsScreen';
+import GuessScreen from './Guess';
+import ResultScreen, { GameResultStats } from './Score';
 import { getRandomSecretWord } from '../../wordSets/secretWordDatabase';
-import FinalResultScreen from './FinalResultsScreen';
+import FinalResultScreen from './FinalScore';
 
 // Enums and Types
 enum GameState {
@@ -82,7 +82,7 @@ const GameScreen: React.FC = () => {
 
       case GameState.Guess:
         const newSecretWord = getRandomSecretWord(gameSettingsRef.current.wordSets)
-        return <HintsScreen
+        return <GuessScreen
           secretWord={newSecretWord}
           onExit={setExit}
           onTimeout={setGuessTimeOver}

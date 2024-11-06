@@ -3,9 +3,9 @@ import { View, Text, TextInput, StyleSheet, SafeAreaView, Dimensions, ScrollView
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
 import { SecretWord } from '../../wordSets/secretWord';
-import { GameResultStats, ResultsScreenProps } from './ResultsScreen';
+import { GameResultStats, ScoreScreenProps } from './Score';
 import { levenshteinDistance } from '../../wordDistance';
-import HintsAndHeader from './HintsAndScore';
+import HintsAndHeader from './HintsAndTimer';
 
 const { width, height } = Dimensions.get('window');
 
@@ -54,7 +54,7 @@ const Keyboard: React.FC<KeyboardProps> = ({ onKeyPress, disabledKeys = [] }) =>
   );
 };
 
-const HintsScreen: React.FC<HintsScreenProps> = (props) => {
+const GuessScreen: React.FC<HintsScreenProps> = (props) => {
   const timeTrackerRef = useRef(0)
   const [guess, setGuess] = useState<string>('');
   const inputClosenessRef = useRef(0) // Interval [0...1]
@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HintsScreen;
+export default GuessScreen;
 
 // 34495e light gray
 // #C7E83C yellow
