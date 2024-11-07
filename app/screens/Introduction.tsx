@@ -1,26 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView, Dimensions, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Svg, Path, Circle } from 'react-native-svg';
 import { useRouter } from 'expo-router';
 import PrimaryButton from '../uiComponents/PrimaryButton';
+import { MysteryIcon, FileIcon } from '../uiComponents/Icons';
 
 const { width, height } = Dimensions.get('window');
-
-const MysteryIcon = () => (
-  <Svg height={height * 0.15} width={height * 0.15} viewBox="0 0 100 100">
-    <Circle cx="50" cy="50" r="45" fill="#2c3e50" stroke="#ecf0f1" strokeWidth="2"/>
-    <Path d="M50 20 Q60 20 60 30 L60 45 Q60 55 50 55 Q40 55 40 45 L40 30 Q40 20 50 20 Z" fill="#ecf0f1" />
-    <Circle cx="50" cy="75" r="5" fill="#ecf0f1" />
-  </Svg>
-);
-
-const FileIcon = () => (
-  <Svg height={height * 0.05} width={height * 0.05} viewBox="0 0 40 40">
-    <Path d="M5 5 L25 5 L35 15 L35 35 L5 35 Z" fill="#45505e" />
-    <Path d="M25 5 L25 15 L35 15" fill="none" stroke="#70748C" strokeWidth="2" />
-  </Svg>
-);
 
 const IntroductionScreen: React.FC = () => {
   const router = useRouter()
@@ -36,15 +21,15 @@ const IntroductionScreen: React.FC = () => {
         style={styles.gradient}
       >
         <View style={styles.content}>
-          <MysteryIcon />
+          <MysteryIcon size={height * 0.15}/>
           <Text style={styles.title}>20 Hints</Text>
           <Text style={styles.description}>
             Uncover secret words. Decipher clues. Become the ultimate word detective.
           </Text>
           <View style={styles.iconContainer}>
-            <FileIcon />
-            <FileIcon />
-            <FileIcon />
+            <FileIcon size={height * 0.05}/>
+            <FileIcon size={height * 0.05}/>
+            <FileIcon size={height * 0.05}/>
           </View>
           <PrimaryButton title={'Investigate'} onPress={() => handlePlayPress()} />
         </View>

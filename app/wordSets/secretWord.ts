@@ -1,6 +1,11 @@
 
 export enum SecretWordCategory {
-  Person = "Person", Place = "Place", Thing = "Thing"
+  Person = "Person", 
+  Place = "Place", 
+  Thing = "Thing",
+  Animal = "Animal",
+  Food = "Food",
+  Sport = "Sport"
 }
 
 export interface SecretWord {

@@ -1,55 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Text, StyleSheet, View, ScrollView, Dimensions, Pressable } from 'react-native';
-import { SecretWord, SecretWordCategory } from '../../wordSets/secretWord';
+import { SecretWord } from '../../wordSets/secretWord';
 import { Feather } from '@expo/vector-icons';
+import { CategoryIcon } from '../../uiComponents/Icons'
 
 const { width, height } = Dimensions.get('window');
-
-// Enums and Types
-interface CategoryIconConfig {
-  iconPath: keyof typeof Feather.glyphMap;
-  iconColor: string;
-}
-
-interface CategoryIconProps {
-  category: SecretWordCategory;
-}
-
-type CategoryIconConfigMap = {
-  [key in SecretWordCategory]: CategoryIconConfig;
-};
-
-// Component configurations
-const CATEGORY_CONFIGS: CategoryIconConfigMap = {
-  [SecretWordCategory.Place]: {
-    iconPath: 'map-pin',
-    iconColor: '#1abc9c'
-  },
-  [SecretWordCategory.Person]: {
-    iconPath: 'user',
-    iconColor: '#e67e22'
-  },
-  [SecretWordCategory.Thing]: {
-    iconPath: 'box',
-    iconColor: '#9b59b6'
-  }
-};
-
-// Components
-const CategoryIcon: React.FC<CategoryIconProps> = ({ category }) => {
-  const config = CATEGORY_CONFIGS[category] ?? {
-    iconPath: 'help-circle',
-    iconColor: '#bdc3c7'
-  };
-
-  return (
-    <Feather
-      name={config.iconPath}
-      size={24}
-      color={config.iconColor}
-    />
-  );
-};
 
 interface TimerProps {
   time: number
@@ -117,7 +72,7 @@ const HintsAndHeader: React.FC<HintsAndHeaderProps> = (props) => {
 
       <Pressable onPress={props.onExit} style={styles.exitButton}>
         <Feather name="x" size={24} color="#ecf0f1" />
-        <Text style={styles.timeText}>Exit</Text>
+        <Text style={styles.headerButtonText}>Exit</Text>
       </Pressable>
 
       <View style={styles.categoryContainer}>
@@ -126,7 +81,7 @@ const HintsAndHeader: React.FC<HintsAndHeaderProps> = (props) => {
       </View>
 
       <View style={styles.timeContainer}>
-        <Text style={styles.timeText}>{formatTime(elapsedTime)}</Text>
+        <Text style={styles.headerButtonText}>{formatTime(elapsedTime)}</Text>
       </View>
 
     </View>
@@ -171,7 +126,7 @@ const styles = StyleSheet.create({
     paddingVertical: height * 0.01,
     borderRadius: 15,
   },
-  timeText: {
+  headerButtonText: {
     color: '#ecf0f1',
     fontWeight: 'bold',
     fontSize: Math.min(height * 0.025, 18),
@@ -180,7 +135,6 @@ const styles = StyleSheet.create({
   categoryContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#2980b9',
     paddingHorizontal: width * 0.03,
     paddingVertical: height * 0.01,
     borderRadius: 15,
@@ -208,7 +162,6 @@ const styles = StyleSheet.create({
     marginBottom: 8
   },
   hintsContainer: {
-    // flex: 1,
     paddingHorizontal: width * 0.05,
   },
   hintText: {
@@ -219,10 +172,11 @@ const styles = StyleSheet.create({
   },
   exitButton: {
     flexDirection: 'row',
-    padding: width * 0.02,
+    paddingHorizontal: width * 0.02,
     borderRadius: 15,
     backgroundColor: '#70748C',
     alignItems: 'center',
+    paddingVertical: height * 0.01,
   },
 });
 

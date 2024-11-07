@@ -30,7 +30,7 @@ const KEYBOARD_LAYOUT: string[][] = [
 ];
 
 const allowedGameTime: number = 100
-const hintDisplayTime = 6
+const hintDisplayTime = 10
 const totalNumberOfHints = 20
 
 // Components
@@ -182,11 +182,9 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     backgroundColor: '#2c3e50'
   },
   gradient: {
-    // flex: 1,
     height: '100%'
   },
   inputContainer: {
@@ -246,12 +244,3 @@ const styles = StyleSheet.create({
 });
 
 export default GuessScreen;
-
-// 34495e light gray
-// #C7E83C yellow
-// #3CE88E green #27ae60
-// #3CE8C9 green blue
-// #9C3428 brown, #935D57
-// #E83C68 pink
-// #E86C3C orange
-// #70748C light gray
