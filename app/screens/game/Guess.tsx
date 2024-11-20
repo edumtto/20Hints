@@ -160,7 +160,10 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
         <View style={styles.inputContainer}>
           <View style={styles.guessContainer}>
             <GuessInput />
-            <Pressable style={styles.backspaceButton} onPress={handleClearGuess}>
+            <Pressable 
+              style={({ pressed }) => [styles.backspaceButton, {opacity:pressed ? 0.5 : 1}]}
+              onPress={handleClearGuess}
+            >
               <Feather name="delete" size={24} color="#ecf0f1" />
             </Pressable>
           </View>

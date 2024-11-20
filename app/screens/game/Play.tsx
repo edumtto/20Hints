@@ -74,7 +74,7 @@ const GameScreen: React.FC = () => {
   }
 
   function setExit() {
-    router.push('../../')
+    router.dismissAll()
   }
 
   const Content: React.FC = () => {

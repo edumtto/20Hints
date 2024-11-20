@@ -21,20 +21,29 @@ export interface FinalResultsScreenProps {
 // RESULT SCREEN
 
 const FinalResultScreen: React.FC<FinalResultsScreenProps> = (props) => {
-
   const Stat: React.FC<{label: string, value: any}> = (props) => 
     <View style={styles.statsRow}>
       <Text style={{ fontSize: 24, color: '#fff', fontWeight: 300 }}>{props.label}</Text>
       <Text style={{ fontSize: 24, color: '#fff'}}>{props.value}</Text>
     </View>
 
+  const finalGrade: () => string = (() => {
+    const normalizedTime = props.timeSpent / props.gamesPlayed
+    if (normalizedTime < 20) return 'A++'
+    if (normalizedTime < 30) return 'A+'
+    if (normalizedTime <= 50) return 'A'
+    if (normalizedTime <= 100) return 'B';
+    if (normalizedTime <= 150) return 'C'
+    return 'D'
+  })
+
   return <SafeAreaView style={styles.container}>
-    <Text style={styles.primaryText}>{'You Won'}</Text>
+    <Text style={styles.primaryText}>{'Final Score'}</Text>
     <View style={{paddingVertical: 32}}>
       <View style={styles.stats}>
         <Stat label={'Words guessed'}  value={props.gamesPlayed} />
         <Stat label={'Time spent'}  value={props.timeSpent + 's'} />
-        <Stat label={'Grade'}  value={'A+'} />
+        <Stat label={'Grade'}  value={finalGrade} />
       </View>
     </View>
     <PrimaryButton title={'Exit'} onPress={() => props.setExit()} />
@@ -43,8 +52,7 @@ const FinalResultScreen: React.FC<FinalResultsScreenProps> = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#3E2B77',
-    // display: 'flex',
+    backgroundColor: '#2c3e50',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -65,17 +73,15 @@ const styles = StyleSheet.create({
     fontSize: 60,
   },
   stats: {
-    flex: 1,
     flexDirection: 'column',
     padding: 12,
     margin: 16,
-    borderColor: '#ccc',
+    borderColor: '#70748C',
     borderWidth: 1,
     borderRadius: 8,
-    minWidth: 300
+    minWidth: 300,
   },
   statsRow: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 8
