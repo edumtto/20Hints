@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import PrimaryButton from '../uiComponents/PrimaryButton';
 import { MysteryIcon, FileIcon } from '../uiComponents/Icons';
+import { Color } from '../uiComponents/Colors';
 
 const { width, height } = Dimensions.get('window');
 
@@ -42,9 +43,11 @@ const styles = StyleSheet.create({
   container: {
     // display: 'flex',
     height: '100%',
+    width: '100%',
     backgroundColor: '#2c3e50',
     alignItems: 'center',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    margin: 'auto'
   },
   gradient: {
     // flex: 1,
@@ -56,15 +59,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     // flex: 1,
     paddingVertical: height * 0.05,
-    // paddingHorizontal: 16,
-    maxWidth: 1024,
+    paddingHorizontal: 16,
+    width: width,
+    maxWidth: 800,
     height: '100%',
     gap: Platform.OS === 'web' ? 42 : 0
   },
   title: {
     fontSize: Math.min(height * 0.07, 48),
     fontWeight: 'bold',
-    color: '#ecf0f1',
+    color: Color.grey900,
     fontFamily: 'Courier',
     letterSpacing: 2,
     textAlign: 'center',

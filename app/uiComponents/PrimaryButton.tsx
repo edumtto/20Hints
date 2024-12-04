@@ -1,5 +1,6 @@
 import React from 'react';
 import { Dimensions, GestureResponderEvent, Pressable, StyleSheet, Text } from 'react-native';
+import { Color } from './Colors';
 
 const { width, height } = Dimensions.get('window');
 
@@ -39,7 +40,7 @@ const styles = StyleSheet.create ({
     // fontFamily: 'sans-serif'
     fontSize: Math.min(height * 0.035, 24),
     fontWeight: 'bold',
-    color: '#ecf0f1',
+    color: Color.grey900,
     fontFamily: 'Courier',
   },
 })

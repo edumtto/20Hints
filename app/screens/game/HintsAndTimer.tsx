@@ -3,6 +3,7 @@ import { Text, StyleSheet, View, ScrollView, Dimensions, Pressable } from 'react
 import { SecretWord } from '../../wordSets/secretWord';
 import { Feather } from '@expo/vector-icons';
 import { CategoryIcon } from '../../uiComponents/Icons'
+import { Color } from '../../uiComponents/Colors';
 
 const { width, height } = Dimensions.get('window');
 
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   headerButtonText: {
-    color: '#ecf0f1',
+    color: Color.grey900,
     fontWeight: 'bold',
     fontSize: Math.min(height * 0.025, 18),
     fontFamily: 'Courier'
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   categoryText: {
-    color: '#ecf0f1',
+    color: Color.grey900,
     marginLeft: width * 0.02,
     fontSize: Math.min(height * 0.025, 18),
   },
@@ -165,7 +166,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: width * 0.05,
   },
   hintText: {
-    color: '#ecf0f1',
+    color: Color.grey900,
     fontSize: Math.min(height * 0.025, 18),
     fontFamily: 'Courier',
     marginVertical: height * 0.01,

@@ -1,11 +1,12 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, TextInput, StyleSheet, SafeAreaView, Dimensions, ScrollView, Pressable } from 'react-native';
+import { View, Text, TextInput, StyleSheet, SafeAreaView, Dimensions, ScrollView, Pressable, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
 import { SecretWord } from '../../wordSets/secretWord';
 import { GameResultStats, ScoreScreenProps } from './Score';
 import { levenshteinDistance } from '../../wordDistance';
 import HintsAndHeader from './HintsAndTimer';
+import { Color } from '../../uiComponents/Colors';
 
 const { width, height } = Dimensions.get('window');
 
@@ -126,6 +127,21 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
       // editable={!isSuccessGuess}
     />
 
+  const ClearInputButton = () => 
+    <Pressable 
+      style={({ pressed }) => [styles.backspaceButton, {opacity:pressed ? 0.5 : 1}]}
+      onPress={handleClearGuess}
+    >
+      <Feather name="delete" size={24} color="#ecf0f1" />
+    </Pressable>
+
+  const InputClosenessIndicator = () =>
+    <View style={{ 
+      width: inputClosenessRef.current * width, 
+      height: 4, 
+      backgroundColor: inputClosenessRef.current > 0.7 ? '#3CE8C9' : '#27ae60'
+    }}></View>
+    
   const handleKeyPress = (key: string): void => {
     const newGuess = guess + key;
     setGuess(newGuess);
@@ -146,6 +162,7 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
         colors={['#2c3e50', '#34495e', '#2c3e50']}
         style={styles.gradient}
       >
+      <View style={styles.content}>
         <View style={{ flex: 1 }}>
           <HintsAndHeader
             secretWord={props.secretWord}
@@ -160,38 +177,40 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
         <View style={styles.inputContainer}>
           <View style={styles.guessContainer}>
             <GuessInput />
-            <Pressable 
-              style={({ pressed }) => [styles.backspaceButton, {opacity:pressed ? 0.5 : 1}]}
-              onPress={handleClearGuess}
-            >
-              <Feather name="delete" size={24} color="#ecf0f1" />
-            </Pressable>
+            <ClearInputButton />
           </View>
 
-          <View style={{ 
-            width: inputClosenessRef.current * width, 
-            height: 4, 
-            backgroundColor: inputClosenessRef.current > 0.7 ? '#3CE8C9' : '#27ae60'
-          }}></View>
+          <InputClosenessIndicator />
 
           <Keyboard
             onKeyPress={handleKeyPress}
           />
         </View>
-      </LinearGradient>
+      </View>
+    </LinearGradient>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#2c3e50'
+    backgroundColor: '#2c3e50',
+    height: '100%',
+    width: '100%',
+    alignItems: 'center',
+    margin: 'auto'
+  },
+  content: {
+    height: Platform.OS == 'web' ? height : '100%',
+    width: width,
+    maxWidth: 800,
   },
   gradient: {
     height: '100%'
   },
   inputContainer: {
     paddingVertical: height * 0.02,
+    paddingHorizontal: 16
   },
   guessContainer: {
     flexDirection: 'row',
@@ -201,7 +220,7 @@ const styles = StyleSheet.create({
   },
   guessInput: {
     flex: 1,
-    backgroundColor: '#ecf0f1',
+    backgroundColor: Color.grey900,
     height: height * 0.06,
     borderRadius: 25,
     paddingHorizontal: width * 0.05,
@@ -228,11 +247,11 @@ const styles = StyleSheet.create({
   },
   keyButton: {
     backgroundColor: '#70748C',
-    paddingHorizontal: width * 0.03,
+    paddingHorizontal: Math.min(width * 0.03, 26),
     paddingVertical: height * 0.015,
     borderRadius: 10,
-    marginHorizontal: width * 0.005,
-    minWidth: width * 0.08,
+    marginHorizontal: Math.min(width * 0.005, 8),
+    // minWidth: width * 0.08,
     alignItems: 'center',
   },
   keyButtonDisabled: {
@@ -240,7 +259,7 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   keyText: {
-    color: '#ecf0f1',
+    color: Color.grey900,
     fontSize: Math.min(height * 0.025, 18),
     fontFamily: 'Courier',
   },

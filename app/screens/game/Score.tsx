@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, View, SafeAreaView } from 'react-native';
+import { Text, StyleSheet, View, SafeAreaView, Dimensions, Platform } from 'react-native';
 import PrimaryButton from '../../uiComponents/PrimaryButton';
 
 // Props Interfaces
@@ -16,6 +16,8 @@ export interface ScoreScreenProps {
   endScore: number
   setNextGame: () => void
 }
+
+const { width, height } = Dimensions.get('window');
 
 // Components
 const ScoreProgress: React.FC<{value: number, maxValue: number}> = (props) => {
@@ -59,30 +61,41 @@ const ScoreScreen: React.FC<ScoreScreenProps> = (props) => {
   }
 
   return <SafeAreaView style={styles.container}>
-    <View style={{ alignItems: 'center', paddingHorizontal: 16}}>
-      <Text style={styles.primaryText}>{message[0]}</Text>
-      <Text style={styles.secondaryText}>{message[1]}</Text>
-    </View>
-
-    <View style={{paddingVertical: 32}}>
-      <Text style={styles.scoreText}>{'+ ' + props.stats.score + ' pts'}</Text>
-      <View style={styles.stats}>
-        <Stat label={'Word guessed'}  value={props.stats.isWordGuessed ? '✓' : 'no'} />
-        <Stat label={'Hints revealed'}  value={props.stats.hintsRevealed} />
-        <Stat label={'Time spent'}  value={props.stats.elapsedTime + 's'} />
+    <View style={styles.content}>
+      <View style={{ alignItems: 'center', paddingHorizontal: 16}}>
+        <Text style={styles.primaryText}>{message[0]}</Text>
+        <Text style={styles.secondaryText}>{message[1]}</Text>
       </View>
-      <ScoreProgress value={props.globalScore} maxValue={props.endScore}/>
+
+      <View style={{paddingVertical: 32}}>
+        <Text style={styles.scoreText}>{'+ ' + props.stats.score + ' pts'}</Text>
+        <View style={styles.stats}>
+          <Stat label={'Word guessed'}  value={props.stats.isWordGuessed ? '✓' : 'no'} />
+          <Stat label={'Hints revealed'}  value={props.stats.hintsRevealed} />
+          <Stat label={'Time spent'}  value={props.stats.elapsedTime + 's'} />
+        </View>
+        <ScoreProgress value={props.globalScore} maxValue={props.endScore}/>
+      </View>
+      <PrimaryButton title={buttonTitle} onPress={() => handleStartNextGame()} />
     </View>
-    <PrimaryButton title={buttonTitle} onPress={() => handleStartNextGame()} />
   </SafeAreaView>
 }
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#2c3e50',
-    height: '100%',
+    height: Platform.OS === 'web' ? height : '100%',
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  content: {
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    paddingVertical: height * 0.05,
+    height: '100%',
+    width: width,
+    maxWidth: 800,
   },
   primaryText: {
     color: '#fff',

@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Dimensions, Switch, ScrollView, Pressable } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Dimensions, Switch, ScrollView, Pressable, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import PrimaryButton from '../uiComponents/PrimaryButton';
 import { useRouter } from 'expo-router';
 import { CategoryIcon, SettingsIcon } from '../uiComponents/Icons';
 import { SecretWordCategory } from '../wordSets/secretWord';
+import { Color, Gradient } from '../uiComponents/Colors';
 
 const { width, height } = Dimensions.get('window');
 
 // Components
 const WordSetSelector = ({ name, isSelected, onPress }) => {
-  const iconSize = Math.min(width * 0.1, height * 0.1);
-  const color = isSelected ? "#e74c3c" : "#ecf0f1"
+  const iconSize = Math.min(height * 0.1, 80);
+  const color = isSelected ? Color.baseRed : Color.grey100
   return (
     <Pressable style={[styles.wordSetItem, isSelected]} onPress={onPress}>
       <View>
@@ -63,14 +64,33 @@ const GameSettingsScreen = () => {
     setWordSets(prev => ({ ...prev, [set]: !prev[set] }));
   };
 
+  const BaseSwitch = () => {
+    if (Platform.OS == 'web') {
+      return <Switch
+      // trackColor={{ false: "#767577", true: Color.grey900 }}
+      // thumbColor={showClosenessIndicator ? Color.baseRed : Color.grey900}
+      // activeThumbColor={Color.baseRed}
+      onValueChange={setShowClosenessIndicator}
+      value={showClosenessIndicator}
+    />
+    }
+    return <Switch
+    trackColor={{ false: "#767577", true: Color.grey900 }}
+    thumbColor={showClosenessIndicator ? Color.baseRed : Color.grey900}
+    ios_backgroundColor={Color.grey200}
+    onValueChange={setShowClosenessIndicator}
+    value={showClosenessIndicator}
+  />
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
-        colors={['#2c3e50', '#34495e', '#2c3e50']}
+        colors={Gradient.greyBackground}
         style={styles.gradient}
       >
         <View style={styles.content}>
-          <SettingsIcon size={height * 0.08} />
+          <SettingsIcon size={height * 0.1} />
           <Text style={styles.title}>Game Settings</Text>
 
           <View style={styles.settingSection}>
@@ -92,7 +112,7 @@ const GameSettingsScreen = () => {
 
           <View style={styles.settingSection}>
             <Text style={styles.settingTitle}>Word Sets</Text>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.wordSetCarousel}>
+            <ScrollView horizontal showsHorizontalScrollIndicator={Platform.OS === 'web'} style={styles.wordSetCarousel}>
               {Object.entries(wordSets).map(([set, isSelected]) => (
                 <WordSetSelector
                   key={set}
@@ -107,9 +127,10 @@ const GameSettingsScreen = () => {
           <View style={styles.settingSection}>
             <Text style={styles.settingTitle}>Word Closeness Indicator</Text>
             <Switch
-              trackColor={{ false: "#767577", true: "#ecf0f1" }}
-              thumbColor={showClosenessIndicator ? "#e74c3c" : "#f4f3f4"}
-              ios_backgroundColor="#3e3e3e"
+              trackColor={{ false: "#767577", true: Color.grey900 }}
+              thumbColor={showClosenessIndicator ? Color.baseRed : Color.grey900}
+              activeThumbColor={Color.baseRed}
+              // ios_backgroundColor={Color.grey200}
               onValueChange={setShowClosenessIndicator}
               value={showClosenessIndicator}
             />
@@ -126,41 +147,46 @@ const GameSettingsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     height: '100%',
+    width: '100%',
     backgroundColor: '#2c3e50',
     justifyContent: 'space-around',
+    alignItems: 'center',
+    margin: 'auto'
   },
   gradient: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    paddingHorizontal: 16
   },
   content: {
     alignItems: 'center',
     justifyContent: 'space-around',
-    // flex: 1,
     paddingVertical: height * 0.05,
     height: '100%',
+    width: width,
+    maxWidth: 800,
+    gap: Platform.OS === 'web' ? 42 : 0
   },
   title: {
     fontSize: Math.min(height * 0.05, 36),
     fontWeight: 'bold',
-    color: '#ecf0f1',
+    color: Color.grey900,
     fontFamily: 'Courier',
     letterSpacing: 2,
     textAlign: 'center',
   },
   settingSection: {
-    width: width * 0.9,
+    width: '100%',
+    padding: 16
   },
   settingTitle: {
     fontSize: Math.min(height * 0.025, 18),
-    color: '#bdc3c7',
+    color: Color.grey800,
     fontFamily: 'Courier',
     marginBottom: height * 0.015,
     textAlign: 'left'
   },
   segmentedControl: {
     flexDirection: 'row',
-    backgroundColor: '#34495e',
+    backgroundColor: Color.grey100,
     borderRadius: 8,
     overflow: 'hidden',
   },
@@ -170,10 +196,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   selectedSegment: {
-    backgroundColor: '#e74c3c',
+    backgroundColor: Color.baseRed,
   },
   segmentText: {
-    color: '#ecf0f1',
+    color: Color.grey900,
     fontFamily: 'Courier',
     fontSize: Math.min(height * 0.02, 16),
   },
@@ -181,7 +207,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   saveButton: {
-    backgroundColor: '#e74c3c',
+    backgroundColor: Color.baseRed,
     paddingVertical: height * 0.02,
     paddingHorizontal: width * 0.1,
     borderRadius: 25,
@@ -191,7 +217,7 @@ const styles = StyleSheet.create({
   saveButtonText: {
     fontSize: Math.min(height * 0.03, 20),
     fontWeight: 'bold',
-    color: '#ecf0f1',
+    color: Color.grey900,
     fontFamily: 'Courier',
   },
   wordSetCarousel: {
@@ -203,12 +229,12 @@ const styles = StyleSheet.create({
     padding: 8
   },
   selectedWordSetText: {
-    color: '#ecf0f1',
+    color: Color.grey900,
     fontFamily: 'Courier',
     fontSize: Math.min(height * 0.02, 16),
   },
   wordSetText: {
-    color: '#ecf0f1',
+    color: Color.grey900,
     fontFamily: 'Courier',
     fontSize: Math.min(height * 0.02, 16),
   }
