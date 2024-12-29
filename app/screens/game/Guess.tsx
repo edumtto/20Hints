@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     paddingVertical: height * 0.02,
-    paddingHorizontal: 16
+    // paddingHorizontal: 16
   },
   guessContainer: {
     flexDirection: 'row',

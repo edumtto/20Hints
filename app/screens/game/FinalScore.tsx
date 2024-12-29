@@ -29,8 +29,8 @@ const FinalResultScreen: React.FC<FinalResultsScreenProps> = (props) => {
 
   const finalGrade: () => string = (() => {
     const normalizedTime = props.timeSpent / props.gamesPlayed
-    if (normalizedTime < 20) return 'A++'
-    if (normalizedTime < 30) return 'A+'
+    if (normalizedTime < 15) return 'A++'
+    if (normalizedTime < 25) return 'A+'
     if (normalizedTime <= 50) return 'A'
     if (normalizedTime <= 100) return 'B';
     if (normalizedTime <= 150) return 'C'
@@ -43,7 +43,7 @@ const FinalResultScreen: React.FC<FinalResultsScreenProps> = (props) => {
       <View style={styles.stats}>
         <Stat label={'Words guessed'}  value={props.gamesPlayed} />
         <Stat label={'Time spent'}  value={props.timeSpent + 's'} />
-        <Stat label={'Grade'}  value={finalGrade} />
+        <Stat label={'Grade'}  value={finalGrade()} />
       </View>
     </View>
     <PrimaryButton title={'Exit'} onPress={() => props.setExit()} />
