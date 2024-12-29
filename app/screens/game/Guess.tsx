@@ -124,7 +124,7 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
       maxLength={30}
       // returnKeyType="done"
       // onSubmitEditing={handleSubmitGuess}
-      // editable={!isSuccessGuess}
+      editable={false}
     />
 
   const ClearInputButton = () => 
@@ -162,32 +162,32 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
         colors={['#2c3e50', '#34495e', '#2c3e50']}
         style={styles.gradient}
       >
-      <View style={styles.content}>
-        <View style={{ flex: 1 }}>
-          <HintsAndHeader
-            secretWord={props.secretWord}
-            isTimerStopped={isSuccessGuess}
-            allowedGameTime={allowedGameTime}
-            hintDisplayTime={hintDisplayTime}
-            onTimeUpdate={onTimeUpdate}
-            onExit={props.onExit}
-          />
-        </View>
-
-        <View style={styles.inputContainer}>
-          <View style={styles.guessContainer}>
-            <GuessInput />
-            <ClearInputButton />
+        <View style={styles.content}>
+          <View style={{ flex: 1 }}>
+            <HintsAndHeader
+              secretWord={props.secretWord}
+              isTimerStopped={isSuccessGuess}
+              allowedGameTime={allowedGameTime}
+              hintDisplayTime={hintDisplayTime}
+              onTimeUpdate={onTimeUpdate}
+              onExit={props.onExit}
+            />
           </View>
 
-          <InputClosenessIndicator />
+          <View style={styles.inputContainer}>
+            <View style={styles.guessContainer}>
+              <GuessInput />
+              <ClearInputButton />
+            </View>
 
-          <Keyboard
-            onKeyPress={handleKeyPress}
-          />
+            <InputClosenessIndicator />
+
+            <Keyboard
+              onKeyPress={handleKeyPress}
+            />
+          </View>
         </View>
-      </View>
-    </LinearGradient>
+      </LinearGradient>
     </SafeAreaView>
   );
 };
@@ -210,7 +210,6 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     paddingVertical: height * 0.02,
-    // paddingHorizontal: 16
   },
   guessContainer: {
     flexDirection: 'row',
@@ -223,7 +222,7 @@ const styles = StyleSheet.create({
     backgroundColor: Color.grey900,
     height: height * 0.06,
     borderRadius: 25,
-    paddingHorizontal: width * 0.05,
+    paddingHorizontal: 16,
     fontSize: Math.min(height * 0.025, 18),
     fontFamily: 'Courier',
     marginRight: width * 0.02,

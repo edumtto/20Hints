@@ -72,7 +72,7 @@ const HintsAndHeader: React.FC<HintsAndHeaderProps> = (props) => {
     <View style={styles.header}>
 
       <Pressable onPress={props.onExit} style={styles.exitButton}>
-        <Feather name="x" size={24} color="#ecf0f1" />
+        <Feather name="x" size={20} color="#ecf0f1" />
         <Text style={styles.headerButtonText}>Exit</Text>
       </Pressable>
 
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     paddingVertical: height * 0.02,
   },
   timeContainer: {
-    backgroundColor: '#e74c3c',
+    // backgroundColor: '#e74c3c',
     width: 80,
     alignItems: 'center',
     // paddingHorizontal: width * 0.03,

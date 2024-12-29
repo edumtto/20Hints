@@ -139,6 +139,7 @@ const GameSettingsScreen = () => {
           <PrimaryButton title='Save Settings' onPress={handleSave} />
           
         </View>
+        
       </LinearGradient>
     </SafeAreaView>
   );
@@ -163,7 +164,7 @@ const styles = StyleSheet.create({
     height: '100%',
     width: width,
     maxWidth: 800,
-    gap: Platform.OS === 'web' ? 42 : 0
+    gap: Platform.OS === 'web' ? null : 0
   },
   title: {
     fontSize: Math.min(height * 0.05, 36),
