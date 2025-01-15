@@ -99,7 +99,7 @@ const HintsAndHeader: React.FC<HintsAndHeaderProps> = (props) => {
   }
 
   return (
-    <View>
+    <View style={{flex: 1}}>
       <HeaderBar />
       <ScrollView style={styles.hintsContainer} scrollEnabled={true} alwaysBounceVertical={true}>
         <Hints />
@@ -164,6 +164,7 @@ const styles = StyleSheet.create({
   },
   hintsContainer: {
     paddingHorizontal: width * 0.05,
+    height: "100%"
   },
   hintText: {
     color: Color.grey900,
