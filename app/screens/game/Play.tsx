@@ -82,6 +82,7 @@ const GameScreen: React.FC = () => {
 
       case GameState.Guess:
         const newSecretWord = getRandomSecretWord(gameSettingsRef.current.wordSets)
+        console.log("word is " + newSecretWord.word)
         return <GuessScreen
           secretWord={newSecretWord}
           onExit={setExit}
