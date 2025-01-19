@@ -5,6 +5,7 @@ import { useRouter } from 'expo-router';
 import PrimaryButton from '../uiComponents/PrimaryButton';
 import { MysteryIcon, FileIcon } from '../uiComponents/Icons';
 import { Color } from '../uiComponents/Colors';
+import Confetti from '../uiComponents/ConfettiAnimation';
 
 const { width, height } = Dimensions.get('window');
 
@@ -21,6 +22,7 @@ const IntroductionScreen: React.FC = () => {
         colors={['#2c3e50', '#34495e', '#2c3e50']}
         style={styles.gradient}
       >
+        <Confetti />
         <View style={styles.content}>
           <MysteryIcon size={height * 0.15}/>
           <Text style={styles.title}>20 Hints</Text>
