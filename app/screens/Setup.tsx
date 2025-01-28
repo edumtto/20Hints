@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Dimensions, Switch, ScrollView, Pressable, Platform } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Dimensions, Switch, ScrollView, Pressable, Platform, Animated, useAnimatedValue } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import PrimaryButton from '../uiComponents/PrimaryButton';
 import { useRouter } from 'expo-router';
@@ -41,7 +41,9 @@ const GameSettingsScreen = () => {
     [SecretWordCategory.Sport]: false
   });
 
-  const handleSave = () => {
+  const animatedOpacity = useAnimatedValue(1);
+
+  const pushPlayScreen = () => {
     const selectedSets: number[] = []
     const values = Object.values(wordSets)
     for (let i=0; i < values.length; i++) {
@@ -49,7 +51,7 @@ const GameSettingsScreen = () => {
         selectedSets.push(i)
       } 
     }
-    
+
     router.push({
       pathname:'screens/game/Play', 
       params: {
@@ -58,6 +60,18 @@ const GameSettingsScreen = () => {
         wordSets: selectedSets
       }
     })
+  }
+
+  const fadeOut: (callback: Animated.EndCallback) => void = (callback) => {
+        Animated.timing(animatedOpacity, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+        }).start(callback);
+      }
+
+  const handleSave = () => {
+    fadeOut(pushPlayScreen)
   };
 
   const toggleWordSet = (set) => {
@@ -85,62 +99,64 @@ const GameSettingsScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <LinearGradient
-        colors={Gradient.greyBackground}
-        style={styles.gradient}
-      >
-        <View style={styles.content}>
-          <SettingsIcon size={height * 0.1} />
-          <Text style={styles.title}>Game Settings</Text>
+      <Animated.View style={{ opacity: animatedOpacity }}>
+        <LinearGradient
+          colors={Gradient.greyBackground}
+          style={styles.gradient}
+        >
+          <View style={styles.content}>
+            <SettingsIcon size={height * 0.1} />
+            <Text style={styles.title}>Game Settings</Text>
 
-          <View style={styles.settingSection}>
-            <Text style={styles.settingTitle}>Max Points per Round</Text>
-            <View style={styles.segmentedControl}>
-              {pointOptions.map((points) => (
-                <Pressable
-                  key={points}
-                  style={[styles.segment, endScore === points && styles.selectedSegment]}
-                  onPress={() => setEndScore(points)}
-                >
-                  <Text style={[styles.segmentText, endScore === points && styles.selectedSegmentText]}>
-                    {points}
-                  </Text>
-                </Pressable>
-              ))}
+            <View style={styles.settingSection}>
+              <Text style={styles.settingTitle}>Max Points per Round</Text>
+              <View style={styles.segmentedControl}>
+                {pointOptions.map((points) => (
+                  <Pressable
+                    key={points}
+                    style={[styles.segment, endScore === points && styles.selectedSegment]}
+                    onPress={() => setEndScore(points)}
+                  >
+                    <Text style={[styles.segmentText, endScore === points && styles.selectedSegmentText]}>
+                      {points}
+                    </Text>
+                  </Pressable>
+                ))}
+              </View>
             </View>
-          </View>
 
-          <View style={styles.settingSection}>
-            <Text style={styles.settingTitle}>Word Sets</Text>
-            <ScrollView horizontal showsHorizontalScrollIndicator={Platform.OS === 'web'} style={styles.wordSetCarousel}>
-              {Object.entries(wordSets).map(([set, isSelected]) => (
-                <WordSetSelector
-                  key={set}
-                  name={set}
-                  isSelected={isSelected}
-                  onPress={() => toggleWordSet(set)}
-                />
-              ))}
-            </ScrollView>
-          </View>
+            <View style={styles.settingSection}>
+              <Text style={styles.settingTitle}>Word Sets</Text>
+              <ScrollView horizontal showsHorizontalScrollIndicator={Platform.OS === 'web'} style={styles.wordSetCarousel}>
+                {Object.entries(wordSets).map(([set, isSelected]) => (
+                  <WordSetSelector
+                    key={set}
+                    name={set}
+                    isSelected={isSelected}
+                    onPress={() => toggleWordSet(set)}
+                  />
+                ))}
+              </ScrollView>
+            </View>
 
-          <View style={styles.settingSection}>
-            <Text style={styles.settingTitle}>Word Closeness Indicator</Text>
-            <Switch
-              trackColor={{ false: "#767577", true: Color.grey900 }}
-              thumbColor={showClosenessIndicator ? Color.baseRed : Color.grey900}
-              activeThumbColor={Color.baseRed}
-              // ios_backgroundColor={Color.grey200}
-              onValueChange={setShowClosenessIndicator}
-              value={showClosenessIndicator}
-            />
-          </View>
+            <View style={styles.settingSection}>
+              <Text style={styles.settingTitle}>Word Closeness Indicator</Text>
+              <Switch
+                trackColor={{ false: "#767577", true: Color.grey900 }}
+                thumbColor={showClosenessIndicator ? Color.baseRed : Color.grey900}
+                activeThumbColor={Color.baseRed}
+                // ios_backgroundColor={Color.grey200}
+                onValueChange={setShowClosenessIndicator}
+                value={showClosenessIndicator}
+              />
+            </View>
 
-          <PrimaryButton title='Save Settings' onPress={handleSave} />
+            <PrimaryButton title='Save Settings' onPress={handleSave} />
+            
+          </View>
           
-        </View>
-        
-      </LinearGradient>
+        </LinearGradient>
+      </Animated.View>
     </SafeAreaView>
   );
 };
