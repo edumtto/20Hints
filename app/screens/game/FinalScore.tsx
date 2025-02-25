@@ -1,6 +1,6 @@
 import { useLocalSearchParams } from 'expo-router';
-import React from 'react';
-import { Text, StyleSheet, View, SafeAreaView } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { Text, StyleSheet, View, SafeAreaView, Animated } from 'react-native';
 import PrimaryButton from '../../uiComponents/PrimaryButton';
 
 export interface GameResultStats {
@@ -21,6 +21,28 @@ export interface FinalResultsScreenProps {
 // RESULT SCREEN
 
 const FinalResultScreen: React.FC<FinalResultsScreenProps> = (props) => {
+  // const headerAnimation = useRef(new Animated.Value(0)).current;
+  //   const bodyAnimation = useRef(new Animated.Value(0)).current;
+  
+  //    useEffect(() => {
+  //     Animated.stagger(300, [
+  //         Animated.spring(headerAnimation, {
+  //           toValue: 1,
+  //           friction: 3,
+  //           useNativeDriver: true
+  //         }),
+  //       ]).start();
+
+  //         Animated.stagger(800, [
+  //             Animated.timing(bodyAnimation, {
+  //               toValue: 1,
+  //               duration: 1000,
+  //               useNativeDriver: true,
+  //               easing: Easing.exp
+  //             }),
+  //           ]).start();
+  //     }, [headerAnimation]);
+          
   const Stat: React.FC<{label: string, value: any}> = (props) => 
     <View style={styles.statsRow}>
       <Text style={{ fontSize: 24, color: '#fff', fontWeight: 300 }}>{props.label}</Text>

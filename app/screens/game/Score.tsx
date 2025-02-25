@@ -1,5 +1,5 @@
-import React from 'react';
-import { Text, StyleSheet, View, SafeAreaView, Dimensions, Platform } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { Text, StyleSheet, View, SafeAreaView, Dimensions, Platform, Animated, Easing } from 'react-native';
 import PrimaryButton from '../../uiComponents/PrimaryButton';
 
 // Props Interfaces
@@ -38,18 +38,40 @@ const Stat: React.FC<{label: string, value: any}> = (props) =>
 
 // Screen
 const ScoreScreen: React.FC<ScoreScreenProps> = (props) => {
+  const headerAnimation = useRef(new Animated.Value(0)).current;
+  const bodyAnimation = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+     Animated.stagger(300, [
+          Animated.spring(headerAnimation, {
+            toValue: 1,
+            friction: 3,
+            useNativeDriver: true
+          }),
+        ]).start();
+
+         Animated.stagger(800, [
+              Animated.timing(bodyAnimation, {
+                toValue: 1,
+                duration: 1000,
+                useNativeDriver: true,
+                easing: Easing.exp
+              }),
+            ]).start();
+      }, [headerAnimation]);
+
   const message: [string, string] = (() => {
     if (props.stats.isWordGuessed == false) {
       return ['Time\'s up', 'Best luck next time']
     }
     if (props.stats.hintsRevealed == 1) {
-      return ['Unbelievable', 'Only '+ props.stats.hintsRevealed + ' hint used!']
+      return ['Unbelievable!', 'Only '+ props.stats.hintsRevealed + ' hint used!']
     }
     if (props.stats.hintsRevealed < 5) {
       return ['Impressive!', 'Only '+ props.stats.hintsRevealed + ' hints used!']
     }
     if (props.stats.hintsRevealed < 10) {
-      return ['Great job!', 'You were fast.']
+      return ['Great job!', 'You are fast']
     }
     return ['Good job!', 'You got it right']
   })()
@@ -63,11 +85,14 @@ const ScoreScreen: React.FC<ScoreScreenProps> = (props) => {
   return <SafeAreaView style={styles.container}>
     <View style={styles.content}>
       <View style={{ alignItems: 'center', paddingHorizontal: 16}}>
-        <Text style={styles.primaryText}>{message[0]}</Text>
+        <Animated.Text style={[styles.primaryText, { transform: [{scale: headerAnimation}] }]}>
+          {message[0]}
+        </Animated.Text>
+        {/* <Text style={styles.primaryText}>{message[0]}</Text> */}
         <Text style={styles.secondaryText}>{message[1]}</Text>
       </View>
 
-      <View style={{paddingVertical: 32}}>
+      <Animated.View style={[{paddingVertical: 32}, {opacity: bodyAnimation}]}>
         <Text style={styles.scoreText}>{'+ ' + props.stats.score + ' pts'}</Text>
         <View style={styles.stats}>
           <Stat label={'Word guessed'}  value={props.stats.isWordGuessed ? '✓' : 'no'} />
@@ -75,7 +100,7 @@ const ScoreScreen: React.FC<ScoreScreenProps> = (props) => {
           <Stat label={'Time spent'}  value={props.stats.elapsedTime + 's'} />
         </View>
         <ScoreProgress value={props.globalScore} maxValue={props.endScore}/>
-      </View>
+      </Animated.View>
       <PrimaryButton title={buttonTitle} onPress={() => handleStartNextGame()} />
     </View>
   </SafeAreaView>

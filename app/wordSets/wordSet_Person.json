@@ -1,6 +1,6 @@
 {
   "category": "Person",
-  "setSize": 93,
+  "setSize": 92,
   "secretWords": [
     {
       "word": "Cleopatra",
@@ -495,29 +495,6 @@
       ]
     },
     {
-      "word": "R2-D2",
-      "hints": [
-        "A small, resourceful droid often found near a heroic figure.",
-        "Famous for beeping and booping in ancient Galactic languages.",
-        "Has an impressive collection of screws, bolts, and mechanical parts.",
-        "Known to possess advanced navigation and computing abilities.",
-        "Often seen in close proximity to a specific, iconic blaster.",
-        "A skilled escape artist with expertise in compact, high-tech hiding spots.",
-        "Utilizes an expressive set of LED lights to communicate and express emotions.",
-        "Has played key roles in several historic battles against the Empire.",
-        "A highly sought-after droid by various factions across the galaxy.",
-        "Can be found in close association with a wise, elderly Jedi Master.",
-        "In possession of advanced scanning and analysis capabilities.",
-        "Frequently repairs and maintains critical systems under pressure.",
-        "Features an iconic cylindrical body shape with distinctive panels.",
-        "Participated in the rescue mission to save Princess Leia Organa.",
-        "Was built with exceptional durability and resistance to damage.",
-        "Utilizes a complex system of beeps and whistles to convey information.",
-        "Has been reprogrammed or modified on multiple occasions.",
-        "Played a pivotal role in the Battle of Yavin, a turning point in the Rebellion."
-      ]
-    },
-    {
       "word": "Harry Potter",
       "hints": [
         "Attends a prestigious school for young wizards",
@@ -564,7 +541,7 @@
       ]
     },
     {
-      "word": "Dr. Watson",
+      "word": "Dr Watson",
       "hints": [
         "Trusted companion to a detective",
         "Medicinal expertise in the Victorian era",
@@ -662,7 +639,7 @@
       ]
     },
     {
-      "word": "The Terminator",
+      "word": "Terminator",
       "hints": [
         "A cyborg assassin sent back in time.",
         "Metal and wires can be deadly.",
@@ -1496,7 +1473,8 @@
       ]
     },
     {
-      "whitney houston": [
+       "word": "Whitney Houston",
+       "hints": [
         "American singer known for powerful voice",
         "Actress who starred in blockbuster film with Kevin Costner",
         "Grammy award winner with record-breaking 6 wins",
