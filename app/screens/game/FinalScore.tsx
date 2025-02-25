@@ -2,6 +2,7 @@ import { useLocalSearchParams } from 'expo-router';
 import React, { useEffect, useRef } from 'react';
 import { Text, StyleSheet, View, SafeAreaView, Animated } from 'react-native';
 import PrimaryButton from '../../uiComponents/PrimaryButton';
+import { transform } from 'typescript';
 
 export interface GameResultStats {
   isWordGuessed: boolean,
@@ -21,32 +22,42 @@ export interface FinalResultsScreenProps {
 // RESULT SCREEN
 
 const FinalResultScreen: React.FC<FinalResultsScreenProps> = (props) => {
-  // const headerAnimation = useRef(new Animated.Value(0)).current;
-  //   const bodyAnimation = useRef(new Animated.Value(0)).current;
-  
-  //    useEffect(() => {
-  //     Animated.stagger(300, [
-  //         Animated.spring(headerAnimation, {
-  //           toValue: 1,
-  //           friction: 3,
-  //           useNativeDriver: true
-  //         }),
-  //       ]).start();
+  const headerAnimation = useRef(new Animated.Value(0)).current;
+  const scoreAnimation = useRef(new Animated.Value(0)).current;
+  const gradeAnimation = useRef(new Animated.Value(0)).current;
+  const buttonAnimation = useRef(new Animated.Value(0)).current;
 
-  //         Animated.stagger(800, [
-  //             Animated.timing(bodyAnimation, {
-  //               toValue: 1,
-  //               duration: 1000,
-  //               useNativeDriver: true,
-  //               easing: Easing.exp
-  //             }),
-  //           ]).start();
-  //     }, [headerAnimation]);
-          
-  const Stat: React.FC<{label: string, value: any}> = (props) => 
+  useEffect(() => {
+
+    Animated.sequence([
+      Animated.timing(headerAnimation, {
+        toValue: 1,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+      Animated.timing(scoreAnimation, {
+        toValue: 1,
+        duration: 1000,
+        useNativeDriver: true,
+      }),
+      Animated.spring(gradeAnimation, {
+        toValue: 1,
+        friction: 3,
+        useNativeDriver: true,
+      }),
+      Animated.timing(buttonAnimation, {
+        toValue: 1,
+        duration: 1000,
+        useNativeDriver: true
+      }),
+    ]).start();
+
+  }, [headerAnimation, scoreAnimation, gradeAnimation, buttonAnimation]);
+
+  const Stat: React.FC<{ label: string, value: any}> = (props) =>
     <View style={styles.statsRow}>
-      <Text style={{ fontSize: 24, color: '#fff', fontWeight: 300 }}>{props.label}</Text>
-      <Text style={{ fontSize: 24, color: '#fff'}}>{props.value}</Text>
+      <Text style={styles.statsLabel}>{props.label}</Text>
+      <Text style={{ fontSize: 24, color: '#3CE88E', fontFamily: 'Courier',}}>{props.value}</Text>
     </View>
 
   const finalGrade: () => string = (() => {
@@ -60,15 +71,23 @@ const FinalResultScreen: React.FC<FinalResultsScreenProps> = (props) => {
   })
 
   return <SafeAreaView style={styles.container}>
-    <Text style={styles.primaryText}>{'Final Score'}</Text>
-    <View style={{paddingVertical: 32}}>
-      <View style={styles.stats}>
-        <Stat label={'Words guessed'}  value={props.gamesPlayed} />
-        <Stat label={'Time spent'}  value={props.timeSpent + 's'} />
-        <Stat label={'Grade'}  value={finalGrade()} />
-      </View>
-    </View>
-    <PrimaryButton title={'Exit'} onPress={() => props.setExit()} />
+      <Animated.Text style={[styles.primaryText, {opacity: headerAnimation }]}>{'Final Score'}</Animated.Text>
+      <Animated.View style={[{ paddingVertical: 32, opacity: scoreAnimation }]}>
+        <View style={styles.stats}>
+          <Stat label={'Words guessed'} value={props.gamesPlayed} />
+          <Stat label={'Time spent'} value={props.timeSpent + 's'} />
+          {/* <Stat label={'Grade'} value={finalGrade()} /> */}
+          <View style={styles.statsRow}>
+            <Text style={styles.statsLabel}>{'Grade'}</Text>
+            <Animated.Text style={{ fontSize: 56, color: '#C7E83C', fontFamily: 'Courier', transform: [ {scale: gradeAnimation}]}}>
+              {finalGrade()}
+            </Animated.Text>
+          </View>
+        </View>
+      </Animated.View>
+      <Animated.View style={{ opacity: buttonAnimation }}>
+        <PrimaryButton title={'Exit'} onPress={() => props.setExit()} />
+      </Animated.View>
   </SafeAreaView>
 }
 
@@ -82,13 +101,15 @@ const styles = StyleSheet.create({
   primaryText: {
     color: '#fff',
     fontSize: 48,
-    marginBottom: 16
+    marginBottom: 16,
+    fontFamily: 'Courier',
   },
   secondaryText: {
-    color: 'rgb(255 240 0)',
+    color: '#C7E83C',
     fontSize: 28,
     marginBottom: 24,
-    fontWeight: 200
+    fontWeight: 200,
+    fontFamily: 'Courier',
   },
   scoreText: {
     color: '#fff',
@@ -103,9 +124,18 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     minWidth: 300,
   },
+
+  statsLabel: {
+    fontSize: 24, 
+    color: '#fff', 
+    fontFamily: 'Courier', 
+    fontWeight: 300, 
+    paddingVertical: 16
+  },
   statsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 8
   }
 })

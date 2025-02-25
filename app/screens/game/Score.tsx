@@ -65,7 +65,7 @@ const ScoreScreen: React.FC<ScoreScreenProps> = (props) => {
       return ['Time\'s up', 'Best luck next time']
     }
     if (props.stats.hintsRevealed == 1) {
-      return ['Unbelievable!', 'Only '+ props.stats.hintsRevealed + ' hint used!']
+      return ['Unbelievable', 'Only '+ props.stats.hintsRevealed + ' hint used!']
     }
     if (props.stats.hintsRevealed < 5) {
       return ['Impressive!', 'Only '+ props.stats.hintsRevealed + ' hints used!']

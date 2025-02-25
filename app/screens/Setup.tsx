@@ -55,7 +55,7 @@ const GameSettingsScreen = () => {
     router.push({
       pathname:'screens/game/Play', 
       params: {
-        endScore: endScore,
+        endScore: 15, //endScore,
         showCloseness: showClosenessIndicator ? 1 : 0, 
         wordSets: selectedSets
       }
