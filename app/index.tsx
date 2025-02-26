@@ -1,9 +1,6 @@
-import { Platform, StyleSheet } from "react-native";
-import { Stack } from 'expo-router';
-import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet } from "react-native";
+import React from "react";;
 import IntroductionScreen from "./screens/Introduction";
-
 
 export default function Index() {
   return (

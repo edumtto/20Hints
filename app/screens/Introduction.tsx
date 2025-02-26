@@ -5,13 +5,16 @@ import { useRouter } from 'expo-router';
 import PrimaryButton from '../uiComponents/PrimaryButton';
 import { MysteryIcon, FileIcon } from '../uiComponents/Icons';
 import { Color } from '../uiComponents/Colors';
+import Constants from '../uiComponents/Constants';
 
 const { width, height } = Dimensions.get('window');
 
+const contentWidth = Math.min(width, Constants.maxWidth);
+
 const IntroductionScreen: React.FC = () => {
   const router = useRouter()
-  const opacityIlustration = useRef(new Animated.Value(0)).current;
-  const xPositionIcons = useRef(new Animated.Value(0)).current;
+  const topIllustrationAnimation = useRef(new Animated.Value(0)).current;
+  const carousellAnimation = useRef(new Animated.Value(0)).current;
   // const xPositionIcons = useAnimatedValue(0)
 
   const handlePlayPress = () => {
@@ -19,29 +22,27 @@ const IntroductionScreen: React.FC = () => {
   };
 
   useEffect(() => {
-    Animated.loop(
-      // Animated.sequence([
-        Animated.timing(xPositionIcons, {
-          toValue: width,
-          duration: 10000,
-          useNativeDriver: true,
-          easing: Easing.linear
-        }),
-      // ])
-    ).start();
-
     Animated.stagger(300, [
-      Animated.timing(opacityIlustration, {
+      Animated.timing(topIllustrationAnimation, {
         toValue: 1,
         duration: 800,
-        useNativeDriver: true,
+        useNativeDriver: Platform.OS !== 'web',
         easing: Easing.exp
       }),
     ]).start();
-  }, [xPositionIcons, opacityIlustration]);
 
-  const FileIconRow: React.FC = () => (
-    <Animated.View style={[styles.iconContainer, {transform: [{translateX: xPositionIcons}]}]}>
+    Animated.loop(
+        Animated.timing(carousellAnimation, {
+          toValue: contentWidth,
+          duration: 10000,
+          useNativeDriver: Platform.OS !== 'web',
+          easing: Easing.linear
+        }),
+    ).start();
+  }, [topIllustrationAnimation, carousellAnimation]);
+
+  const AnimatedCarousell: React.FC = () => (
+    <Animated.View style={[styles.iconContainer, {transform: [{translateX: carousellAnimation}]}]}>
       {
         [...Array(9)].map((_, index) => (
           <FileIcon key={index} size={height * 0.05}/>
@@ -57,7 +58,7 @@ const IntroductionScreen: React.FC = () => {
         style={styles.gradient}
       >
         <View style={styles.content}>
-          <Animated.View style={{opacity: opacityIlustration}}>
+          <Animated.View style={{opacity: topIllustrationAnimation}}>
             <MysteryIcon size={height * 0.15}/>
           </Animated.View>
           
@@ -65,7 +66,7 @@ const IntroductionScreen: React.FC = () => {
           <Text style={styles.description}>
             Uncover secret words. Decipher clues. Become the ultimate word detective.
           </Text>
-          <FileIconRow />
+          <AnimatedCarousell />
           <PrimaryButton title={'Investigate'} onPress={() => handlePlayPress()} />
         </View>
       </LinearGradient>
@@ -94,10 +95,10 @@ const styles = StyleSheet.create({
     // flex: 1,
     paddingVertical: height * 0.05,
     paddingHorizontal: 16,
-    width: width,
-    maxWidth: 800,
+    width: contentWidth,
     height: '100%',
-    gap: Platform.OS === 'web' ? 42 : 0
+    gap: Platform.OS === 'web' ? 42 : 0,
+    overflow: 'hidden',
   },
   title: {
     fontSize: Math.min(height * 0.07, 48),
@@ -115,13 +116,15 @@ const styles = StyleSheet.create({
     fontFamily: 'Courier',
     paddingHorizontal: width * 0.05,
   },
+  
   iconContainer: {
-    width: 3*width,
+    width: 3 * contentWidth,
     flexDirection: 'row',
     justifyContent: 'space-around',
     // gap: width / 6,
     alignItems: 'center',
     // backgroundColor: '#FBA',
+    paddingVertical: Platform.OS === 'web' ? 42 : 0,
   }
 });
 
