@@ -1,8 +1,9 @@
 import { useLocalSearchParams } from 'expo-router';
 import React, { useEffect, useRef } from 'react';
-import { Text, StyleSheet, View, SafeAreaView, Animated } from 'react-native';
+import { Text, StyleSheet, View, SafeAreaView, Animated, Dimensions } from 'react-native';
 import PrimaryButton from '../../uiComponents/PrimaryButton';
 import { transform } from 'typescript';
+import LottieView from 'lottie-react-native';
 
 export interface GameResultStats {
   isWordGuessed: boolean,
@@ -18,6 +19,8 @@ export interface FinalResultsScreenProps {
   endScore: number
   setExit: () => void
 }
+
+const { width, height } = Dimensions.get('window');
 
 // RESULT SCREEN
 
@@ -72,6 +75,14 @@ const FinalResultScreen: React.FC<FinalResultsScreenProps> = (props) => {
 
   return <SafeAreaView style={styles.container}>
       <Animated.Text style={[styles.primaryText, {opacity: headerAnimation }]}>{'Final Score'}</Animated.Text>
+      <LottieView
+        source={require('../../../assets/fireworks2.json')}
+        autoPlay
+        loop
+        style={{ width: width, height: width, zIndex: -1, position: 'absolute', top: 0, left: 0}}
+        // speed={0.8}
+      />
+      
       <Animated.View style={[{ paddingVertical: 32, opacity: scoreAnimation }]}>
         <View style={styles.stats}>
           <Stat label={'Words guessed'} value={props.gamesPlayed} />
