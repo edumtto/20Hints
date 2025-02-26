@@ -1,4 +1,4 @@
-import { SecretWord } from './secretWord'
+/*import { SecretWord } from './secretWord'
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
@@ -60,3 +60,5 @@ function parseJSONFromString(stringWithJSON: string) {
   // Parse the JSON string
   return JSON.parse(jsonString);
 }
+
+*/
