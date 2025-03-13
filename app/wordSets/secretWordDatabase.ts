@@ -18,6 +18,6 @@ export function getRandomSecretWord(wordSetIds: number[]): SecretWord {
   return { 
     word: entry.word, 
     category: SecretWordCategory[randomSet.category], 
-    hints: entry.hints
+    hints: entry.hints.shuffle().slice(0, 20)
   }
 }
