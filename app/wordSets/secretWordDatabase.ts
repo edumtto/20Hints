@@ -10,7 +10,7 @@ const availableWordSets: SecretWordSet[] = [personWordSet, placeWordSet, thingWo
 
 const randomIndex: (size: number) => number = size => Math.floor(Math.random() * size)
 
-export function getRandomSecretWord(wordSetIds: number[]): SecretWord {
+function getRandomSecretWord(wordSetIds: number[]): SecretWord {
   const sets: SecretWordSet[] = wordSetIds.map( value => availableWordSets[value])
   const randomSet = sets[randomIndex(sets.length)]
   const randomEntryIndex = randomIndex(randomSet.setSize)
@@ -21,3 +21,5 @@ export function getRandomSecretWord(wordSetIds: number[]): SecretWord {
     hints: entry.hints.shuffle().slice(0, 20)
   }
 }
+
+export default getRandomSecretWord;

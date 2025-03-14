@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
 import { SecretWord } from '../../wordSets/secretWord';
 import { GameResultStats, ScoreScreenProps } from './Score';
-import { levenshteinDistance } from '../../wordDistance';
+import levenshteinDistance from '../../util/wordDistance';
 import HintsAndHeader from './HintsAndTimer';
 import { Color } from '../../uiComponents/Colors';
 

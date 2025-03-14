@@ -3,7 +3,7 @@ import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useRef, useState } from 'react';
 import GuessScreen from './Guess';
 import ResultScreen, { GameResultStats } from './Score';
-import { getRandomSecretWord } from '../../wordSets/secretWordDatabase';
+import getRandomSecretWord from '../../wordSets/secretWordDatabase';
 import FinalResultScreen from './FinalScore';
 
 // Enums and Types

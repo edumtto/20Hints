@@ -1,4 +1,4 @@
-export function levenshteinDistance(s: string, t: string): number {
+function levenshteinDistance(s: string, t: string): number {
   const m = s.length
   const n = t.length
   
@@ -25,3 +25,5 @@ export function levenshteinDistance(s: string, t: string): number {
   }
   return v0[n]
 }
+
+export default levenshteinDistance;
