@@ -3,13 +3,6 @@ import React, { useEffect, useRef } from 'react';
 import { Animated, Dimensions, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import PrimaryButton from '../../uiComponents/PrimaryButton';
 
-export interface GameResultStats {
-  isWordGuessed: boolean,
-  timeSpent: number, // in seconds
-  hintsRevealed: number,
-  score: number
-}
-
 export interface FinalResultsScreenProps {
   gamesPlayed: number
   timeSpent: number

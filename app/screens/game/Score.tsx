@@ -4,6 +4,7 @@ import PrimaryButton from '../../uiComponents/PrimaryButton';
 
 // Props Interfaces
 export interface GameResultStats {
+  secretWord: string,
   isWordGuessed: boolean,
   elapsedTime: number, // in seconds
   hintsRevealed: number,
@@ -62,7 +63,7 @@ const ScoreScreen: React.FC<ScoreScreenProps> = (props) => {
 
   const message: [string, string] = (() => {
     if (props.stats.isWordGuessed == false) {
-      return ['Time\'s up', 'Best luck next time']
+      return ['Time\'s up', 'The word was ' + props.stats.secretWord.toUpperCase()]
     }
     if (props.stats.hintsRevealed == 1) {
       return ['Unbelievable', 'Only '+ props.stats.hintsRevealed + ' hint used!']

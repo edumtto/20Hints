@@ -28,12 +28,11 @@ interface GameSettings {
 const GameScreen: React.FC = () => {
   const router = useRouter();
   const [gameState, setGameState] = useState(GameState.Guess)
-  const resultRef = useRef<GameResultStats>({ isWordGuessed: false, elapsedTime: 0, hintsRevealed: 0, score: 0 })
+  const resultRef = useRef<GameResultStats>({ secretWord: '', isWordGuessed: false, elapsedTime: 0, hintsRevealed: 0, score: 0 })
   const globalStatusRef = useRef<GlobalGameStats>({ gamesPlayed: 0, elapsedTime: 0, globalScore: 0 })
   const gameSettingsRef = useRef<GameSettings>({ endScore: 50, showClosenessIndicator: false, wordSets: [0, 1, 2] })
 
   const params = useLocalSearchParams<{ endScore: string, showCloseness: string, wordSets: string }>();
-  console.log(params)
   gameSettingsRef.current = { 
     endScore: Number(params.endScore), 
     showClosenessIndicator: params.showCloseness == '1', 
@@ -52,8 +51,6 @@ const GameScreen: React.FC = () => {
     }
     globalStatusRef.current = newGlobalStatus
 
-    console.log('  Global score: ' + globalStatusRef.current.globalScore)
-    console.log('  End score: ' + gameSettingsRef.current.endScore)
     if (globalStatusRef.current.globalScore >= gameSettingsRef.current.endScore) {
       setGameState(GameState.FinalResults)
     } else {
@@ -62,6 +59,8 @@ const GameScreen: React.FC = () => {
   }
 
   function setGuessTimeOver(stats: GameResultStats): void {
+    resultRef.current = stats
+    
     const newGlobalStatus: GlobalGameStats = {
       gamesPlayed: globalStatusRef.current.gamesPlayed + 1,
       elapsedTime: globalStatusRef.current.elapsedTime + stats.elapsedTime,

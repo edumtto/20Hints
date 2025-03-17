@@ -70,6 +70,7 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
     timeTrackerRef.current = time
     if (time >= allowedGameTime) {
       const stats: GameResultStats = {
+        secretWord: props.secretWord.word,
         isWordGuessed: false,
         elapsedTime: timeTrackerRef.current,
         hintsRevealed: hintsRevealed(),
@@ -88,6 +89,7 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
 
     if (!isSuccessGuess && inputUpperCase == wordUpperCase) {
       const stats: GameResultStats = {
+        secretWord: props.secretWord.word,
         isWordGuessed: true,
         elapsedTime: timeTrackerRef.current,
         hintsRevealed: hintsRevealed(),
