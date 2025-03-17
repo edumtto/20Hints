@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Dimensions, Platform, Animated, useAnimatedValue, Easing } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
-import PrimaryButton from '../uiComponents/PrimaryButton';
-import { MysteryIcon, FileIcon } from '../uiComponents/Icons';
+import React, { useEffect, useRef } from 'react';
+import { Animated, Dimensions, Easing, Platform, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { Color } from '../uiComponents/Colors';
 import Constants from '../uiComponents/Constants';
+import { FileIcon, MysteryIcon } from '../uiComponents/Icons';
+import PrimaryButton from '../uiComponents/PrimaryButton';
 
 const { width, height } = Dimensions.get('window');
 

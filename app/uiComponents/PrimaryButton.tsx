@@ -20,14 +20,6 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = (props) => {
 
 const styles = StyleSheet.create ({
   primaryButton: {
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // paddingVertical: 12,
-    // paddingHorizontal: 32,
-    // borderRadius: 20,
-    // elevation: 3,
-    // backgroundColor: 'rgb(255 240 0)',
-    // margin: 20,
     backgroundColor: '#e74c3c',
     paddingVertical: height * 0.02,
     paddingHorizontal: width * 0.1,
@@ -35,9 +27,6 @@ const styles = StyleSheet.create ({
     elevation: 5,
   },
   buttonTitle: {
-    // fontSize: 24,
-    // fontWeight: 'bold',
-    // fontFamily: 'sans-serif'
     fontSize: Math.min(height * 0.035, 24),
     fontWeight: 'bold',
     color: Color.grey900,

@@ -1,9 +1,7 @@
-import { useLocalSearchParams } from 'expo-router';
-import React, { useEffect, useRef } from 'react';
-import { Text, StyleSheet, View, SafeAreaView, Animated, Dimensions } from 'react-native';
-import PrimaryButton from '../../uiComponents/PrimaryButton';
-import { transform } from 'typescript';
 import LottieView from 'lottie-react-native';
+import React, { useEffect, useRef } from 'react';
+import { Animated, Dimensions, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import PrimaryButton from '../../uiComponents/PrimaryButton';
 
 export interface GameResultStats {
   isWordGuessed: boolean,

@@ -1,8 +1,7 @@
-import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
-// import Ionicons from '@expo/vector-icons/Ionicons';
+import React from 'react';
+import { Circle, Path, Svg } from 'react-native-svg';
 import { SecretWordCategory } from '../wordSets/secretWord';
-import { Svg, Path, Circle } from 'react-native-svg';
 
 export const CategoryIcon: React.FC<{category: SecretWordCategory, size?: number, color?: string}> = ({ category, size = 24, color}) => {
   type CategoryIconConfigMap = { 

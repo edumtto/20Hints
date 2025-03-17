@@ -1,12 +1,12 @@
-import React, { useState, useRef } from 'react';
-import { View, Text, TextInput, StyleSheet, SafeAreaView, Dimensions, ScrollView, Pressable, Platform } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
-import { SecretWord } from '../../wordSets/secretWord';
-import { GameResultStats, ScoreScreenProps } from './Score';
-import levenshteinDistance from '../../util/wordDistance';
-import HintsAndHeader from './HintsAndTimer';
+import { LinearGradient } from 'expo-linear-gradient';
+import React, { useRef, useState } from 'react';
+import { Dimensions, Platform, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Color } from '../../uiComponents/Colors';
+import levenshteinDistance from '../../util/wordDistance';
+import { SecretWord } from '../../wordSets/secretWord';
+import HintsAndHeader from './HintsAndTimer';
+import { GameResultStats } from './Score';
 
 const { width, height } = Dimensions.get('window');
 
@@ -30,8 +30,8 @@ const KEYBOARD_LAYOUT: string[][] = [
   ['Z', 'X', 'C', 'V', 'B', 'N', 'M', ' ']
 ];
 
-const allowedGameTime: number = 100
-const hintDisplayTime = 10
+const allowedGameTime: number = 160
+const hintDisplayTime = 8
 const totalNumberOfHints = 20
 
 // Components

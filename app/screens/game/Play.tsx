@@ -1,10 +1,10 @@
-import { View, StyleSheet } from 'react-native';
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useRef, useState } from 'react';
-import GuessScreen from './Guess';
-import ResultScreen, { GameResultStats } from './Score';
+import { StyleSheet, View } from 'react-native';
 import getRandomSecretWord from '../../wordSets/secretWordDatabase';
 import FinalResultScreen from './FinalScore';
+import GuessScreen from './Guess';
+import ResultScreen, { GameResultStats } from './Score';
 
 // Enums and Types
 enum GameState {
@@ -33,6 +33,7 @@ const GameScreen: React.FC = () => {
   const gameSettingsRef = useRef<GameSettings>({ endScore: 50, showClosenessIndicator: false, wordSets: [0, 1, 2] })
 
   const params = useLocalSearchParams<{ endScore: string, showCloseness: string, wordSets: string }>();
+  console.log(params)
   gameSettingsRef.current = { 
     endScore: Number(params.endScore), 
     showClosenessIndicator: params.showCloseness == '1', 
@@ -51,6 +52,8 @@ const GameScreen: React.FC = () => {
     }
     globalStatusRef.current = newGlobalStatus
 
+    console.log('  Global score: ' + globalStatusRef.current.globalScore)
+    console.log('  End score: ' + gameSettingsRef.current.endScore)
     if (globalStatusRef.current.globalScore >= gameSettingsRef.current.endScore) {
       setGameState(GameState.FinalResults)
     } else {

@@ -1,10 +1,10 @@
-import placeWordSet from './wordSet_Place.json'
-import personWordSet from './wordSet_Person.json'
-import thingWordSet from './wordSet_Thing.json'
+import { SecretWord, SecretWordCategory, SecretWordEntry, SecretWordSet } from './secretWord'
 import animalWordSet from './wordSet_Animal.json'
 import foodWordSet from './wordSet_Food.json'
+import personWordSet from './wordSet_Person.json'
+import placeWordSet from './wordSet_Place.json'
 import sportsWordSet from './wordSet_Sport.json'
-import { SecretWord, SecretWordCategory, SecretWordEntry, SecretWordSet } from './secretWord'
+import thingWordSet from './wordSet_Thing.json'
 
 const availableWordSets: SecretWordSet[] = [personWordSet, placeWordSet, thingWordSet, animalWordSet, foodWordSet, sportsWordSet]
 
