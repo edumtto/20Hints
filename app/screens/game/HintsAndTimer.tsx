@@ -1,24 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { Text, StyleSheet, View, ScrollView, Dimensions, Pressable } from 'react-native';
-import { SecretWord } from '../../wordSets/secretWord';
 import { Feather } from '@expo/vector-icons';
-import { CategoryIcon } from '../../uiComponents/Icons'
+import React, { useEffect, useRef, useState } from 'react';
+import { Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Color } from '../../uiComponents/Colors';
+import { CategoryIcon } from '../../uiComponents/Icons';
+import { SecretWord } from '../../wordSets/secretWord';
 
 const { width, height } = Dimensions.get('window');
 
 interface TimerProps {
   time: number
 }
-
-// const TimerView: React.FC<TimerProps> = (props) => {
-//   const minutes = Math.floor(props.time / 60)
-//   const seconds = props.time - (minutes * 60)
-
-//   const padZeroes = (num) => ('0' + num).slice(-2)
-
-//   return <Text style={styles.timer}>{padZeroes(minutes) + ':' + padZeroes(seconds)}</Text>
-// }
 
 interface HintProps {
   number: number
@@ -43,6 +34,7 @@ interface HintsAndHeaderProps {
 // Screen
 const HintsAndHeader: React.FC<HintsAndHeaderProps> = (props) => {
   const [elapsedTime, setElapsedTime] = useState<number>(0) // in seconds
+  const scrollViewRef = useRef(null);
 
   useEffect(() => {
     if (props.isTimerStopped) {
@@ -101,7 +93,14 @@ const HintsAndHeader: React.FC<HintsAndHeaderProps> = (props) => {
   return (
     <View style={{flex: 1}}>
       <HeaderBar />
-      <ScrollView style={styles.hintsContainer} scrollEnabled={true} alwaysBounceVertical={true}>
+      <ScrollView 
+        style={styles.hintsContainer} 
+        scrollEnabled={true} 
+        alwaysBounceVertical={true}
+        ref={scrollViewRef}
+        onContentSizeChange={() => {
+          scrollViewRef.current?.scrollToEnd({ animated: true });
+        }}>
         <Hints />
       </ScrollView>
     </View>
