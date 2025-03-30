@@ -84,7 +84,6 @@ const HintsAndHeader: React.FC<HintsAndHeaderProps> = (props) => {
 
     return props.secretWord.hints
       .slice(0, numberOfHintsDisplayed)
-      // .reverse()
       .map((value, index) =>
         <Hint key={index} number={index + 1} hint={value} />
       )
