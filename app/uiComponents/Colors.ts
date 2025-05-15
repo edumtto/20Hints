@@ -3,6 +3,7 @@ export const Color = {
   baseWhite: '#2c3e50',
   baseBlue: '#2980b9',
   accentYellow: '#C7E83C',
+  grey50: '#11181F',
   grey100: '#2c3e50',
   grey200: '#34495e',
   grey500: '#70748C',

@@ -7,10 +7,6 @@ import { SecretWord } from '../../wordSets/secretWord';
 
 const { width, height } = Dimensions.get('window');
 
-interface TimerProps {
-  time: number
-}
-
 interface HintProps {
   number: number
   hint: string
@@ -47,7 +43,7 @@ const Hint: React.FC<HintProps> = (props) => {
       {
         opacity: fadeAnim,
         transform: [{ scale: scaleAnim }],
-        backgroundColor: props.isLastHint ? Color.grey100 : 'transparent',
+        backgroundColor: props.isLastHint ? Color.grey50 : 'transparent',
         borderRadius: props.isLastHint ? 8 : 0,
         padding: props.isLastHint ? 8 : 0,
       }
@@ -172,10 +168,8 @@ const styles = StyleSheet.create({
     paddingVertical: height * 0.02,
   },
   timeContainer: {
-    // backgroundColor: '#e74c3c',
     width: 80,
     alignItems: 'center',
-    // paddingHorizontal: width * 0.03,
     paddingVertical: height * 0.01,
     borderRadius: 15,
   },
