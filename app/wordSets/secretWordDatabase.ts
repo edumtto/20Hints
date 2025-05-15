@@ -16,7 +16,7 @@ function getRandomSecretWord(wordSetIds: number[]): SecretWord {
   const randomEntryIndex = randomIndex(randomSet.setSize)
   const entry = randomSet.secretWords[randomEntryIndex] as SecretWordEntry
   return { 
-    word: entry.word, 
+    word: entry.word,
     category: SecretWordCategory[randomSet.category], 
     hints: entry.hints.shuffle().slice(0, 20)
   }

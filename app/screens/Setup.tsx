@@ -43,15 +43,7 @@ const GameSettingsScreen = () => {
 
   const animatedOpacity = useAnimatedValue(1);
 
-  const pushPlayScreen = () => {
-    const selectedSets: number[] = []
-    const values = Object.values(wordSets)
-    for (let i=0; i < values.length; i++) {
-      if (values[i]) {
-        selectedSets.push(i)
-      } 
-    }
-
+  const pushPlayScreen: (selectedSets: number[]) => void = (selectedSets) => {
     router.push({
       pathname:'screens/game/Play', 
       params: {
@@ -71,7 +63,19 @@ const GameSettingsScreen = () => {
       }
 
   const handleSave = () => {
-    fadeOut(pushPlayScreen)
+    const selectedSets: number[] = []
+    const values = Object.values(wordSets)
+    for (let i=0; i < values.length; i++) {
+      if (values[i]) {
+        selectedSets.push(i)
+      } 
+    }
+    
+    if (selectedSets.length == 0) {
+      alert("Please select at least one word set")
+      return
+    }
+    fadeOut(() => pushPlayScreen(selectedSets))
   };
 
   const toggleWordSet = (set) => {
