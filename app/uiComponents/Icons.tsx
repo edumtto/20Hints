@@ -14,7 +14,7 @@ export const CategoryIcon: React.FC<{category: SecretWordCategory, size?: number
   const CATEGORY_CONFIGS: CategoryIconConfigMap = {
     [SecretWordCategory.Person]: { iconPath: 'person', iconColor: '#e67e22' },
     [SecretWordCategory.Place]: { iconPath: 'location', iconColor: '#1abc9c' },
-    [SecretWordCategory.Thing]: { iconPath: 'cube', iconColor: '#9b59b6' },
+    [SecretWordCategory.Object]: { iconPath: 'cube', iconColor: '#9b59b6' },
     [SecretWordCategory.Animal]: { iconPath: 'paw', iconColor: '#E83C68' },
     [SecretWordCategory.Food]: { iconPath: 'pizza', iconColor: '#C7E83C' },
     [SecretWordCategory.Sport]: { iconPath: 'basketball', iconColor: '#9C3428' },

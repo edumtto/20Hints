@@ -4,9 +4,9 @@ import foodWordSet from './wordSet_Food.json'
 import personWordSet from './wordSet_Person.json'
 import placeWordSet from './wordSet_Place.json'
 import sportsWordSet from './wordSet_Sport.json'
-import thingWordSet from './wordSet_Thing.json'
+import objectWordSet from './wordSet_Object.json'
 
-const availableWordSets: SecretWordSet[] = [personWordSet, placeWordSet, thingWordSet, animalWordSet, foodWordSet, sportsWordSet]
+const availableWordSets: SecretWordSet[] = [personWordSet, placeWordSet, objectWordSet, animalWordSet, foodWordSet, sportsWordSet]
 
 const randomIndex: (size: number) => number = size => Math.floor(Math.random() * size)
 

@@ -2,7 +2,7 @@
 export enum SecretWordCategory {
   Person = "Person", 
   Place = "Place", 
-  Thing = "Thing",
+  Object = "Object",
   Animal = "Animal",
   Food = "Food",
   Sport = "Sport"

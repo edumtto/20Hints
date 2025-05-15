@@ -35,7 +35,7 @@ const GameSettingsScreen = () => {
   const [wordSets, setWordSets] = useState<SelectedCategoryMap>({
     [SecretWordCategory.Person]: true,
     [SecretWordCategory.Place]: true,
-    [SecretWordCategory.Thing]: true,
+    [SecretWordCategory.Object]: true,
     [SecretWordCategory.Animal]: false,
     [SecretWordCategory.Food]: false,
     [SecretWordCategory.Sport]: false

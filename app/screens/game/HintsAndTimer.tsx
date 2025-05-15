@@ -1,6 +1,6 @@
 import { Feather } from '@expo/vector-icons';
-import React, { useEffect, useRef, useState } from 'react';
-import { Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
+import { Dimensions, Pressable, ScrollView, StyleSheet, Text, View, Animated } from 'react-native';
 import { Color } from '../../uiComponents/Colors';
 import { CategoryIcon } from '../../uiComponents/Icons';
 import { SecretWord } from '../../wordSets/secretWord';
@@ -14,13 +14,71 @@ interface TimerProps {
 interface HintProps {
   number: number
   hint: string
+  isLastHint: boolean
 }
 
 const Hint: React.FC<HintProps> = (props) => {
-  return <Text key={props.number} style={styles.hintText}>
-    {props.number}. {props.hint}
-  </Text>
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const scaleAnim = useRef(new Animated.Value(0.95)).current;
+
+  useEffect(() => {
+    if (props.isLastHint) {
+      Animated.parallel([
+        Animated.timing(fadeAnim, {
+          toValue: 1,
+          duration: 800,
+          useNativeDriver: true,
+        }),
+        Animated.spring(scaleAnim, {
+          toValue: 1,
+          friction: 4,
+          useNativeDriver: true,
+        })
+      ]).start();
+    } else {
+      fadeAnim.setValue(1);
+      scaleAnim.setValue(1);
+    }
+  }, [props.isLastHint]);
+
+  return (
+    <Animated.View style={[
+      styles.hintContainer,
+      {
+        opacity: fadeAnim,
+        transform: [{ scale: scaleAnim }],
+        backgroundColor: props.isLastHint ? Color.grey100 : 'transparent',
+        borderRadius: props.isLastHint ? 8 : 0,
+        padding: props.isLastHint ? 8 : 0,
+      }
+    ]}>
+      <Text style={styles.hintText}>
+        {props.number}. {props.hint}
+      </Text>
+    </Animated.View>
+  );
 }
+
+interface HintsProps {
+  hints: string[];
+  numberOfHintsDisplayed: number;
+}
+
+const Hints: React.FC<HintsProps> = React.memo(({ hints, numberOfHintsDisplayed }) => {
+  const displayedHints = useMemo(() => 
+    hints.slice(0, numberOfHintsDisplayed).map((value, index) => (
+      <Hint 
+        key={index} 
+        number={index + 1} 
+        hint={value} 
+        isLastHint={index === numberOfHintsDisplayed - 1}
+      />
+    )),
+    [hints, numberOfHintsDisplayed]
+  );
+
+  return <>{displayedHints}</>;
+});
 
 interface HintsAndHeaderProps {
   secretWord: SecretWord;
@@ -62,7 +120,6 @@ const HintsAndHeader: React.FC<HintsAndHeaderProps> = (props) => {
 
   const HeaderBar = () =>
     <View style={styles.header}>
-
       <Pressable onPress={props.onExit} style={styles.exitButton}>
         <Feather name="x" size={20} color="#ecf0f1" />
         <Text style={styles.headerButtonText}>Exit</Text>
@@ -76,18 +133,12 @@ const HintsAndHeader: React.FC<HintsAndHeaderProps> = (props) => {
       <View style={styles.timeContainer}>
         <Text style={styles.headerButtonText}>{formatTime(elapsedTime)}</Text>
       </View>
-
     </View>
 
-  const Hints = () => {
-    const numberOfHintsDisplayed = Math.min(1 + Math.floor(elapsedTime / props.hintDisplayTime), props.secretWord.hints.length)
-
-    return props.secretWord.hints
-      .slice(0, numberOfHintsDisplayed)
-      .map((value, index) =>
-        <Hint key={index} number={index + 1} hint={value} />
-      )
-  }
+  const numberOfHintsDisplayed = Math.min(
+    1 + Math.floor(elapsedTime / props.hintDisplayTime), 
+    props.secretWord.hints.length
+  );
 
   return (
     <View style={{flex: 1}}>
@@ -100,7 +151,10 @@ const HintsAndHeader: React.FC<HintsAndHeaderProps> = (props) => {
         onContentSizeChange={() => {
           scrollViewRef.current?.scrollToEnd({ animated: true });
         }}>
-        <Hints />
+        <Hints 
+          hints={props.secretWord.hints}
+          numberOfHintsDisplayed={numberOfHintsDisplayed}
+        />
       </ScrollView>
     </View>
   )
@@ -164,11 +218,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: width * 0.05,
     height: "100%"
   },
+  hintContainer: {
+    marginVertical: height * 0.01,
+  },
   hintText: {
     color: Color.grey900,
     fontSize: Math.min(height * 0.025, 18),
     fontFamily: 'Courier',
-    marginVertical: height * 0.01,
   },
   exitButton: {
     flexDirection: 'row',
