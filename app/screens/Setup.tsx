@@ -75,7 +75,8 @@ const GameSettingsScreen = () => {
       alert("Please select at least one word set")
       return
     }
-    fadeOut(() => pushPlayScreen(selectedSets))
+    // fadeOut(() => pushPlayScreen(selectedSets))
+    pushPlayScreen(selectedSets)
   };
 
   const toggleWordSet = (set) => {
