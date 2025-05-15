@@ -10,7 +10,9 @@ export const Color = {
   grey900: '#ecf0f1'
 }
 
-export const Gradient = {
-  greyBackground: ['#2c3e50', '#34495e', '#2c3e50'],
+type GradientColors = readonly [string, string, ...string[]];
+
+export const Gradient: Record<string, GradientColors> = {
+  greyBackground: ['#2c3e50', '#34495e', '#2c3e50']
 }
 

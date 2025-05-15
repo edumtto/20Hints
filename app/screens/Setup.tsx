@@ -149,8 +149,7 @@ const GameSettingsScreen = () => {
               <Switch
                 trackColor={{ false: "#767577", true: Color.grey900 }}
                 thumbColor={showClosenessIndicator ? Color.baseRed : Color.grey900}
-                activeThumbColor={Color.baseRed}
-                // ios_backgroundColor={Color.grey200}
+                {...(Platform.OS === 'ios' ? { activeThumbColor: Color.baseRed } : {})}
                 onValueChange={setShowClosenessIndicator}
                 value={showClosenessIndicator}
               />
