@@ -6,6 +6,7 @@ import { Color } from '../uiComponents/Colors';
 import Constants from '../uiComponents/Constants';
 import { FileIcon, MysteryIcon } from '../uiComponents/Icons';
 import PrimaryButton from '../uiComponents/PrimaryButton';
+import GlitchText from '../uiComponents/GlitchText';
 
 const { width, height } = Dimensions.get('window');
 
@@ -62,7 +63,14 @@ const IntroductionScreen: React.FC = () => {
             <MysteryIcon size={height * 0.15}/>
           </Animated.View>
           
-          <Text style={styles.title}>20 Hints</Text>
+          <GlitchText
+            text={"20 Hints"}
+            style={styles.title}
+            isGlitching={true}
+            glitchDuration={800}
+            glitchIntensity={0.5}
+          />
+
           <Text style={styles.description}>
             Uncover secret words. Decipher clues. Become the ultimate word detective.
           </Text>
