@@ -22,10 +22,11 @@ const { width, height } = Dimensions.get('window');
 
 // Components
 const ScoreProgress: React.FC<{value: number, maxValue: number}> = (props) => {
+  const progressOpacity = props.value > 0 ? 1 : 0
   return <View style={{ flexDirection: 'column', alignItems: 'center' }}>
     <View style={{ marginVertical: 16 }}>
       <View style={{ height: 16, width: 200, backgroundColor: '#34495e', borderRadius: 8}}></View>
-      <View style={{ height: 16, width: props.value, backgroundColor: '#3CE88E', position: 'absolute', borderRadius: 8, borderWidth: 3, borderColor: '#34495e'}}></View>
+      <View style={{ height: 16, width: props.value, opacity: progressOpacity, backgroundColor: '#3CE88E', position: 'absolute', borderRadius: 8, borderWidth: 3, borderColor: '#34495e'}}></View>
     </View>
     <Text style={{ fontSize: 18, fontFamily: 'Courier', color: '#fff'}}>{props.value + '/' + props.maxValue}</Text>
   </View  >
@@ -89,7 +90,6 @@ const ScoreScreen: React.FC<ScoreScreenProps> = (props) => {
         <Animated.Text style={[styles.primaryText, { transform: [{scale: headerAnimation}] }]}>
           {message[0]}
         </Animated.Text>
-        {/* <Text style={styles.primaryText}>{message[0]}</Text> */}
         <Text style={styles.secondaryText}>{message[1]}</Text>
       </View>
 
@@ -135,6 +135,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     fontWeight: 200,
     fontFamily: 'Courier',
+    textAlign: 'center',
   },
   scoreText: {
     color: '#fff',
