@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: Math.min(height * 0.07, 48),
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     color: Color.accentYellow,
     fontFamily: 'Courier',
     letterSpacing: 2,
