@@ -5,6 +5,7 @@ import getRandomSecretWord from '../../wordSets/secretWordDatabase';
 import FinalResultScreen from './FinalScore';
 import GuessScreen from './Guess';
 import ResultScreen, { GameResultStats } from './Score';
+import CustomAlert from '../../uiComponents/CustomAlert';
 
 // Enums and Types
 enum GameState {
@@ -28,6 +29,7 @@ interface GameSettings {
 const GameScreen: React.FC = () => {
   const router = useRouter();
   const [gameState, setGameState] = useState(GameState.Guess)
+  const [showExitAlert, setShowExitAlert] = useState(false);
   const resultRef = useRef<GameResultStats>({ secretWord: '', isWordGuessed: false, elapsedTime: 0, hintsRevealed: 0, score: 0 })
   const globalStatusRef = useRef<GlobalGameStats>({ gamesPlayed: 0, elapsedTime: 0, globalScore: 0 })
   const gameSettingsRef = useRef<GameSettings>({ endScore: 50, showClosenessIndicator: false, wordSets: [0, 1, 2] })
@@ -76,7 +78,12 @@ const GameScreen: React.FC = () => {
   }
 
   function setExit() {
-    router.dismissAll()
+    setShowExitAlert(true);
+  }
+
+  function handleExit() {
+    setShowExitAlert(false);
+    router.dismissAll();
   }
 
   const Content: React.FC = () => {
@@ -117,6 +124,23 @@ const GameScreen: React.FC = () => {
         options={{ title: 'Game Setup' }}  
       />
       <Content />
+      <CustomAlert
+        visible={showExitAlert}
+        title="EXIT GAME"
+        message="Are you sure? You will lose your progress."
+        buttons={[
+          {
+            text: "CANCEL",
+            onPress: () => setShowExitAlert(false)
+          },
+          {
+            text: "EXIT",
+            onPress: handleExit,
+            style: "destructive"
+          }
+        ]}
+        onDismiss={() => setShowExitAlert(false)}
+      />
     </View>
   </View>
 }

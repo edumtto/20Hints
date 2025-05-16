@@ -226,8 +226,8 @@ const styles = StyleSheet.create({
   exitButton: {
     flexDirection: 'row',
     paddingHorizontal: width * 0.02,
-    borderRadius: 15,
-    backgroundColor: '#70748C',
+    borderRadius: 5,
+    backgroundColor: Color.grey200,
     alignItems: 'center',
     paddingVertical: height * 0.01,
   },

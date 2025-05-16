@@ -2,6 +2,7 @@ import LottieView from 'lottie-react-native';
 import React, { useEffect, useRef } from 'react';
 import { Animated, Dimensions, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import PrimaryButton from '../../uiComponents/PrimaryButton';
+import { Color } from '../../uiComponents/Colors';
 
 export interface FinalResultsScreenProps {
   gamesPlayed: number
@@ -81,7 +82,7 @@ const FinalResultScreen: React.FC<FinalResultsScreenProps> = (props) => {
           {/* <Stat label={'Grade'} value={finalGrade()} /> */}
           <View style={styles.statsRow}>
             <Text style={styles.statsLabel}>{'Grade'}</Text>
-            <Animated.Text style={{ fontSize: 56, color: '#C7E83C', fontFamily: 'Courier', transform: [ {scale: gradeAnimation}]}}>
+            <Animated.Text style={{ fontSize: 56, color: Color.accentYellow, fontFamily: 'Courier', transform: [ {scale: gradeAnimation}]}}>
               {finalGrade()}
             </Animated.Text>
           </View>
@@ -95,7 +96,7 @@ const FinalResultScreen: React.FC<FinalResultsScreenProps> = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#2c3e50',
+    backgroundColor: Color.grey100,
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     padding: 12,
     margin: 16,
-    borderColor: '#70748C',
+    borderColor: Color.grey500,
     borderWidth: 1,
     borderRadius: 8,
     minWidth: 300,

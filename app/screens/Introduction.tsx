@@ -2,7 +2,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useRef } from 'react';
 import { Animated, Dimensions, Easing, Platform, SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import { Color } from '../uiComponents/Colors';
+import { Color, Gradient } from '../uiComponents/Colors';
 import Constants from '../uiComponents/Constants';
 import { FileIcon, MysteryIcon } from '../uiComponents/Icons';
 import PrimaryButton from '../uiComponents/PrimaryButton';
@@ -55,7 +55,7 @@ const IntroductionScreen: React.FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
-        colors={['#2c3e50', '#34495e', '#2c3e50']}
+        colors={Gradient.greyBackground}
         style={styles.gradient}
       >
         <View style={styles.content}>
@@ -64,7 +64,7 @@ const IntroductionScreen: React.FC = () => {
           </Animated.View>
           
           <GlitchText
-            text={"20 Hints"}
+            text={"20 HINTS"}
             style={styles.title}
             isGlitching={true}
             glitchDuration={800}
@@ -84,23 +84,20 @@ const IntroductionScreen: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    // display: 'flex',
     height: '100%',
     width: '100%',
-    backgroundColor: '#2c3e50',
+    backgroundColor: Color.grey100,
     alignItems: 'center',
     justifyContent: 'space-around',
     margin: 'auto'
   },
   gradient: {
-    // flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   content: {
     alignItems: 'center',
     justifyContent: 'space-around',
-    // flex: 1,
     paddingVertical: height * 0.05,
     paddingHorizontal: 16,
     width: contentWidth,
@@ -111,27 +108,24 @@ const styles = StyleSheet.create({
   title: {
     fontSize: Math.min(height * 0.07, 48),
     fontWeight: 'bold',
-    color: Color.grey900,
+    color: Color.accentYellow,
     fontFamily: 'Courier',
     letterSpacing: 2,
     textAlign: 'center',
   },
   description: {
-    fontSize: Math.min(height * 0.025, 18),
-    color: '#bdc3c7',
+    fontSize: 18, // Math.min(height * 0.025, 18),
+    color: Color.grey900,
     textAlign: 'center',
     lineHeight: Math.min(height * 0.035, 24),
     fontFamily: 'Courier',
     paddingHorizontal: width * 0.05,
   },
-  
   iconContainer: {
     width: 3 * contentWidth,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    // gap: width / 6,
     alignItems: 'center',
-    // backgroundColor: '#FBA',
     paddingVertical: Platform.OS === 'web' ? 42 : 0,
   }
 });

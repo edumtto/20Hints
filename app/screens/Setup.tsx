@@ -11,11 +11,11 @@ const { width, height } = Dimensions.get('window');
 
 // Components
 const WordSetSelector = ({ name, isSelected, onPress }) => {
-  const iconSize = Math.min(height * 0.1, 80);
-  const color = isSelected ? Color.baseRed : Color.grey100
+  const iconSize = Math.min(height * 0.1, 48);
+  const color = isSelected ? Color.baseBlue : Color.grey100
   return (
     <Pressable style={[styles.wordSetItem, isSelected]} onPress={onPress}>
-      <View>
+      <View style={{ paddingBottom: 4 }}>
         <CategoryIcon category={name} size={iconSize} color={color}/>
       </View>
       <Text style={[styles.wordSetText, isSelected && styles.selectedWordSetText]}>{name}</Text>
@@ -83,35 +83,16 @@ const GameSettingsScreen = () => {
     setWordSets(prev => ({ ...prev, [set]: !prev[set] }));
   };
 
-  const BaseSwitch = () => {
-    if (Platform.OS == 'web') {
-      return <Switch
-      // trackColor={{ false: "#767577", true: Color.grey900 }}
-      // thumbColor={showClosenessIndicator ? Color.baseRed : Color.grey900}
-      // activeThumbColor={Color.baseRed}
-      onValueChange={setShowClosenessIndicator}
-      value={showClosenessIndicator}
-    />
-    }
-    return <Switch
-    trackColor={{ false: "#767577", true: Color.grey900 }}
-    thumbColor={showClosenessIndicator ? Color.baseRed : Color.grey900}
-    ios_backgroundColor={Color.grey200}
-    onValueChange={setShowClosenessIndicator}
-    value={showClosenessIndicator}
-  />
-  }
-
   return (
     <SafeAreaView style={styles.container}>
-      <Animated.View style={{ opacity: animatedOpacity }}>
+      <Animated.View style={{ opacity: animatedOpacity}}>
         <LinearGradient
           colors={Gradient.greyBackground}
           style={styles.gradient}
         >
           <View style={styles.content}>
-            <SettingsIcon size={height * 0.1} />
-            <Text style={styles.title}>Game Settings</Text>
+            {/* <SettingsIcon size={height * 0.1} /> */}
+            <Text style={styles.title}>SETUP</Text>
 
             <View style={styles.settingSection}>
               <Text style={styles.settingTitle}>Max Points per Round</Text>
@@ -148,7 +129,7 @@ const GameSettingsScreen = () => {
               <Text style={styles.settingTitle}>Word Closeness Indicator</Text>
               <Switch
                 trackColor={{ false: "#767577", true: Color.grey900 }}
-                thumbColor={showClosenessIndicator ? Color.baseRed : Color.grey900}
+                thumbColor={showClosenessIndicator ? Color.baseBlue : Color.grey900}
                 {...(Platform.OS === 'ios' ? { activeThumbColor: Color.baseRed } : {})}
                 onValueChange={setShowClosenessIndicator}
                 value={showClosenessIndicator}
@@ -169,7 +150,7 @@ const styles = StyleSheet.create({
   container: {
     height: '100%',
     width: '100%',
-    backgroundColor: '#2c3e50',
+    backgroundColor: Color.grey100,
     justifyContent: 'space-around',
     alignItems: 'center',
     margin: 'auto'
@@ -187,9 +168,9 @@ const styles = StyleSheet.create({
     gap: Platform.OS === 'web' ? null : 0
   },
   title: {
-    fontSize: Math.min(height * 0.05, 36),
+    fontSize: 42, // Math.min(height * 0.05, 36),
     fontWeight: 'bold',
-    color: Color.grey900,
+    color: Color.accentYellow,
     fontFamily: 'Courier',
     letterSpacing: 2,
     textAlign: 'center',
@@ -199,8 +180,9 @@ const styles = StyleSheet.create({
     padding: 16
   },
   settingTitle: {
-    fontSize: Math.min(height * 0.025, 18),
-    color: Color.grey800,
+    fontSize: 18, //Math.min(height * 0.025, 18),
+    fontWeight: 'bold',
+    color: Color.grey900,
     fontFamily: 'Courier',
     marginBottom: height * 0.015,
     textAlign: 'left'
@@ -208,7 +190,7 @@ const styles = StyleSheet.create({
   segmentedControl: {
     flexDirection: 'row',
     backgroundColor: Color.grey100,
-    borderRadius: 8,
+    borderRadius: 5,
     overflow: 'hidden',
   },
   segment: {
@@ -217,29 +199,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   selectedSegment: {
-    backgroundColor: Color.baseRed,
+    backgroundColor: Color.baseBlue,
   },
   segmentText: {
     color: Color.grey900,
     fontFamily: 'Courier',
-    fontSize: Math.min(height * 0.02, 16),
+    fontSize: 16 //Math.min(height * 0.02, 16),
   },
   selectedSegmentText: {
     fontWeight: 'bold',
-  },
-  saveButton: {
-    backgroundColor: Color.baseRed,
-    paddingVertical: height * 0.02,
-    paddingHorizontal: width * 0.1,
-    borderRadius: 25,
-    elevation: 5,
-    marginTop: height * 0.03,
-  },
-  saveButtonText: {
-    fontSize: Math.min(height * 0.03, 20),
-    fontWeight: 'bold',
-    color: Color.grey900,
-    fontFamily: 'Courier',
   },
   wordSetCarousel: {
     flexDirection: 'row',
@@ -247,17 +215,17 @@ const styles = StyleSheet.create({
   wordSetItem: {
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 8
+    padding: 8,
   },
   selectedWordSetText: {
     color: Color.grey900,
     fontFamily: 'Courier',
-    fontSize: Math.min(height * 0.02, 16),
+    fontSize: 16 // Math.min(height * 0.02, 16),
   },
   wordSetText: {
-    color: Color.grey900,
+    color: Color.grey800,
     fontFamily: 'Courier',
-    fontSize: Math.min(height * 0.02, 16),
+    fontSize: 16 // Math.min(height * 0.02, 16),
   }
 });
 

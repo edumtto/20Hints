@@ -14,7 +14,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = (props) => {
     onPress={props.onPress}
     style={styles.primaryButton}
   >
-    <Text style={styles.buttonTitle}>{props.title}</Text>
+    <Text style={styles.buttonTitle}>{props.title.toLocaleUpperCase()}</Text>
   </Pressable>
 }
 
@@ -23,12 +23,12 @@ const styles = StyleSheet.create ({
     backgroundColor: '#e74c3c',
     paddingVertical: height * 0.02,
     paddingHorizontal: width * 0.1,
-    borderRadius: 25,
+    borderRadius: 5,
     elevation: 5,
   },
   buttonTitle: {
     fontSize: Math.min(height * 0.035, 24),
-    fontWeight: 'bold',
+    fontWeight: 'semibold',
     color: Color.grey900,
     fontFamily: 'Courier',
   },

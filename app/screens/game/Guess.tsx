@@ -2,7 +2,7 @@ import { Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useRef, useState } from 'react';
 import { Dimensions, Platform, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
-import { Color } from '../../uiComponents/Colors';
+import { Color, Gradient } from '../../uiComponents/Colors';
 import levenshteinDistance from '../../util/wordDistance';
 import { SecretWord } from '../../wordSets/secretWord';
 import HintsAndHeader from './HintsAndTimer';
@@ -161,7 +161,7 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
-        colors={['#2c3e50', '#34495e', '#2c3e50']}
+        colors={Gradient.greyBackground}
         style={styles.gradient}
       >
         <View style={styles.content}>
@@ -196,7 +196,7 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#2c3e50',
+    backgroundColor: Color.grey100,
     height: '100%',
     width: '100%',
     alignItems: 'center',
@@ -223,17 +223,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Color.grey900,
     height: 48,
-    borderRadius: 25,
+    borderRadius: 5,
     paddingHorizontal: 16,
     fontSize: Math.min(height * 0.025, 18),
     fontFamily: 'Courier',
     marginRight: 8,
   },
   backspaceButton: {
-    backgroundColor: '#70748C',
+    backgroundColor: Color.grey500,
     width: 48,
     height: 48,
-    borderRadius: height * 0.03,
+    borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -247,16 +247,16 @@ const styles = StyleSheet.create({
     marginVertical: height * 0.005,
   },
   keyButton: {
-    backgroundColor: '#70748C',
+    backgroundColor: Color.grey500,
     paddingHorizontal: Math.min(width * 0.03, 26),
     paddingVertical: height * 0.015,
-    borderRadius: 10,
+    borderRadius: 5,
     marginHorizontal: Math.min(width * 0.005, 8),
     // minWidth: width * 0.08,
     alignItems: 'center',
   },
   keyButtonDisabled: {
-    backgroundColor: '#2c3e50',
+    backgroundColor: Color.grey100,
     opacity: 0.5,
   },
   keyText: {

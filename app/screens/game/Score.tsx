@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, Dimensions, Easing, Platform, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import PrimaryButton from '../../uiComponents/PrimaryButton';
+import { Color } from '../../uiComponents/Colors';
 
 // Props Interfaces
 export interface GameResultStats {
@@ -25,7 +26,7 @@ const ScoreProgress: React.FC<{value: number, maxValue: number}> = (props) => {
   const progressOpacity = props.value > 0 ? 1 : 0
   return <View style={{ flexDirection: 'column', alignItems: 'center' }}>
     <View style={{ marginVertical: 16 }}>
-      <View style={{ height: 16, width: 200, backgroundColor: '#34495e', borderRadius: 8}}></View>
+      <View style={{ height: 16, width: 200, backgroundColor: Color.grey200, borderRadius: 8}}></View>
       <View style={{ height: 16, width: props.value, opacity: progressOpacity, backgroundColor: '#3CE88E', position: 'absolute', borderRadius: 8, borderWidth: 3, borderColor: '#34495e'}}></View>
     </View>
     <Text style={{ fontSize: 18, fontFamily: 'Courier', color: '#fff'}}>{props.value + '/' + props.maxValue}</Text>
@@ -109,7 +110,7 @@ const ScoreScreen: React.FC<ScoreScreenProps> = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#2c3e50',
+    backgroundColor: Color.grey100,
     height: Platform.OS === 'web' ? height : '100%',
     width: '100%',
     justifyContent: 'center',
@@ -147,7 +148,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     padding: 12,
     margin: 16,
-    borderColor: '#70748C',
+    borderColor: Color.grey500,
     borderWidth: 1,
     borderRadius: 8,
     minWidth: 300,
