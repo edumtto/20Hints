@@ -77,7 +77,10 @@ const GameSettingsScreen = () => {
       setShowAlert(true);
       return;
     }
-    pushPlayScreen(selectedSets)
+
+    fadeOut(() => {
+      pushPlayScreen(selectedSets);
+    });
   };
 
   const toggleWordSet = (set) => {
