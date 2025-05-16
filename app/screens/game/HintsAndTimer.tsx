@@ -48,7 +48,10 @@ const Hint: React.FC<HintProps> = (props) => {
         padding: props.isLastHint ? 8 : 0,
       }
     ]}>
-      <Text style={styles.hintText}>
+      <Text style={[
+        styles.hintText,
+        props.isLastHint && { fontWeight: 'bold' }
+      ]}>
         {props.number}. {props.hint}
       </Text>
     </Animated.View>
