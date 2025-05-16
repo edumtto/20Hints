@@ -6,6 +6,7 @@ import { useRouter } from 'expo-router';
 import { CategoryIcon, SettingsIcon } from '../uiComponents/Icons';
 import { SecretWordCategory } from '../wordSets/secretWord';
 import { Color, Gradient } from '../uiComponents/Colors';
+import CustomAlert from '../uiComponents/CustomAlert';
 
 const { width, height } = Dimensions.get('window');
 
@@ -32,6 +33,7 @@ const GameSettingsScreen = () => {
   
   const [endScore, setEndScore] = useState(100);
   const [showClosenessIndicator, setShowClosenessIndicator] = useState(true);
+  const [showAlert, setShowAlert] = useState(false);
   const [wordSets, setWordSets] = useState<SelectedCategoryMap>({
     [SecretWordCategory.Person]: true,
     [SecretWordCategory.Place]: true,
@@ -72,10 +74,9 @@ const GameSettingsScreen = () => {
     }
     
     if (selectedSets.length == 0) {
-      alert("Please select at least one word set")
-      return
+      setShowAlert(true);
+      return;
     }
-    // fadeOut(() => pushPlayScreen(selectedSets))
     pushPlayScreen(selectedSets)
   };
 
@@ -142,6 +143,18 @@ const GameSettingsScreen = () => {
           
         </LinearGradient>
       </Animated.View>
+      <CustomAlert
+        visible={showAlert}
+        title="WARNING"
+        message="Please select at least one word set to continue."
+        buttons={[
+          {
+            text: "OK",
+            onPress: () => setShowAlert(false)
+          }
+        ]}
+        onDismiss={() => setShowAlert(false)}
+      />
     </SafeAreaView>
   );
 };
@@ -169,7 +182,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 42, // Math.min(height * 0.05, 36),
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     color: Color.accentYellow,
     fontFamily: 'Courier',
     letterSpacing: 2,
@@ -215,7 +228,7 @@ const styles = StyleSheet.create({
   wordSetItem: {
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 8,
+    paddingHorizontal: 8,
   },
   selectedWordSetText: {
     color: Color.grey900,
