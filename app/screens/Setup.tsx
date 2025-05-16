@@ -78,9 +78,11 @@ const GameSettingsScreen = () => {
       return;
     }
 
-    fadeOut(() => {
+    console.log('Navigating to Play', selectedSets)
+    
+    // fadeOut(() => {
       pushPlayScreen(selectedSets);
-    });
+    // });
   };
 
   const toggleWordSet = (set) => {
