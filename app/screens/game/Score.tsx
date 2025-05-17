@@ -79,7 +79,7 @@ const ScoreScreen: React.FC<ScoreScreenProps> = (props) => {
     return ['Good job!', 'You got it right']
   })()
 
-  const buttonTitle = props.stats.isWordGuessed == false ? 'Try again' : 'Next Game'
+  const buttonTitle = props.stats.isWordGuessed == false ? 'Try again' : 'Next Guess'
 
   function handleStartNextGame() {
       props.setNextGame()

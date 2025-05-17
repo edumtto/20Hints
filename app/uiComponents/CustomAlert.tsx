@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, View, Text, StyleSheet, Pressable, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Pressable, Dimensions } from 'react-native';
 import { Color } from './Colors';
 import GlitchText from './GlitchText';
 
@@ -24,54 +24,54 @@ const CustomAlert: React.FC<CustomAlertProps> = ({
   buttons,
   onDismiss
 }) => {
+  if (!visible) return null;
+
   return (
-    <Modal
-      visible={visible}
-      transparent
-      animationType="fade"
-      onRequestClose={onDismiss}
-    >
-      <View style={styles.overlay}>
-        <View style={styles.alertContainer}>
-          <GlitchText
-            text={title}
-            style={styles.title}
-            isGlitching={true}
-            glitchDuration={500}
-            glitchIntensity={0.3}
-          />
-          <Text style={styles.message}>{message}</Text>
-          <View style={styles.buttonContainer}>
-            {buttons.map((button, index) => (
-              <Pressable
-                key={index}
-                style={[
-                  styles.button,
-                  button.style === 'destructive' && styles.destructiveButton
-                ]}
-                onPress={button.onPress}
-              >
-                <Text style={[
-                  styles.buttonText,
-                  button.style === 'destructive' && styles.destructiveButtonText
-                ]}>
-                  {button.text}
-                </Text>
-              </Pressable>
-            ))}
-          </View>
+    <View style={styles.overlay}>
+      <View style={styles.alertContainer}>
+        <GlitchText
+          text={title}
+          style={styles.title}
+          isGlitching={true}
+          glitchDuration={500}
+          glitchIntensity={0.3}
+        />
+        <Text style={styles.message}>{message}</Text>
+        <View style={styles.buttonContainer}>
+          {buttons.map((button, index) => (
+            <Pressable
+              key={index}
+              style={[
+                styles.button,
+                button.style === 'destructive' && styles.destructiveButton
+              ]}
+              onPress={button.onPress}
+            >
+              <Text style={[
+                styles.buttonText,
+                button.style === 'destructive' && styles.destructiveButtonText
+              ]}>
+                {button.text}
+              </Text>
+            </Pressable>
+          ))}
         </View>
       </View>
-    </Modal>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   overlay: {
-    flex: 1,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
     justifyContent: 'center',
     alignItems: 'center',
+    zIndex: 1000,
   },
   alertContainer: {
     backgroundColor: Color.grey50,

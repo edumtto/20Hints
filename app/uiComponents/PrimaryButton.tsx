@@ -43,7 +43,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = (props) => {
       ]}
     >
       <Pressable
-        onPress={props.onPress}
+    onPress={props.onPress}
         style={({ pressed }) => [
           styles.primaryButton,
           { 
@@ -51,9 +51,9 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = (props) => {
             transform: [{ scale: pressed ? 0.98 : 1 }]
           }
         ]}
-      >
+  >
         <Text style={styles.buttonTitle}>{props.title}</Text>
-      </Pressable>
+  </Pressable>
     </Animated.View>
   );
 }
