@@ -9,7 +9,7 @@ export interface FinalResultsScreenProps {
   timeSpent: number
   globalScore: number
   endScore: number
-  setExit: () => void
+  setExit: (showConfirmation?: boolean) => void
 }
 
 const { width, height } = Dimensions.get('window');
@@ -89,7 +89,7 @@ const FinalResultScreen: React.FC<FinalResultsScreenProps> = (props) => {
         </View>
       </Animated.View>
       <Animated.View style={{ opacity: buttonAnimation }}>
-        <PrimaryButton title={'Exit'} onPress={() => props.setExit()} />
+        <PrimaryButton title={'Exit'} onPress={() => props.setExit(false)} />
       </Animated.View>
   </SafeAreaView>
 }
