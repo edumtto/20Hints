@@ -1,6 +1,6 @@
 {
   "category": "Place",
-  "setSize": 103,
+  "setSize": 101,
   "secretWords": [
     {
       "word": "Lighthouse",
@@ -158,30 +158,6 @@
       ]
     },
     {
-      "word": "Great Wall of China",
-      "hints": [
-        "Built to keep out invaders, not let them in.",
-        "Longer than a marathon runner would like.",
-        "Stretched across mountains and valleys.",
-        "A testament to ancient engineering prowess.",
-        "Not just walls, but history's bricks.",
-        "One of the Seven Wonders of the Medieval World.",
-        "A symbol of China's imperial might.",
-        "Stretching farther than the eye can see.",
-        "Built with stones that tell a story.",
-        "A UNESCO World Heritage Site.",
-        "More than 13 centuries old and still standing.",
-        "Originally used for military purposes.",
-        "One of the most popular tourist attractions.",
-        "Winding its way across mountains and deserts.",
-        "China's 'Longest Construction Project'.",
-        "With watchtowers that stand like sentinels.",
-        "Over 13,000 miles long, almost as long as the equator.",
-        "Built by thousands of skilled laborers over centuries.",
-        "A source of national pride for China."
-      ]
-    },
-    {
       "word": "Taj Mahal",
       "hints": [
         "Monumental tribute",
@@ -207,30 +183,6 @@
       ]
     },
     {
-      "word": "Eiffel Tower",
-      "hints": [
-        "Landmark known for its iron latticework.",
-        "Built as the entrance arch for a World's Fair.",
-        "Located in the City of Light.",
-        "A symbol of French culture and engineering prowess.",
-        "Its construction took nearly two years to complete.",
-        "The structure is held together by over 18,000 pieces.",
-        "It was meant to be temporary but became an instant icon.",
-        "The tower stands at a height of just under 1,000 feet.",
-        "Visitors can take stairs or elevators to the top for stunning views.",
-        "The original purpose was as a gateway, not a viewing platform.",
-        "A massive renovation project began in 2015.",
-        "It was named after its designer, Gustave Eiffel.",
-        "Many consider it the most iconic landmark in Paris.",
-        "Its unique design makes it easily recognizable worldwide.",
-        "The tower attracts millions of visitors annually.",
-        "There's a museum on site dedicated to its history and significance.",
-        "It has become synonymous with romance and love.",
-        "Visitors can enjoy a romantic dinner at one of the on-site restaurants.",
-        "A stunning metal structure that has stood the test of time."
-      ]
-    },
-    {
       "word": "Statue of Liberty",
       "hints": [
         "Iconic NYC landmark on a small island",
@@ -248,10 +200,11 @@
         "Dedicated to the ideals expressed in the American Declaration",
         "Represents the spirit of freedom that unites humanity",
         "In NYC harbor since its dedication on October 28, 1886",
-        "Features seven rays on Lady Liberty's crown",
         "Designed by French sculptor Frédéric Auguste Bartholdi",
         "Famous for being a symbol of American ideals worldwide",
-        "Considered one of the most iconic monuments globally"
+        "Considered one of the most iconic monuments globally",
+        "Built to last for centuries, not just years",
+        "A UNESCO World Heritage Site since 1980"
       ]
     },
     {
@@ -290,14 +243,14 @@
         "Is home to several museums and exhibitions.",
         "Tourists visit from all over the world.",
         "UNESCO World Heritage Site designation.",
-        "The term 'Forbidden' actually originated from the fact that common people were not allowed in.",
+        "Its name actually originated from the fact that common people were not allowed in.",
         "Originally known as the Palace of Prolonged Joy.",
         "Located within a walled compound, which is very large.",
         "Was the imperial residence for over 500 years.",
         "Features impressive architecture and beautiful gardens.",
         "Has been featured in numerous films and documentaries.",
         "A famous spot for photography enthusiasts.",
-        "The Forbidden City gets millions of visitors each year.",
+        "Receives millions of visitors each year.",
         "Located near other popular attractions in Beijing.",
         "It's a must-see destination for anyone interested in Chinese history.",
         "Some areas are still being restored and renovated."
@@ -377,7 +330,7 @@
       ]
     },
     {
-      "word": "Sydney Opera House",
+      "word": "Opera House",
       "hints": [
         "Famous building in Australia",
         "Home to numerous performances annually",
@@ -417,7 +370,7 @@
         "The building's distinctive shape is influenced by the Chrysler Building",
         "The skyscraper has an observation deck on its 86th floor",
         "It took about three years to complete the construction",
-        "The Empire State was initially intended for commercial use",
+        "Was initially intended for commercial use",
         "During World War II, it became a hub for espionage and military communications",
         "In 1945, it survived a plane crashing into one of its spires",
         "The iconic tower appears in numerous movies and TV shows",
@@ -452,49 +405,50 @@
     {
       "word": "Tower of Pisa",
       "hints": [
-        "leaning towards fame",
-        "in Italy, not just pasta",
-        "a famous foundation",
-        "listed but standing tall",
-        "history's wobbly wonder",
-        "bell tower with a twist",
-        "structural surprise in Tuscany",
-        "engineering feat on shaky ground",
-        "a tower that's more than meets the eye",
+        "Leaning towards fame",
+        "In Italy, not just pasta",
+        "A famous foundation",
+        "Listed but standing tall",
+        "History's wobbly wonder",
+        "Bell tower with a twist",
+        "Atructural surprise in Tuscany",
+        "An engineering feat on shaky ground",
+        "A tower that's more than meets the eye",
         "Italy's iconic incline",
-        "built to last, but not perfectly straight",
-        "leaning towards being a sensation",
-        "architectural anomaly in Pisa",
-        "in need of some stabilization",
-        "a tower with a reputation for instability",
-        "engineering marvel with a flaw",
-        "tall and proud, but not upright",
-        "one of Italy's most infamous landmarks",
-        "leaning tower that takes center stage"
+        "Built to last, but not perfectly straight",
+        "Leaning towards being a sensation",
+        "Architectural anomaly in Pisa",
+        "In need of some stabilization",
+        "A tower with a reputation for instability",
+        "An engineering marvel with a flaw",
+        "Tall and proud, but not upright",
+        "One of Italy's most infamous landmarks",
+        "A leaning tower that takes center stage"
       ]
     },
     {
       "word": "Atlantis",
       "hints": [
-        "An ancient civilization known for its advanced architecture.",
-        "A mythological place associated with a powerful ruler.",
-        "A legendary island said to be located beyond the horizon.",
+        "Ancient civilization known for its advanced architecture.",
+        "Mythological place associated with a powerful ruler.",
+        "Legendary island said to be located beyond the horizon.",
         "A location mentioned in the works of an influential philosopher.",
-        "A fabled realm of immense wealth and beauty.",
-        "A site rumored to have existed before the rise of modern civilizations.",
-        "A place connected to the mythological creatures said to inhabit it.",
-        "A legendary island that inspired numerous literary works.",
-        "An island associated with a lost golden age.",
+        "Fabled realm of immense wealth and beauty.",
+        "Site rumored to have existed before the rise of modern civilizations.",
+        "Place connected to the mythological creatures said to inhabit it.",
+        "Legendary island that inspired numerous literary works.",
+        "Island associated with a lost golden age.",
         "A mythical location with a strong connection to the sea.",
         "A place mentioned in the mythologies of various ancient cultures.",
-        "A legendary site of immense knowledge and wisdom.",
-        "A civilization said to have possessed advanced technologies.",
+        "Legendary site of immense knowledge and wisdom.",
+        "Civilization said to have possessed advanced technologies.",
         "A place connected to the mythological gods and goddesses.",
         "An island said to be hidden from view, yet famous throughout history.",
         "A location associated with a catastrophic event in human history.",
-        "A place that inspired numerous artistic and literary creations.",
-        "A legendary site of immense power and magic.",
-        "An island said to be the birthplace of various mythological heroes."
+        "Place that inspired numerous artistic and literary creations.",
+        "Island said to be the birthplace of various mythological heroes.",
+        "A mythical realm said to be inhabited by legendary creatures.",
+        "A place that inspired numerous literary and artistic works."
       ]
     },
     {
@@ -518,7 +472,8 @@
         "A place of historic significance in European history",
         "An important cultural and artistic hub",
         "Contains numerous ancient ruins and artifacts",
-        "Features extensive art collections, including Michelangelo's work"
+        "Features extensive art collections, including Michelangelo's work",
+        "The smallest independent state in the world"
       ]
     },
     {
@@ -546,7 +501,7 @@
       ]
     },
     {
-      "word": "Amazon Rainforest",
+      "word": "Amazon",
       "hints": [
         "Tropical ecosystem found in South America",
         "Second largest by area",
@@ -570,7 +525,7 @@
       ]
     },
     {
-      "word": "Sahara Desert",
+      "word": "Sahara",
       "hints": [
         "Hot and sandy place in Africa",
         "Dunes of golden sand",
@@ -644,7 +599,7 @@
       ]
     },
     {
-      "word": "Yosemite National Park",
+      "word": "Yosemite",
       "hints": [
         "Mountainous region in California, USA.",
         "Famous for granite cliffs and waterfalls.",
@@ -668,7 +623,7 @@
       ]
     },
     {
-      "word": "Galapagos Islands",
+      "word": "Galapagos",
       "hints": [
         "Tropical paradise for tortoises",
         "Home of giant marine iguanas",
@@ -705,7 +660,7 @@
         "The native people built giant stone heads to their ancestors",
         "There were once hundreds of these statues on the island",
         "The island has a population of around 7,000 people",
-        "The name 'Easter Island' is derived from the Dutch explorer's day",
+        "It's name is derived from the Dutch explorer's day",
         "Some Moai are still buried in the volcanic soil",
         "The island gained popularity after a film about its history",
         "It is believed that a severe drought caused the decline of the island's population",
@@ -803,7 +758,7 @@
         "Globe-trotters flock to Charles de Gaulle Airport",
         "The city's tram system is an efficient mode",
         "It's the capital of France, n'est-ce pas?",
-        "Many famous artists called Paris home",
+        "Many famous artists called it home",
         "Patisserie and boulangerie are a big deal here",
         "Famous landmarks like Arc de Triomphe abound",
         "City of light, or 'La Ville-Lumière'",
@@ -823,18 +778,19 @@
         "Features prominently in Japanese art and literature.",
         "Climbing restrictions are imposed for environmental reasons.",
         "Visitors often take a short hike around the base of the mountain.",
-        "The Fuji Five Lakes region offers scenic views.",
         "Accessible by train or bus from Tokyo and Yokohama.",
         "Skiing and snowboarding resorts exist on its slopes.",
         "The symmetrical cone-shaped form inspires wonder.",
         "Japan's national symbol for centuries.",
+        "It's Japan's tallest peak, at 3,776 meters",
         "The highest altitude is at an intersection of multiple prefectures.",
         "Popular among Japanese hikers and photographers.",
         "Historic climbing routes follow the mountain's natural ridges.",
         "Volcanic activity ceased in 1707-1708, creating a majestic scene.",
         "Its snow-capped peak glimmers during winter months.",
         "Cultural significance extends beyond Japan's borders.",
-        "The Fuji-Hakone-Izu National Park offers additional scenic experiences."
+        "Has a National Park that offers additional scenic experiences.",
+        "It is located about 100 kilometers southwest of Tokyo"
       ]
     },
     {
@@ -898,12 +854,12 @@
         "Language is spoken in over 100 countries",
         "Has a population of over 83 million",
         "Berlin is its capital city",
-        "Germany has a rich arts scene",
+        "Has a rich arts scene",
         "Has produced world-renowned composers",
         "Famous for Bavarian Alps",
         "Economic powerhouse of the EU",
         "River Rhine runs through it",
-        "Germany borders eight countries",
+        "Borders eight countries",
         "Has a well-known football league",
         "Engineering innovations abound",
         "Rich history of coal mining",
@@ -940,16 +896,16 @@
       "word": "Panama",
       "hints": [
         "A country near Central America.",
-        "Known for the Panama Canal.",
+        "Known for it's artificial canal.",
         "Isthmus where North and South meet.",
-        "Capital: Ciudad de Panamá.",
+        "A history that blends indigenous, Spanish, and Afro-Caribbean influences.",
         "Spanish-speaking nation.",
         "Location of many American bases.",
         "Famous for its exotic ports.",
         "Surrounded by rainforests and mountains.",
         "Major hub for trade between Europe and Asia.",
         "Site of the Miraflores Locks.",
-        "Passage connects Atlantic to Pacific.",
+        "Its canal connects Atlantic to Pacific.",
         "Located in the Americas, near Costa Rica.",
         "Has a tropical dry forest ecosystem.",
         "Named after a Spanish conquistador.",
@@ -970,16 +926,16 @@
         "Features an extensive collection of Egyptian antiquities, including mummies and sarcophagi.",
         "The museum's architecture is a mix of medieval and Renaissance styles.",
         "It was originally built as a fortress in the 12th century.",
-        "The Louvre has a vast collection of European paintings from the 13th to the 20th centuries.",
+        "Has a vast collection of European paintings from the 13th to the 20th centuries.",
         "Some of the world's most famous artists have works on display here, including Da Vinci and Rembrandt.",
         "This iconic museum is one of the largest in the world.",
         "It was expanded several times during the 18th century.",
-        "The Louvre has a stunning courtyard garden called the Cour Marly.",
-        "Many priceless artifacts were moved to the Louvre from the Palace of Versailles.",
+        "Has a stunning courtyard garden called the Cour Marly.",
+        "Many priceless artifacts were moved to this place from the Palace of Versailles.",
         "Some of the artworks on display are so famous that they're instantly recognizable.",
         "Visitors can see classical sculptures, Egyptian art, and an extensive collection of Greek antiquities.",
         "It has a strong focus on French history and culture.",
-        "In addition to its impressive collection, the Louvre also hosts temporary exhibitions.",
+        "In addition to its impressive collection, it also hosts temporary exhibitions.",
         "Many world leaders have visited the museum, including heads of state.",
         "Some artworks are displayed in the museum's subterranean galleries.",
         "The building itself is an incredible piece of architectural history."
@@ -994,13 +950,13 @@
         "Capital city begins with the letter 'L'.",
         "Has a unique dialect influenced by other languages like Spanish and French.",
         "The Portuguese language has a distinctive grammatical structure.",
-        "Portugal has two official names: one in English and another in Portuguese.",
+        "Has two official names: one in English and another in Portuguese.",
         "Island nation, not part of a larger landmass.",
         "Location spans across the Iberian Peninsula.",
         "Country has two main historical periods: medieval and modern.",
         "The Algarve region is known for its beautiful beaches.",
         "Tourism industry contributes significantly to the country's economy.",
-        "Portugal was a major maritime empire in the Age of Exploration.",
+        "Was a major maritime empire in the Age of Exploration.",
         "Historical connections with other European countries are evident.",
         "Located near the Gibraltar Strait.",
         "Has a unique cultural heritage, blending tradition and modernity.",
@@ -1025,12 +981,12 @@
         "One of London's most visited attractions, indeed",
         "Where the past meets the present, in every deed",
         "Exhibitions that showcase human creativity's might",
-        "The British Museum, a name that shines so bright",
         "A treasure trove where history comes alive each day",
         "With galleries that take you on a journey through time",
         "Uncovering secrets of civilizations left behind",
         "Where the art and artifacts tell stories yet untold",
-        "Museum that is a must-visit, for young and old"
+        "Museum that is a must-visit, for young and old",
+        "A place where history and culture come alive"
       ]
     },
     {
@@ -1047,7 +1003,7 @@
         "The park has many playgrounds for kids to burn off energy",
         "Ice skating rinks are set up during winter months for fun",
         "There are plenty of food vendors and restaurants on site",
-        "The Central Park Zoo is a great place to visit with kids",
+        "Its Zoo is a great place to visit with kids",
         "Many festivals and events take place throughout the year",
         "Take a horse-drawn carriage ride through its scenic paths",
         "This iconic park has been featured in numerous movies and TV shows",
@@ -1093,14 +1049,14 @@
         "Has undergone significant redevelopment in recent years, incorporating elements like the High Roller observation wheel.",
         "A major hub for entertainment, dining, and nightlife, with world-class restaurants and nightclubs.",
         "Features many themed hotels, such as the Mirage with its volcano outside and the Excalibur's medieval theme.",
-        "The Las Vegas Convention Center is a significant venue, hosting numerous events annually.",
+        "Its Convention Center is a significant venue, hosting numerous events annually.",
         "Known for its celebrity-chef restaurants, including Gordon Ramsay Hell's Kitchen.",
         "The city offers a variety of outdoor activities, like hiking and biking in Red Rock Canyon.",
         "A popular destination for weddings and proposals due to its romantic atmosphere and scenic views.",
         "Has undergone significant urban development, incorporating parks and public art installations.",
-        "Home to the famous 'Welcome to Fabulous Las Vegas' sign on the Strip.",
+        "Home to the famous welcome sign on the Strip.",
         "Many top performers have entertained at the city's various theaters and venues.",
-        "The Fremont Street Experience in downtown Las Vegas features live music and light shows.",
+        "The Fremont Street Experience in the downtown features live music and light shows.",
         "A significant cultural hub, hosting events like the Life is Beautiful Music & Art Festival.",
         "Tourists can explore various neighborhoods, each with its unique character and charm.",
         "Many hotels have elaborate displays of fountains, waterfalls, and other visual effects.",
@@ -1241,7 +1197,7 @@
         "It borders 14 countries, including India, Mongolia, and Russia.",
         "A majority of its population practices a religion that began in the sixth century BCE.",
         "Tibetan Buddhism is an important aspect of its cultural heritage.",
-        "China has over 5,000 years of recorded history.",
+        "Has over 5,000 years of recorded history.",
         "The ancient Terracotta Army was created to protect the first emperor of this country.",
         "Sichuan hot pot and Peking duck are popular dishes from here.",
         "This nation occupies most of East Asia and is the world's third-largest country by land area.",
@@ -1249,7 +1205,7 @@
         "It has been ruled by various dynasties throughout history.",
         "This nation has a long and complex history with Taiwan.",
         "Its writing system consists of characters that are thousands of years old.",
-        "China is home to the Yangtze River, the longest river in this country.",
+        "Is home to the Yangtze River, the longest river in this country.",
         "The Forbidden City was once the imperial palace of its emperors.",
         "Suzhou Gardens and Xi'an City Wall are famous landmarks here."
       ]
@@ -1291,12 +1247,12 @@
         "The Borneo part of the country is shared with Malaysia and Brunei.",
         "Java Island is home to over half its population.",
         "The country has four main regions: Sumatra, Java, Bali, and Papua.",
-        "The world's third-largest island is within Indonesia's borders.",
+        "The world's third-largest island is within its borders.",
         "A significant portion of its landmass was once a Dutch colony.",
         "Its economy relies heavily on palm oil production.",
         "The country has over 40 active volcanoes.",
         "Komodo Island is home to the world's largest lizard species.",
-        "Indonesia has one of the world's most diverse ecosystems.",
+        "Has one of the world's most diverse ecosystems.",
         "The Orangutan can be found in the wild there.",
         "It shares a border with East Timor, a small nation.",
         "Its economy is growing due to its rich natural resources.",
@@ -1308,17 +1264,17 @@
       "hints": [
         "South American country",
         "Portuguese speaking nation",
-        " Largest country in SA by land area",
+        "Largest country in SA by land area",
         "Amazon rainforest located here",
         "Iguazu Falls on border with",
         "African influences in cuisine",
-        " Carnaval celebrations nationwide",
-        " Football (soccer) is extremely popular",
-        " Rio de Janeiro hosts famous New Year's Eve party",
+        "Carnaval celebrations nationwide",
+        "Football (soccer) is extremely popular",
+        "Rio de Janeiro hosts famous New Year's Eve party",
         "Beaches and coastlines along Atlantic",
-        " Guarani language spoken by some citizens",
-        " Coffee grown in southeastern regions",
-        " Iconic Christ statue overlooks Rio",
+        "Guarani language spoken by some citizens",
+        "Coffee grown in southeastern regions",
+        "Iconic Christ statue overlooks Rio",
         "Samba rhythms originated from here",
         "Diverse wildlife, including jaguars",
         "First country to host FIFA World Cup twice",
@@ -1336,7 +1292,7 @@
         "Home to some of the oldest cities and civilizations on Earth.",
         "River Indus flows through this country, supporting agriculture.",
         "Capital city named Islamabad has a unique blend of modernity and tradition.",
-        "Famous Karakoram Highway connects Pakistan to China.",
+        "Famous Karakoram Highway connects it to China.",
         "Mountain peaks above 8,000 meters are found here.",
         "Cultural melting pot with significant Hindu and Buddhist influences.",
         "Port city Karachi is one of the country's main commercial hubs.",
@@ -1347,7 +1303,7 @@
         "Famous Indus Valley Civilization thrived in this region 4,300 years ago.",
         "Climate varies greatly across the country's different regions.",
         "Landmarks include ancient sites and valleys such as Hunza and Naran.",
-        "Pakistani cuisine has a blend of spices and influences from various cultures.",
+        "Their cuisine has a blend of spices and influences from various cultures.",
         "Country is home to diverse wildlife including snow leopards and markhors.",
         "Mountain climbing, trekking, and skiing are popular sports here.",
         "Rich history reflects its complex past with multiple empires rising and falling."
@@ -1364,18 +1320,18 @@
         "The official language is English",
         "It's one of the most populous countries in Africa",
         "Majority of citizens are Muslim or Christian",
-        "Nigeria is home to over 250 ethnic groups",
+        "Home to over 250 ethnic groups",
         "A major oil producer in the continent",
         "Its capital city starts with 'L'",
         "Has a long coastline on the Atlantic Ocean",
         "The country gained independence from British colonial rule",
-        "Nigerians celebrate several festivals and traditions",
+        "Its population celebrate several festivals and traditions",
         "Known for its vibrant cities, music, and art scene",
         "A significant producer of agricultural products",
         "Has a complex history with multiple colonial powers",
         "Home to many notable historical sites and museums",
         "The country is divided into 36 states and the capital territory",
-        "Nigeria has a young population, with over 60% under 30 years old"
+        "Has a young population, with over 60% under 30 years old"
       ]
     },
     {
@@ -1394,10 +1350,10 @@
         "Country with a significant British colonial legacy.",
         "Home to the Chittagong Hill Tracts region, where various tribes live.",
         "A country where tea is an important export crop.",
-        "Bangladesh has a dense network of rivers and streams.",
+        "Has a dense network of rivers and streams.",
         "Land of Bengal tigers, Asian elephants, and other wildlife.",
         "Country with more than 500 species of birds according to records.",
-        "Bangladesh contributes significantly to global jute production.",
+        "Contributes significantly to global jute production.",
         "Place where rice is the main food staple for many people.",
         "Nation that has experienced significant population growth in recent decades.",
         "Has a large floating population due to river and coastal flooding."
@@ -1406,7 +1362,7 @@
     {
       "word": "Mexico",
       "hints": [
-        "A country in North America bordering the US and Gulf of Mexico.",
+        "A country in North America bordering the US.",
         "Land of Aztecs, Mayans, and Olmecs ancient civilizations.",
         "Pyramid-shaped temples are a part of its architectural legacy.",
         "Mexican cuisine is famous for dishes like tacos and quesadillas.",
@@ -1447,7 +1403,7 @@
         "Famous for traditional festivals, like the Golden Week celebrations.",
         "The scenic beauty of Nikko, with its ornate Shinto shrines, is stunning.",
         "Innovative fashion, cutting-edge design, and style define Tokyo's streets.",
-        "Historic samurai castles, like Osaka Castle, showcase Japan's rich history.",
+        "Historic samurai castles, like Osaka Castle, showcase a rich history.",
         "From bustling cities to serene countryside landscapes, it offers diversity."
       ]
     },
@@ -1520,7 +1476,7 @@
         "Geography shapes history and culture",
         "Symbolism surrounds its monumental past",
         "Ancient texts have left a lasting legacy",
-        "Egyptian symbolism informs modern art"
+        "Iconic art and architecture"
       ]
     },
     {
@@ -1539,12 +1495,12 @@
         "Country with a unique Christian faith.",
         "Location of the Semien Mountains National Park.",
         "Has a rugged terrain and diverse landscapes.",
-        "Place where the Ethiopian calendar is used.",
         "Has a long history of Jewish community.",
         "Birthplace of Haile Selassie, former emperor.",
         "Land that has never been fully colonized by Europeans.",
         "Has a unique alphabet with 281 characters.",
-        "Country in the Horn of Africa region."
+        "Country in the Horn of Africa region.",
+        "Uses a different calendar with 13 months."
       ]
     },
     {
@@ -1589,7 +1545,7 @@
         "Has a famous Golden Horn landmark",
         "Significant contributions to world cuisine",
         "Historic trade routes traversed it",
-        "Modern-day Turkey maintains diplomatic relations worldwide",
+        "Currently maintains diplomatic relations worldwide",
         "Its geography influenced by Asian and European elements",
         "Important location for ancient civilizations",
         "A hub for art, architecture, and literature"
@@ -1605,19 +1561,19 @@
         "Historic event: The Glorious Revolution took place here",
         "Major contributions to the world include Beatles music and Harry Potter books",
         "This country hosts the London Marathon every year",
-        "The UK shares its border with Ireland",
+        "Shares its border with Ireland",
         "Scotland is home to Loch Ness, famous for a mythical creature",
         "Wales has a rich coal mining history",
         "Northern Ireland's capital city is Belfast",
-        "UK passports are highly sought after globally",
+        "Its passports are highly sought after globally",
         "English breakfasts often include tea and full English breakfast",
-        "The UK celebrates Burns Night every January 25th",
+        "Celebrates Burns Night every January 25th",
         "One of the most famous libraries in the world is located here",
         "This country has a strong tradition of education",
         "Scotland's iconic whisky production dates back centuries",
-        "UK cuisine often includes fish and chips, as well as roast beef",
+        "Its cuisine often includes fish and chips, as well as roast beef",
         "London hosts some of the largest festivals globally",
-        "The UK contributes significantly to international business"
+        "Contributes significantly to international business"
       ]
     },
     {
@@ -1711,7 +1667,7 @@
         "The climate varies greatly from coast to inland regions.",
         "It shares borders with Uganda, Tanzania, and Somalia.",
         "A significant portion of the country lies above 2,000 meters.",
-        "Kenyan cuisine is a mix of African, Asian, and European influences.",
+        "Its cuisine is a mix of African, Asian, and European influences.",
         "There are over 40 ethnic groups residing within its borders.",
         "The coastal region has beautiful beaches and coral reefs.",
         "Coffee, tea, and flowers are significant exports.",
@@ -1757,7 +1713,7 @@
         "Mountains cover nearly 70% of land",
         "Border disputes with North Korea continue",
         "Seoul is a popular tourist destination",
-        "K-pop and Korean Wave (Hallyu) globally known",
+        "G lobally known by K-pop and Korean Wave (Hallyu)",
         "Major cities: Seoul, Busan, Daegu",
         "Agriculture and manufacturing drive economy",
         "Rich cultural heritage from Silla dynasty",
@@ -1782,9 +1738,9 @@
         "Coffee regions offer scenic landscapes and opportunities for outdoor activities.",
         "Amazon rainforest covers nearly 10% of the national territory.",
         "The Magdalena River flows through the Andean region and eventually empties into the Caribbean Sea.",
-        "Colombia's geography spans tropical zones, savannas, and high-altitude mountains.",
+        "Its geography spans tropical zones, savannas, and high-altitude mountains.",
         "A significant portion of the country is considered part of the Amazon rainforest.",
-        "Coffee culture plays a big role in Colombian society and identity.",
+        "Coffee culture plays a big role in their society and identity.",
         "The country has three main geographical regions: Pacific coast, Caribbean coast, and Andean region."
       ]
     },
@@ -2015,26 +1971,26 @@
         "Home to the iconic Petronas Twin Towers.",
         "A country with a diverse population of Malay, Chinese, and Indian people.",
         "Bordering countries include Thailand, Indonesia, Singapore, and Brunei.",
-        "Malaysian cuisine is influenced by Indian, Chinese, and Middle Eastern flavors.",
+        "Their cuisine is influenced by Indian, Chinese, and Middle Eastern flavors.",
         "The world's third-largest producer of palm oil.",
         "Consists of 13 states and three federal territories.",
         "A parliamentary democracy with a constitutional monarchy system.",
         "Mount Kinabalu, the highest peak in Southeast Asia, is located within its borders.",
         "Langkawi, a popular tourist destination known for its beaches and islands.",
-        "Malaysian economy is driven by oil and gas, manufacturing, and agriculture sectors.",
+        "The economy is driven by oil and gas, manufacturing, and agriculture sectors.",
         "Kuala Lumpur, the capital city, is a bustling metropolis with a rich history.",
         "A significant producer of tin, bauxite, and other natural resources.",
         "Home to the oldest rainforest in the world, Taman Negara National Park.",
         "A multilingual country where Malay, English, Chinese, and Tamil are official languages.",
         "The famous Batu Caves limestone hills near Kuala Lumpur.",
-        "Malaysian rubber industry is one of the largest in the world.",
+        "Their rubber industry is one of the largest in the world.",
         "A hub for international trade and commerce, with major ports at Johor Bahru and Penang."
       ]
     },
     {
       "word": "Uganda",
       "hints": [
-        "Located in East Africa",
+        "Country located in East Africa",
         "Bordering Lake Victoria",
         "The source of the Nile River",
         "Capital city is Kampala",
@@ -2048,11 +2004,11 @@
         "Major industries include agriculture and mining",
         "The country has a rich cultural heritage",
         "In the shadow of Mount Ruwenzori",
-        "Cotton is also a significant crop in Uganda",
         "The population has a mix of ethnic groups",
         "There's a growing tourism industry in the country",
         "It was a German colony before being taken by Britain",
-        "Uganda gained independence from Britain in 1962"
+        "Gained independence from Britain in 1962",
+        "The country has a history of political instability"
       ]
     },
     {
@@ -2176,7 +2132,7 @@
         "Famous for its vibrant night markets and shopping districts",
         "Cultural melting pot with influences from Buddhism, Taoism, and Confucianism",
         "Global tourism hub with millions of visitors annually",
-        "Location of the Shanghai Expo 2010"
+        "A city that has undergone rapid urbanization and modernization in recent decades."
       ]
     },
     {
@@ -2261,20 +2217,20 @@
         "A major hub for financial and entertainment industries.",
         "This port city has a rich history dating back to the 16th century.",
         "The iconic Gateway of India monument is a popular tourist spot.",
-        "Mumbai is known for its vibrant street food culture and cuisine.",
+        "Known for its vibrant street food culture and cuisine.",
         "Home to the famous Bollywood film industry.",
         "This city hosts several prestigious international film festivals.",
         "A melting pot of diverse cultures, with Parsis, Gujaratis, and Maharashtrians.",
-        "The Dabbawalas' unique tiffin service is a Mumbai specialty.",
+        "The Dabbawalas' unique tiffin service is a local specialty.",
         "A hub for India's IT and software development industries.",
-        "Mumbai has a significant Parsi community presence.",
+        "Has a significant Parsi community presence.",
         "Innovative public transportation system includes local trains.",
         "One of the most densely populated cities in the world.",
         "Home to several top-tier universities and educational institutions.",
         "The Haji Ali Dargah mosque is an iconic landmark.",
         "This city is known for its eclectic mix of art deco and Victorian-era architecture.",
         "A thriving hub for digital marketing and advertising industries.",
-        "Mumbai has a strong presence in the Indian stock exchange market."
+        "Has a strong presence in the Indian stock exchange market."
       ]
     },
     {
@@ -2338,16 +2294,16 @@
         "A hub for international trade and commerce in the region.",
         "The city has a growing IT industry, with many software technology parks.",
         "Has several notable cultural attractions like the Baitul Mukarram National Mosque.",
-        "Dhaka is home to many historical sites and museums showcasing its rich history.",
+        "Home to many historical sites and museums showcasing its rich history.",
         "A rapidly urbanizing city with a growing middle class and increasing consumerism.",
         "The city has a diverse range of restaurants serving local and international cuisine.",
         "Is home to the famous Dhanmondi neighborhood, popular for shopping and dining.",
         "Has several parks and gardens providing green spaces within the city.",
-        "Dhaka hosts many cultural festivals throughout the year, showcasing its diversity.",
+        "Hosts many cultural festivals throughout the year, showcasing its diversity.",
         "The city has a well-developed public transportation system, including buses and rickshaws.",
         "Is known for its historic black and yellow Ambassador cars which are iconic symbols of the city.",
         "Has several universities and colleges that offer a range of academic programs.",
-        "Dhaka is often referred to as the 'City of Mosquitoes' due to its notorious mosquito population."
+        "Often referred to as the 'City of Mosquitoes' due to its notorious mosquito population."
       ]
     },
     {
@@ -2431,7 +2387,6 @@
         "The largest city in the Czech Republic.",
         "A historic city with well-preserved medieval architecture.",
         "Known for its iconic Charles Bridge.",
-        "Home to the famous Prague Castle.",
         "Has been an important cultural and commercial center for centuries.",
         "Located near the confluence of the Vltava and Elbe rivers.",
         "Experience a mix of Gothic, Renaissance, and Baroque architectural styles.",
@@ -2443,7 +2398,8 @@
         "Has played a significant role in European politics and trade throughout history.",
         "Famous for its beautiful streets, squares, and monuments.",
         "A city with an incredible density of cultural attractions.",
-        "Known as 'the City of a Hundred Spires' due to its numerous church spires."
+        "Known as 'the City of a Hundred Spires' due to its numerous church spires.",
+        "Has a rich history of architecture and culture."
       ]
     },
     {
