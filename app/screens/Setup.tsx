@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Dimensions, Switch, ScrollView, Pressable, Platform, Animated, useAnimatedValue } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, Text, StyleSheet, SafeAreaView, Dimensions, Switch, ScrollView, Pressable, Platform, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import PrimaryButton from '../uiComponents/PrimaryButton';
 import { useRouter } from 'expo-router';
@@ -43,7 +43,8 @@ const GameSettingsScreen = () => {
     [SecretWordCategory.Sport]: false
   });
 
-  const animatedOpacity = useAnimatedValue(1);
+  const animatedOpacity = useRef(new Animated.Value(1)).current;
+
 
   const pushPlayScreen: (selectedSets: number[]) => void = (selectedSets) => {
     router.push({
@@ -80,9 +81,9 @@ const GameSettingsScreen = () => {
 
     console.log('Navigating to Play', selectedSets)
     
-    // fadeOut(() => {
+    fadeOut(() => {
       pushPlayScreen(selectedSets);
-    // });
+    });
   };
 
   const toggleWordSet = (set) => {
