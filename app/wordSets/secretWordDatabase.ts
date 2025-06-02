@@ -25,10 +25,24 @@ function getRandomSecretWord(wordSetIds: number[]): SecretWord {
   const randomSet = sets[randomIndex(sets.length)]
   const randomEntryIndex = randomIndex(randomSet.setSize)
   const entry = randomSet.secretWords[randomEntryIndex] as SecretWordEntry
+
+  const hints = shuffle(entry.hints)
+    .slice(0, 20)
+    .map(hint => hint
+      .trim() // remove leading and trailing spaces
+      .replace(/\.\s*$/, '') // remove trailing dot
+      .replace(/^./, match => match.toUpperCase()) // uppercase first letter
+    )
+    
+  const word = entry.word
+    .trim() // remove leading and trailing spaces
+    .replace(/-/g, '') // remove dashes
+    .replace(/^./, match => match.toUpperCase()); // uppercase first letter
+    
   return { 
-    word: entry.word,
+    word: word,
     category: SecretWordCategory[randomSet.category], 
-    hints: shuffle(entry.hints).slice(0, 20)
+    hints: hints
   }
 }
 
