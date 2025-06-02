@@ -1,6 +1,6 @@
 {
   "category": "Animal",
-  "setSize": 108,
+  "setSize": 107,
   "secretWords": [
     {
       "word": "Giraffe",
@@ -261,14 +261,14 @@
         "Large eyes, providing excellent night vision.",
         "Possessing long arms with strong hands and feet.",
         "Main predators are pythons, eagles, and clouded leopards.",
-        "Orangutans have a special way of communicating with each other.",
+        "Have a special way of communicating with each other.",
         "They're considered endangered due to habitat loss.",
         "Found only in the wild on two islands: Borneo and Sumatra.",
         "These apes are known for their calm and gentle nature.",
         "Their habitat is being threatened by deforestation.",
         "Great climbers, using branches as bridges between trees.",
         "They have a unique way of showing affection through hugs.",
-        "Orangutans play an important role in maintaining their ecosystem."
+        "Play an important role in maintaining their ecosystem."
       ]
     },
     {
@@ -317,7 +317,7 @@
         "Has non-retractable claws for grip",
         "Speed allows it to catch prey off guard",
         "Vulnerable due to hunting and habitat loss",
-        "Famous cheetahs often star in wildlife documentaries",
+        "Famous ones often star in wildlife documentaries",
         "Has a unique 'fearlessness' when chasing prey"
       ]
     },
@@ -505,7 +505,7 @@
         "Not very fast, but steady pace.",
         "Shell is hard and provides defense.",
         "Found in many different environments.",
-        "Some turtles are big, some small too.",
+        "Some are big, some small too.",
         "Grows slowly, but lives long years.",
         "Eats leaves and aquatic plants daily.",
         "Carries eggs on its belly safely.",
@@ -517,27 +517,26 @@
     {
       "word": "Dolphin",
       "hints": [
-        "Intelligent aquatic creatures known for jumping out of the water.",
-        "Marine mammals with a distinctive high-pitched sound.",
-        "Social animals that swim in groups and have a signature whistle.",
-        "Found in oceans worldwide, from shallow seas to deep blue waters.",
-        "Playful beings that leap, dive, and somersault through waves.",
-        "Delicate features include a curved dorsal fin and a beak-like snout.",
-        "Some species can grow up to 12 feet long, with males being slightly larger.",
-        "Diet consists mainly of fish, squid, and crustaceans caught using echolocation.",
-        "Dolphins have been observed helping other animals in distress, such as humans and other marine mammals.",
-        "Their sleek bodies are streamlined for speed, reaching up to 25 miles per hour.",
-        "They often swim alongside boats, seemingly fascinated by human presence.",
-        "In some cultures, dolphins are revered for their intelligence, social nature, and playful spirit.",
-        "These creatures have been known to communicate with each other using a variety of clicks, whistles, and body language.",
+        "Intelligent aquatic creatures known for jumping out of water.",
+        "Marine mammals with a distinctive sound.",
+        "Social animals that swim in groups and whistle.",
+        "Found in oceans worldwide.",
+        "Playful beings that leap and dive through waves.",
+        "Delicate features include a curved dorsal fin and beak-like snout.",
+        "Some species can grow up to 12 feet long.",
+        "Diet consists mainly of fish and squid.",
+        "Have been observed helping other animals in distress.",
+        "Their sleek bodies are streamlined for speed.",
+        "They often swim alongside boats.",
+        "In some cultures, they are revered for their intelligence and social nature.",
+        "These creatures communicate with each other using clicks, whistles, and body language.",
         "Their large brains are thought to be one of the most intelligent in the animal kingdom.",
-        "Many species of dolphins are protected by conservation laws due to their vulnerable populations.",
-        "They are closely related to whales and porpoises, forming a group known as toothed cetaceans.",
-        "A dolphin's lifespan can range from 20 to 50 years in the wild, depending on various factors.",
-        "Some species of dolphins have distinctive color patterns or markings, such as spots or stripes.",
+        "Many species are protected by conservation laws.",
+        "They are closely related to whales and porpoises.",
+        "their lifespan can range from 20 to 50 years in the wild.",
+        "Some species have distinctive color patterns or markings.",
         "They are highly social creatures that thrive in groups and maintain close relationships.",
-        "Their unique way of hunting involves using sound waves to locate prey.",
-        "These amazing animals have been observed playing with seaweed, bubbles, and other objects in the water."
+        "Their unique way of hunting involves using sound waves to locate prey."
       ]
     },
     {
@@ -1011,16 +1010,16 @@
         "Excellent swimmer with powerful strokes.",
         "Nocturnal hunter with exceptional eyesight.",
         "Fish and crustaceans make up its diet.",
-        "Otter's playful nature is well-documented.",
+        "Their playful nature is well-documented.",
         "Webbed paws help it to propel through water.",
-        "River otters are generally shy creatures.",
+        "River ones are generally shy creatures.",
         "Found in freshwater habitats worldwide.",
         "Its thick fur keeps it warm in cold water.",
         "Skilled hunters with an acute sense of smell.",
-        "Otter's agility is a joy to behold.",
+        "Their agility is a joy to behold.",
         "Notorious for stealing fish from fishermen.",
         "Closely related to weasels and ferrets.",
-        "River otters are excellent climbers as well."
+        "River ones are excellent climbers as well."
       ]
     },
     {
@@ -1058,18 +1057,18 @@
         "Has large eyes and ears for survival.",
         "Skittish and quick to flee from predators.",
         "Fawns are born after an eight-month gestation.",
-        "Deer are known for their impressive jumping ability.",
+        "Known for their impressive jumping ability.",
         "Vulnerable to hunting during mating season.",
         "Their coats change color with the seasons.",
-        "Some species of deer can live up to 15 years in the wild.",
+        "Some species can live up to 15 years in the wild.",
         "Males engage in territorial battles with each other.",
-        "Baby deer takes its first steps after 24 hours.",
+        "Their babies takes its first steps after 24 hours.",
         "They communicate through a series of body language cues.",
         "Can run at speeds of up to 30 miles per hour.",
         "Herbivorous creatures that eat mainly twigs and leaves.",
         "Their large hooves are perfectly adapted for traction.",
         "Some species have an impressive lifespan in captivity.",
-        "Deer have a strong instinct to migrate seasonally.",
+        "Have a strong instinct to migrate seasonally.",
         "Are often hunted by predators such as wolves and bears."
       ]
     },
@@ -1094,7 +1093,7 @@
         "Herds can range from a few to hundreds of animals strong.",
         "Specialized digestive system allows them to eat plants.",
         "Their coats change color with seasons and age.",
-        "Both male and female Antelopes have impressive horns.",
+        "Both male and female have impressive horns.",
         "Keen sense of hearing helps detect potential threats."
       ]
     },
@@ -1116,7 +1115,7 @@
         "Found in open spaces with minimal tree cover",
         "Unique communication methods involve a variety of sounds",
         "Large ears help detect potential threats from afar",
-        "Antelopes are often found in close proximity to gazelles",
+        "Antelopes are often found in close proximity to them",
         "Some species can grow up to 40 inches at the shoulder high",
         "Distinctive coat patterns vary by subspecies and region",
         "Migration routes often coincide with water sources"
@@ -1283,7 +1282,7 @@
         "They are often found in rural areas with plenty of space.",
         "Some breeds have distinctive coat patterns or colors.",
         "Their large ears help them stay cool on hot days.",
-        "A farm might raise multiple cows for increased yield.",
+        "A farm might raise multiple ones for increased yield.",
         "Farmers must ensure they have access to clean water sources.",
         "Their manure can be used as fertilizer for crops."
       ]
@@ -1300,15 +1299,15 @@
         "Domesticated species with a long history of human interaction.",
         "Omnivore that enjoys a varied diet including grains and fruits.",
         "Animal with a relatively short gestation period.",
-        "Farm equipment often used to herd pigs.",
-        "Smaller version of the pig found in some cultures as food.",
+        "Farm equipment often used to herd them.",
+        "Smaller version of the animal found in some cultures as food.",
         "Common animal used for scientific research on reproduction.",
-        "Pigs are known for their excellent sense of smell.",
-        "In some countries, pork is a staple part of traditional cuisine.",
-        "Farmers use specific techniques to breed pigs with desired traits.",
-        "Young piglets often live in close quarters with their mothers.",
-        "Breeding programs aim to produce pigs with certain characteristics.",
-        "Specialized housing for pigs helps maintain cleanliness and comfort."
+        "They are known for their excellent sense of smell.",
+        "In some countries, their meat is a staple part of traditional cuisine.",
+        "Farmers use specific techniques to breed them with desired traits.",
+        "Young ones often live in close quarters with their mothers.",
+        "Breeding programs aim to produce them with certain characteristics.",
+        "Specialized housing helps maintain cleanliness and comfort for them."
       ]
     },
     {
@@ -1397,7 +1396,7 @@
         "Famous for my loud morning voice",
         "A symbol of good luck in some lands",
         "My comb is a vibrant, shining sight",
-        "Roosters are known for their strutting pace",
+        "Known for their strutting pace",
         "Early riser, I'm always on time",
         "In many cultures, I'm considered sacred",
         "Feathers ruffled, I strut with pride",
@@ -1405,7 +1404,7 @@
         "Farm fresh eggs often come from my friends",
         "My loud crowing announces the morning sun",
         "Red and gold hues make me a pretty sight",
-        "A rooster's call is music to some ears",
+        "Their call is music to some ears",
         "You can find me on farms, in backyards too",
         "First light brings out my best display",
         "I'm often seen as a sign of new beginnings"
@@ -1530,7 +1529,7 @@
         "Feathers ruffled by the wind's caress.",
         "In flight, their path is a gentle arc.",
         "Their majestic calls echo across the land.",
-        "Swans migrate in large, V-shaped flocks.",
+        "They migrate in large, V-shaped flocks.",
         "A symbol of love and loyalty, they roam.",
         "Found on many continents, but rare too."
       ]
@@ -1554,7 +1553,7 @@
         "Has been revered for centuries as a symbol of power and wisdom.",
         "Able to dive at incredible speeds in pursuit of its prey.",
         "Feathers are strong and lightweight, perfect for flight.",
-        "In many cultures, the eagle is seen as a symbol of renewal and transformation.",
+        "In many cultures, they are seen as a symbol of renewal and transformation.",
         "Known for making sharp, shrill calls that echo through the valleys.",
         "A highly skilled hunter with exceptional vision and agility.",
         "Associated with good luck, prosperity, and happiness in some cultures."
@@ -1578,7 +1577,7 @@
         "The strongest wings among all bird species.",
         "Fierce hunters with incredible eyesight and agility.",
         "Skilled at catching fish right out of the water.",
-        "Some Falcon species have striking, colorful plumage.",
+        "Some species have striking, colorful plumage.",
         "Closely related to Hawks and other raptors.",
         "Nest on cliff faces or in treetops, high above ground.",
         "Generally, they weigh less than 3 pounds (1.5 kg).",
@@ -1842,7 +1841,7 @@
         "Famous for eating fish and other small prey.",
         "Notable for its impressive diving abilities.",
         "Bills can stretch wide when catching fish in water.",
-        "Young pelicans have a different beak coloration.",
+        "Young ones have a different beak coloration.",
         "Often seen in large colonies near water bodies.",
         "Can live up to 30 years or more in the wild sometimes.",
         "Distinctive plumage patterns help with identification.",
@@ -2240,32 +2239,6 @@
       ]
     },
     {
-      "word": "Butterfly",
-      "hints": [
-        "Delicate wings dance in air",
-        "Colorful wings take to sky",
-        "Petals for eyes, beauty rare",
-        "Light as a feather, yet seen often",
-        "Rainbow hues on delicate form",
-        "Wings beat fast, like tiny drum",
-        "Summer's guest, with gentle might",
-        "Feathers of many colors shine",
-        "Dainty creature, a wondrous sight",
-        "Nature's art, in every wing",
-        "Delicate scales, like jewels bright",
-        "Airborne beauty, a fleeting view",
-        "Wings unfold, like tiny sails",
-        "Garden guest, with wings so fair",
-        "Raindrop reflections shine on wings",
-        "Colorful wings, like stained glass shine",
-        "Dainty steps, on flowers so fine",
-        "Morning's beauty, in every wing",
-        "Fragile creature, yet strong as can be",
-        "Nature's wonder, in every hue",
-        "Wings of many colors, a beautiful sight"
-      ]
-    },
-    {
       "word": "Moth",
       "hints": [
         "Fuzzy wings at night",
@@ -2303,14 +2276,14 @@
         "Some are considered pests in agricultural fields",
         "Insects with six legs and antennae can be this type",
         "Their life cycles involve different body forms",
-        "These beetles have many species across the globe",
+        "Have many species across the globe",
         "Commonly found near food sources for other creatures",
         "Some types have distinctive patterns on their shells",
         "Adults often seek shelter in dark, moist places",
         "Insects that are this type often go unnoticed initially",
         "Their hard outer shell is shed periodically",
         "They help control pest populations in gardens",
-        "These beetles have been around for millions of years"
+        "Have been around for millions of years"
       ]
     },
     {

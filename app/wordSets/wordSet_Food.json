@@ -777,7 +777,7 @@
         "Twisted tubes and rich sauces go hand-in-hand",
         "Egg-cellent Italian dish that's easy to make",
         "Pasta, eggs, bacon - what could possibly be better?",
-        "Carbonara's name comes from the Italian word for 'coal'",
+        "The name comes from the Italian word for 'coal'",
         "Guanciale adds a depth of flavor without being overpowering",
         "The rich aroma of spaghetti wafts through the air",
         "Eggs and pasta are a match made in heaven, apparently",
@@ -1270,7 +1270,7 @@
       ]
     },
     {
-      "word": "Tortilla Espa\u00f1ola",
+      "word": "Tortilla Espanola",
       "hints": [
         "Spanish omelette favorite.",
         "Thick, rich breakfast delight.",
@@ -1479,7 +1479,7 @@
         "Chicken cooked low and slow in a pot",
         "Fancy French name hides humble origins",
         "Red wine, garlic, and herbs create the sauce",
-        "Coq au Vin perfect for special occasions",
+        "A hearty meal that warms the soul",
         "Dish that warms the heart and belly",
         "A classic recipe that's hard to improve",
         "Saucy, meaty goodness in every bite"
@@ -1530,7 +1530,7 @@
         "Butter and syrup are classic topping choices",
         "The perfect breakfast, lunch, or dinner option",
         "A delicate culinary treat from the City of Light",
-        "Savory, sweet, or dessert crepes - they're all divine",
+        "Soft and fluffy, it's a true delight",
         "Folded, rolled, or served flat, it's a true pleasure"
       ]
     },
@@ -1841,12 +1841,12 @@
         "Savory and slightly sweet, a treat",
         "Golden brown and perfectly baked",
         "A comfort food classic in every way",
-        "Naan-like flatbread that's easy to make",
+        "Perfect for scooping up rich sauces",
+        "Soft, pillowy bread that melts in mouth",
         "Gooey cheese and naan, a match made",
         "Flaky layers like a thousand feathers",
         "Sides of chutney complement the taste",
-        "Tandoor-fresh with each and every bite",
-        "Naan-tastic flavors in every single roll"
+        "Indian cuisine's favorite flat friend"
       ]
     },
     {
@@ -2001,7 +2001,7 @@
         "Stellar chef with an unexpected secret",
         "Tasty stew originating from Nice, France",
         "Garlic, onions, and tomatoes come together",
-        "Ratatouille for the win at Gusteau's",
+        "Vegetables layered like a work of art",
         "Small but mighty hero in a culinary world",
         "Basil, thyme, and rosemary add depth",
         "The art of cooking meets creativity",
@@ -2009,7 +2009,7 @@
         "Whisking up a storm in the kitchen",
         "Summer veggies shine in this classic stew",
         "Flavors dance on the palate like jazz",
-        "Ratatouille recipe passed down through generations",
+        "Name of a Disney movie about a rat chef",
         "Little rat with big appetite for adventure",
         "Savory, rich, and utterly French dish",
         "Kitchen chaos becomes culinary masterwork",
@@ -2080,12 +2080,12 @@
         "Served as a appetizer or main course",
         "A cold dish that's not cooked at all",
         "Fish sliced into thin pieces served fresh",
-        "Sashimi often paired with soy sauce",
+        "Often paired with soy sauce",
         "No cooking methods, just raw ingredients",
         "Raw fish is the main ingredient in this dish",
         "Delicate flavors and textures combined",
         "Some variations include added seasonings",
-        "Sashimi restaurants focus on quality fish"
+        "A dish that showcases the freshness of seafood"
       ]
     },
     {
@@ -2284,27 +2284,27 @@
     {
       "word": "Udon Noodles",
       "hints": [
-        "Japanese comfort food often served in hot broth.",
-        "Thick wheat flour noodles are a staple in some Asian cuisine.",
-        "A popular dish from the mountains of Japan, known for its hearty portions.",
-        "Some like to add their favorite protein to this simple yet satisfying meal.",
-        "Rich flavors come together with every flavorful dip into savory sauce.",
-        "In Japan's countryside, farmers enjoy a warm bowl of goodness after harvest season.",
-        "Thick and chewy noodles in a steaming hot broth is the perfect remedy for a chilly day.",
-        "Savory sauces blend perfectly with delicate vegetables to create an authentic taste experience.",
-        "From street food vendors to high-end restaurants, this dish never goes out of style.",
-        "This Japanese noodle soup has been warming hearts and bellies for generations.",
-        "Thick noodles are the perfect match for a flavorful broth in a steaming hot bowl.",
-        "Some say it's not a proper meal without adding some fresh green onions on top.",
-        "The aroma of simmering broth fills the air, inviting everyone to gather around.",
-        "A popular choice for a cold winter evening is a warm and comforting bowl.",
-        "Many like to customize their serving with a variety of colorful vegetables.",
-        "Some enjoy dipping the noodles into a side of savory sauce for added flavor.",
-        "The rich flavors blend perfectly in every bite, creating a taste experience.",
-        "From traditional markets to modern restaurants, this dish remains unchanged.",
-        "In Japan's culinary scene, this noodle soup holds a special place in many hearts.",
-        "A flavorful broth and delicate vegetables make for a delightful meal.",
-        "Some enjoy adding different types of protein to make it more substantial."
+        "Japanese comfort food in hot broth.",
+        "Thick wheat flour noodles in Asian cuisine.",
+        "Popular dish from Japan's mountains.",
+        "Add protein for a satisfying meal.",
+        "Rich flavors in every savory bite.",
+        "Warming hearts and bellies in Japan's countryside.",
+        "Thick noodles and hot broth perfect for a chilly day.",
+        "Savory sauce and veggies create a delicious taste experience.",
+        "Popular dish from street food to high-end restaurants.",
+        "Warming hearts and bellies for generations.",
+        "Thick noodles and flavorful broth in a hot bowl.",
+        "Add fresh green onions for extra flavor.",
+        "Simmering broth invites everyone to gather around.",
+        "Perfect for a cold winter evening.",
+        "Customize with colorful vegetables.",
+        "Dip noodles in savory sauce for added flavor.",
+        "Rich flavors blend in every bite.",
+        "Traditional markets to modern restaurants.",
+        "Special place in many hearts in Japan's culinary scene.",
+        "Flavorful broth and delicate veggies make for a delightful meal.",
+        "Add protein for a more substantial meal."
       ]
     },
     {
@@ -2391,17 +2391,17 @@
         "Aromatic spices and herbs complement the smoky flavor.",
         "Grilled meats on skewers are a staple at outdoor events.",
         "Food vendors in Tokyo serve skewered yak bites.",
-        "Yakitori restaurants specialize in grilled poultry dishes.",
+        "Charcoal grilling gives its unique taste.",
         "Chicken skewers with vegetables are a popular appetizer.",
         "Sesame oil and soy sauce enhance the flavors of grilled meat.",
         "Outdoor grills feature bamboo sticks holding skewered food.",
         "Japanese cuisine often features chicken or pork on skewers.",
         "Street food vendors grill meats on long wooden sticks.",
-        "Popular yakitori restaurants have lines around the block.",
+        "Skewered meat is a favorite at izakayas.",
         "Skewered chicken is a simple yet flavorful dish to make.",
         "Bamboo and charcoal are used to cook traditional Japanese dishes.",
         "Food festivals often feature grilled meat skewers as snacks.",
-        "Teriyaki sauce is a key ingredient in many yakitori recipes."
+        "Teriyaki sauce is a key ingredient in many recipes."
       ]
     },
     {
@@ -2546,7 +2546,7 @@
         "Important crop in many tropical and subtropical countries.",
         "Popular breakfast food, especially when paired with vegetables.",
         "Grows best in areas with heavy rainfall and high temperatures.",
-        "Used to make traditional desserts like rice cakes."
+        "Can be found in many international cuisines, from Asian to Latin American."
       ]
     },
     {
@@ -2605,7 +2605,7 @@
         "Can be popped like popcorn kernels.",
         "Breakfast cereal made from grainy goodness.",
         "Fodder for small farm animals.",
-        "Hearty base for overnight oats dishes.",
+        "Hearty base for overnight breakfast dishes.",
         "Grain commonly paired with bananas.",
         "Old-fashioned breakfast option for kids.",
         "Popular at country fairs and festivals.",
@@ -2660,7 +2660,7 @@
         "Fall-favorite food item enjoyed worldwide.",
         "Sweet-tasting, orange-colored root used in many cuisines.",
         "Hearty, nutritious root vegetable often served whole.",
-        "Sweet Potato is a key component of some international dishes.",
+        "A key component of some international dishes.",
         "Tuber with vibrant color, rich flavor, and impressive nutritional value.",
         "Starchy tuber widely used in fall-themed recipes.",
         "Sweet-tasting, orange-hued root popular for snacking and baking.",
@@ -2904,7 +2904,7 @@
         "Has tough leaves that resemble swords",
         "Sweet and tangy taste in juices",
         "Main ingredient in Hawaiian pizza",
-        "Pineapple upside down cake is a classic",
+        "Used in fruit salads and desserts",
         "Juicy chunks add flavor to salads",
         "Growing on farms in Central America",
         "Prickly skin makes it hard to bite into",
@@ -3485,7 +3485,18 @@
         "Tart flavor when eaten green.",
         "Flavorful jam made from red flesh.",
         "Tree with delicate white flowers.",
-        "Golden color of sunrise in summer."
+        "Golden color of sunrise in summer.",
+        "Fruit of warm-weathered lands.",
+        "Pit often found in its core.",
+        "Juicy segments to savor slowly.",
+        "Ripens on the tree's branch.",
+        "Delicious as a smoothie mix.",
+        "Juicy pulp surrounds the pit.",
+        "Golden ripe and ready to eat.",
+        "Tastes like summer's sweetness pure.",
+        "Grows on trees with fuzzy skin.",
+        "Small, round fruit with a sweet taste.",
+        "Often used in desserts and jams."
       ]
     },
     {
@@ -3660,24 +3671,24 @@
       ]
     },
     {
-      "word": "Brownies",
+      "word": "Brownie",
       "hints": [
         "Rich aroma filling homes on holidays",
-        "Fudgy treats loved by kids and adults alike",
+        "Fudgy treat loved by kids and adults alike",
         "Chocolatey squares perfect for snacking",
         "Baked goods often served as a gift",
         "Moist, decadent desserts that satisfy",
         "Tempting pastries with a crunchy edge",
-        "Classic desserts featuring cocoa powder",
+        "Classic dessert featuring cocoa powder",
         "Square-shaped delights made with love",
-        "Savory-free treats enjoyed by many",
+        "Savory-free treat enjoyed by many",
         "Indulgent sweets perfect for sharing",
-        "Popular desserts often cut into squares",
+        "Popular dessert often cut into squares",
         "Decadent bites with a velvety texture",
         "Sweet indulgences made with care and love",
         "Tempting morsels featuring chocolate chips",
         "Baked goods that bring people together",
-        "Satisfying treats enjoyed at all hours",
+        "Satisfying treat enjoyed at all hours",
         "Famous desserts perfect for any occasion",
         "Delicious squares often served as a snack",
         "Indulgent sweets made with the finest ingredients"
@@ -3751,7 +3762,10 @@
         "Served in small cups or glasses often",
         "Popular flavor combinations include chocolate and fruit",
         "Can be flavored with vanilla, cocoa, or other flavors",
-        "Often served as a palate cleanser between courses"
+        "Often served as a palate cleanser between courses",
+        "Fancy French word for 'whipped' dessert item",
+        "Delicate and creamy, a true culinary gem",
+        "Common at upscale restaurants and cafes"
       ]
     },
     {
@@ -4090,7 +4104,7 @@
         "Comforting cup on a cold day",
         "Lively cafes buzz with life",
         "Many people's daily habit",
-        "Trendy drinks for coffee snobs",
+        "Fruity flavor lovers' delight",
         "Popular pairing with pastries"
       ]
     },
