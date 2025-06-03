@@ -1,6 +1,6 @@
 import LottieView from 'lottie-react-native';
 import React, { useEffect, useRef } from 'react';
-import { Animated, Dimensions, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Animated, Dimensions, Platform, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import PrimaryButton from '../../uiComponents/PrimaryButton';
 import { Color } from '../../uiComponents/Colors';
 import Constants from '../../uiComponents/Constants';
@@ -14,6 +14,7 @@ export interface FinalResultsScreenProps {
 }
 
 const { width, height } = Dimensions.get('window');
+const lottieAnimationSize = Math.min(width, Constants.maxWidth)
 
 // RESULT SCREEN
 
@@ -24,7 +25,6 @@ const FinalResultScreen: React.FC<FinalResultsScreenProps> = (props) => {
   const buttonAnimation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-
     Animated.sequence([
       Animated.timing(headerAnimation, {
         toValue: 1,
@@ -67,21 +67,26 @@ const FinalResultScreen: React.FC<FinalResultsScreenProps> = (props) => {
   })
 
   return <SafeAreaView style={styles.container}>
-    <View style={styles.content}>
-      <Animated.Text style={[styles.primaryText, {opacity: headerAnimation }]}>{'Final Score'}</Animated.Text>
+    <View style={styles.animationContainer}>
       <LottieView
         source={require('../../../assets/fireworks2.json')}
         autoPlay
         loop
-        style={{ width: width, height: width, zIndex: -1, position: 'absolute', top: 0, left: 0}}
-        // speed={0.8}
+        style={{
+          width: lottieAnimationSize,
+          height: lottieAnimationSize,
+        }}
       />
+    </View>
+    <View style={styles.content}>
+      <Animated.Text style={[styles.primaryText, {opacity: headerAnimation }]}>
+        {'Final Score'}
+      </Animated.Text>
       
       <Animated.View style={[{ paddingVertical: 32, opacity: scoreAnimation }]}>
         <View style={styles.stats}>
           <Stat label={'Words guessed'} value={props.gamesPlayed} />
           <Stat label={'Time spent'} value={props.timeSpent + 's'} />
-          {/* <Stat label={'Grade'} value={finalGrade()} /> */}
           <View style={styles.statsRow}>
             <Text style={styles.statsLabel}>{'Grade'}</Text>
             <Animated.Text style={{ fontSize: 56, color: Color.accentYellow, fontFamily: 'Courier', transform: [ {scale: gradeAnimation}]}}>
@@ -100,9 +105,20 @@ const FinalResultScreen: React.FC<FinalResultsScreenProps> = (props) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Color.grey100,
-    height: '100%',
+    height: Platform.OS === 'web' ? height : '100%',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    position: 'relative',
+  },
+  animationContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    pointerEvents: 'none',
   },
   content: {
     alignItems: 'center',
@@ -111,6 +127,8 @@ const styles = StyleSheet.create({
     height: '100%',
     width: width,
     maxWidth: Constants.maxWidth,
+    position: 'relative',
+    zIndex: 1,
   },
   primaryText: {
     color: '#fff',
@@ -138,7 +156,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     minWidth: 300,
   },
-
   statsLabel: {
     fontSize: 24, 
     color: '#fff', 
