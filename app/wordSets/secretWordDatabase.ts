@@ -21,10 +21,24 @@ function shuffle<T>(array: T[]): T[] {
 }
 
 function getRandomSecretWord(wordSetIds: number[]): SecretWord {
+  if (!wordSetIds || wordSetIds.length === 0) {
+    throw new Error('No word sets provided');
+  }
+
   const sets: SecretWordSet[] = wordSetIds.map(value => availableWordSets[value])
+    .filter(set => set !== undefined);
+
+  if (sets.length === 0) {
+    throw new Error('No valid word sets found');
+  }
+
   const randomSet = sets[randomIndex(sets.length)]
   const randomEntryIndex = randomIndex(randomSet.setSize)
   const entry = randomSet.secretWords[randomEntryIndex] as SecretWordEntry
+
+  if (!entry || !entry.hints || !entry.word) {
+    throw new Error('Invalid word entry found');
+  }
 
   const hints = shuffle(entry.hints)
     .slice(0, 20)
@@ -39,6 +53,7 @@ function getRandomSecretWord(wordSetIds: number[]): SecretWord {
     .replace(/-/g, '') // remove dashes
     .replace(/^./, match => match.toUpperCase()); // uppercase first letter
     
+  console.log('Word: ' + word)
   return { 
     word: word,
     category: SecretWordCategory[randomSet.category], 

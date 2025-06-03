@@ -7,6 +7,7 @@ import { CategoryIcon, SettingsIcon } from '../uiComponents/Icons';
 import { SecretWordCategory } from '../wordSets/secretWord';
 import { Color, Gradient } from '../uiComponents/Colors';
 import CustomAlert from '../uiComponents/CustomAlert';
+import Constants from '../uiComponents/Constants';
 
 const { width, height } = Dimensions.get('window');
 
@@ -183,7 +184,7 @@ const styles = StyleSheet.create({
     paddingVertical: height * 0.05,
     height: '100%',
     width: width,
-    maxWidth: 800,
+    maxWidth: Constants.maxWidth,
     gap: Platform.OS === 'web' ? null : 0
   },
   title: {

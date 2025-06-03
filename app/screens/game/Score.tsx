@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Animated, Dimensions, Easing, Platform, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import PrimaryButton from '../../uiComponents/PrimaryButton';
 import { Color } from '../../uiComponents/Colors';
+import Constants from '../../uiComponents/Constants';
 
 // Props Interfaces
 export interface GameResultStats {
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
     paddingVertical: height * 0.05,
     height: '100%',
     width: width,
-    maxWidth: 800,
+    maxWidth: Constants.maxWidth,
   },
   primaryText: {
     color: '#fff',

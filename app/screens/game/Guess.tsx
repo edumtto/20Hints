@@ -7,6 +7,7 @@ import levenshteinDistance from '../../util/wordDistance';
 import { SecretWord } from '../../wordSets/secretWord';
 import HintsAndHeader from './HintsAndTimer';
 import { GameResultStats } from './Score';
+import Constants from '../../uiComponents/Constants';
 
 const { width, height } = Dimensions.get('window');
 
@@ -137,9 +138,10 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
       <Feather name="delete" size={24} color="#ecf0f1" />
     </Pressable>
 
+  const inputClosenessIndicatorWidth = Math.min(width, Constants.maxWidth)
   const InputClosenessIndicator = () =>
     <View style={{ 
-      width: inputClosenessRef.current * width, 
+      width: inputClosenessRef.current * inputClosenessIndicatorWidth, 
       height: 4, 
       backgroundColor: inputClosenessRef.current > 0.7 ? '#3CE8C9' : '#27ae60'
     }}></View>
@@ -205,7 +207,7 @@ const styles = StyleSheet.create({
   content: {
     height: Platform.OS == 'web' ? height : '100%',
     width: width,
-    maxWidth: 800,
+    maxWidth: Constants.maxWidth,
   },
   gradient: {
     height: '100%'

@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { Animated, Dimensions, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import PrimaryButton from '../../uiComponents/PrimaryButton';
 import { Color } from '../../uiComponents/Colors';
+import Constants from '../../uiComponents/Constants';
 
 export interface FinalResultsScreenProps {
   gamesPlayed: number
@@ -66,6 +67,7 @@ const FinalResultScreen: React.FC<FinalResultsScreenProps> = (props) => {
   })
 
   return <SafeAreaView style={styles.container}>
+    <View style={styles.content}>
       <Animated.Text style={[styles.primaryText, {opacity: headerAnimation }]}>{'Final Score'}</Animated.Text>
       <LottieView
         source={require('../../../assets/fireworks2.json')}
@@ -91,6 +93,7 @@ const FinalResultScreen: React.FC<FinalResultsScreenProps> = (props) => {
       <Animated.View style={{ opacity: buttonAnimation }}>
         <PrimaryButton title={'Exit'} onPress={() => props.setExit(false)} />
       </Animated.View>
+    </View>
   </SafeAreaView>
 }
 
@@ -99,7 +102,15 @@ const styles = StyleSheet.create({
     backgroundColor: Color.grey100,
     height: '100%',
     justifyContent: 'center',
+    alignItems: 'center'
+  },
+  content: {
     alignItems: 'center',
+    justifyContent: 'space-around',
+    paddingVertical: height * 0.05,
+    height: '100%',
+    width: width,
+    maxWidth: Constants.maxWidth,
   },
   primaryText: {
     color: '#fff',
