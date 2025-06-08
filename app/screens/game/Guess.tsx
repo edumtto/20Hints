@@ -36,7 +36,7 @@ const hintDisplayTime = 8
 const totalNumberOfHints = 20
 
 // Components
-const Keyboard: React.FC<KeyboardProps> = ({ onKeyPress, disabledKeys = [] }) => {
+const VirtualKeyboard: React.FC<KeyboardProps> = ({ onKeyPress, disabledKeys = [] }) => {
   return (
     <View style={styles.keyboardContainer}>
       {KEYBOARD_LAYOUT.map((row, rowIndex) => (
@@ -61,6 +61,7 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
   const [guess, setGuess] = useState<string>('');
   const inputClosenessRef = useRef(0) // Interval [0...1]
   const [isSuccessGuess, setSuccessGuess] = useState(false)
+  const inputRef = useRef<TextInput>(null);
 
   const hintsRevealed = () => Math.min(
     1 + Math.floor(timeTrackerRef.current / hintDisplayTime),
@@ -117,18 +118,53 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
     }
   }
 
-  const GuessInput = () =>
-    <TextInput
-      style={[styles.guessInput, { color: isSuccessGuess ? 'green' : '#000' }]}
-      value={guess}
-      onChangeText={onChangeGuessInput}
-      placeholder="Your guess..."
-      placeholderTextColor="#bdc3c7"
-      maxLength={30}
-      // returnKeyType="done"
-      // onSubmitEditing={handleSubmitGuess}
-      editable={false}
-    />
+  const GuessInput = () => {
+    if (Platform.OS === 'web') {
+      return (
+        <TextInput
+          ref={inputRef}
+          style={[
+            styles.guessInput, 
+            { 
+              color: isSuccessGuess ? 'green' : '#000',
+              textTransform: 'uppercase'
+            }
+          ]}
+          value={guess}
+          onChangeText={onChangeGuessInput}
+          placeholder="Your guess..."
+          placeholderTextColor="#bdc3c7"
+          maxLength={30}
+          autoFocus={true}
+          autoCapitalize="characters"
+          onBlur={() => {
+            if (!isSuccessGuess) {
+              inputRef.current?.focus();
+            }
+          }}
+        />
+      );
+    }
+
+    return (
+      <TextInput
+        style={[
+          styles.guessInput, 
+          { 
+            color: isSuccessGuess ? 'green' : '#000',
+            textTransform: 'uppercase'
+          }
+        ]}
+        value={guess}
+        onChangeText={onChangeGuessInput}
+        placeholder="Your guess..."
+        placeholderTextColor="#bdc3c7"
+        maxLength={30}
+        editable={false}
+        autoCapitalize="characters"
+      />
+    );
+  }
 
   const ClearInputButton = () => 
     <Pressable 
@@ -186,7 +222,7 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
 
             <InputClosenessIndicator />
 
-            <Keyboard
+            <VirtualKeyboard
               onKeyPress={handleKeyPress}
             />
           </View>
