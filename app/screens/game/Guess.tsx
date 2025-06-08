@@ -62,6 +62,7 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
   const inputClosenessRef = useRef(0) // Interval [0...1]
   const [isSuccessGuess, setSuccessGuess] = useState(false)
   const inputRef = useRef<TextInput>(null);
+  const [showKeyboard, setShowKeyboard] = useState(Platform.OS !== 'web');
 
   const hintsRevealed = () => Math.min(
     1 + Math.floor(timeTrackerRef.current / hintDisplayTime),
@@ -196,6 +197,26 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
     }
   };
 
+  const KeyboardToggle = () => {
+    if (Platform.OS !== 'web') return null;
+    
+    return (
+      <Pressable 
+        style={({ pressed }) => [
+          styles.keyboardToggle,
+          { opacity: pressed ? 0.5 : 1 }
+        ]}
+        onPress={() => setShowKeyboard(!showKeyboard)}
+      >
+        <Feather 
+          name={showKeyboard ? "chevron-down" : "chevron-up"} 
+          size={24} 
+          color={Color.grey800} 
+        />
+      </Pressable>
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
@@ -222,9 +243,13 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
 
             <InputClosenessIndicator />
 
-            <VirtualKeyboard
-              onKeyPress={handleKeyPress}
-            />
+            <KeyboardToggle />
+            
+            {showKeyboard && (
+              <VirtualKeyboard
+                onKeyPress={handleKeyPress}
+              />
+            )}
           </View>
         </View>
       </LinearGradient>
@@ -250,11 +275,12 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     paddingVertical: height * 0.02,
+    paddingHorizontal: Platform.OS === 'web' ? width * 0.05 : 8
   },
   guessContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 8,
+    // paddingHorizontal: 8,
     marginBottom: 14,
   },
   guessInput: {
@@ -301,6 +327,17 @@ const styles = StyleSheet.create({
     color: Color.grey900,
     fontSize: Math.min(height * 0.025, 18),
     fontFamily: 'Courier',
+  },
+  keyboardToggle: {
+    borderColor: Color.grey500,
+    borderWidth: 1,
+    width: 100,
+    height: 28,
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginTop: 8,
   },
 });
 
