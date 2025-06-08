@@ -51,8 +51,8 @@
     "@aws-amplify/backend-cli": "^1.7.2",
     "@babel/core": "^7.25.2",
     "@types/jest": "^29.5.12",
-    "@types/react": "~18.3.12",
-    "@types/react-test-renderer": "^18.3.0",
+    "@types/react": "~18.2.0",
+    "@types/react-test-renderer": "^18.0.0",
     "aws-cdk-lib": "^2.189.1",
     "constructs": "^10.4.2",
     "esbuild": "^0.25.5",
@@ -62,5 +62,9 @@
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   },
-  "private": true
+  "private": true,
+  "resolutions": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
 }
