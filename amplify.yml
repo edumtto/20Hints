@@ -5,7 +5,6 @@ frontend:
       commands:
         - nvm use 18
         - npm ci
-        - sysctl -w fs.inotify.max_user_watches=524288
     build:
       commands:
         - npm run web
@@ -15,4 +14,4 @@ frontend:
       - '**/*'
   cache:
     paths:
-      - node_modules/**/* 
+      - node_modules/**/* n
