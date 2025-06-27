@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
   },
   guessContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'stretch',
     marginBottom: 2,
   },
   guessInputContainer: {
