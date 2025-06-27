@@ -48,6 +48,7 @@ const GameSettingsScreen = () => {
 
 
   const pushPlayScreen: (selectedSets: number[]) => void = (selectedSets) => {
+    console.log('Push play screen with sets: ' + selectedSets)
     router.push({
       pathname:'screens/game/Play', 
       params: {

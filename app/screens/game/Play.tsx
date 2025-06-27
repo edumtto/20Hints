@@ -30,7 +30,7 @@ const useGameSettings = () => {
   const [gameSettings, setGameSettings] = useState<GameSettings>({ 
     endScore: 50, 
     showClosenessIndicator: false, 
-    wordSets: [0, 1, 2] 
+    wordSets: [] 
   });
 
   useEffect(() => {
@@ -120,10 +120,15 @@ const Content = memo(({
   setGuessTimeOver,
   setSuccessGuess 
 }: ContentProps) => {
-  const secretWord = useMemo(() => 
-    gameState === GameState.Guess ? getRandomSecretWord(gameSettings.wordSets) : null,
-    [gameState, gameSettings.wordSets]
-  );
+  const [secretWord, setSecretWord] = useState(null);
+
+  useEffect(() => {
+    if (gameState === GameState.Guess && gameSettings.wordSets && gameSettings.wordSets.length > 0) {
+      setSecretWord(getRandomSecretWord(gameSettings.wordSets));
+    } else {
+      setSecretWord(null);
+    }
+  }, [gameState, gameSettings.wordSets]);
 
   switch (gameState) {
     case GameState.Guess:
