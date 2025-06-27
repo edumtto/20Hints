@@ -1,7 +1,7 @@
 import { Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useRef, useState } from 'react';
-import { Dimensions, Platform, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Dimensions, KeyboardAvoidingView, Platform, Pressable, SafeAreaView, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from 'react-native';
 import { Color, Gradient } from '../../uiComponents/Colors';
 import levenshteinDistance from '../../util/wordDistance';
 import { SecretWord } from '../../wordSets/secretWord';
@@ -66,10 +66,90 @@ const VirtualKeyboard: React.FC<KeyboardProps> = ({ onKeyPress, disabledKeys = [
   );
 };
 
+// InputClosenessIndicator now takes closeness as a prop
+interface InputClosenessIndicatorProps {
+  closeness: number;
+}
+const InputClosenessIndicator: React.FC<InputClosenessIndicatorProps> = ({ closeness }) =>
+  <View style={{
+    width: `${closeness * 100}%`,
+    height: 4,
+    borderRadius: 5,
+    backgroundColor: closeness > 0.7 ? '#3CE8C9' : '#27ae60'
+  }}></View>
+
+// GuessInput moved outside GuessScreen to avoid recreation on every render
+interface GuessInputProps {
+  guess: string;
+  isSuccessGuess: boolean;
+  onChangeGuessInput: (input: string) => void;
+  inputRef?: React.RefObject<TextInput>;
+  closeness: number;
+}
+
+const GuessInput: React.FC<GuessInputProps> = ({ guess, isSuccessGuess, onChangeGuessInput, inputRef, closeness }) => {
+  if (Platform.OS === 'web') {
+    return (
+      <View style={styles.guessInputContainer}>
+        <TextInput
+          ref={inputRef}
+          style={[
+            styles.guessInput,
+            {
+              color: isSuccessGuess ? 'green' : '#000',
+              textTransform: 'uppercase'
+            }
+          ]}
+          value={guess}
+          onChangeText={onChangeGuessInput}
+          placeholder="Your guess..."
+          placeholderTextColor="#bdc3c7"
+          maxLength={30}
+          autoFocus={true}
+          autoCapitalize="characters"
+          onBlur={() => {
+            if (!isSuccessGuess) {
+              inputRef?.current?.focus();
+            }
+          }}
+          editable={!isSuccessGuess}
+        />
+        <InputClosenessIndicator closeness={closeness} />
+      </View>
+    );
+  }
+
+  // For mobile devices
+  return (
+    <View style={styles.guessInputContainer}>
+      <TextInput
+        ref={inputRef}
+        style={[
+          styles.guessInput,
+          {
+            color: isSuccessGuess ? 'green' : '#000',
+            textTransform: 'uppercase'
+          }
+        ]}
+        value={guess}
+        onChangeText={onChangeGuessInput}
+        placeholder="Your guess..."
+        placeholderTextColor="#bdc3c7"
+        maxLength={30}
+        editable={!isSuccessGuess}
+        autoCapitalize="characters"
+        keyboardType='ascii-capable'
+        autoCorrect={false}
+      />
+      <InputClosenessIndicator closeness={closeness} />
+    </View>
+  );
+};
+
 const GuessScreen: React.FC<HintsScreenProps> = (props) => {
   const timeTrackerRef = useRef(0)
   const [guess, setGuess] = useState<string>('');
-  const inputClosenessRef = useRef(0) // Interval [0...1]
+  const [closeness, setCloseness] = useState(0); // new state for closeness
   const [isSuccessGuess, setSuccessGuess] = useState(false)
   const inputRef = useRef<TextInput>(null);
   const [showKeyboard, setShowKeyboard] = useState(Platform.OS !== 'web');
@@ -97,7 +177,8 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
     const inputUpperCase = input.toUpperCase()
     const wordUpperCase = props.secretWord.word.toUpperCase()
 
-    inputClosenessRef.current = computeInputCloseness(inputUpperCase, wordUpperCase)
+    const newCloseness = computeInputCloseness(inputUpperCase, wordUpperCase)
+    setCloseness(newCloseness)
     setGuess(input)
 
     if (!isSuccessGuess && inputUpperCase == wordUpperCase) {
@@ -129,62 +210,6 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
     }
   }
 
-  const GuessInput = () => {
-    if (Platform.OS === 'web') {
-      return (
-        <View style={styles.guessInputContainer}>
-          <TextInput
-            ref={inputRef}
-            style={[
-              styles.guessInput,
-              {
-                color: isSuccessGuess ? 'green' : '#000',
-                textTransform: 'uppercase'
-              }
-            ]}
-            value={guess}
-            onChangeText={onChangeGuessInput}
-            placeholder="Your guess..."
-            placeholderTextColor="#bdc3c7"
-            maxLength={30}
-            autoFocus={true}
-            autoCapitalize="characters"
-            onBlur={() => {
-              if (!isSuccessGuess) {
-                inputRef.current?.focus();
-              }
-            }}
-            editable={!isSuccessGuess}
-          />
-          <InputClosenessIndicator />
-        </View>
-      );
-    }
-
-    return (
-      <View style={styles.guessInputContainer}>
-        <TextInput
-          style={[
-            styles.guessInput,
-            {
-              color: isSuccessGuess ? 'green' : '#000',
-              textTransform: 'uppercase'
-            }
-          ]}
-          value={guess}
-          onChangeText={onChangeGuessInput}
-          placeholder="Your guess..."
-          placeholderTextColor="#bdc3c7"
-          maxLength={30}
-          editable={!isSuccessGuess}
-          autoCapitalize="characters"
-        />
-        <InputClosenessIndicator />
-      </View>
-
-    );
-  }
-
   const ClearInputButton = () =>
     <Pressable
       style={({ pressed }) => [styles.backspaceButton, { opacity: pressed ? 0.5 : 1 }]}
@@ -193,16 +218,8 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
       <Feather name="delete" size={24} color="#ecf0f1" />
     </Pressable>
 
-  const InputClosenessIndicator = () =>
-    <View style={{
-      width: `${inputClosenessRef.current * 100}%`,
-      height: 4,
-      borderRadius: 5,
-      backgroundColor: inputClosenessRef.current > 0.7 ? '#3CE8C9' : '#27ae60'
-    }}></View>
-
   const handleKeyPress = (key: string): void => {
-    if (isSuccessGuess) 
+    if (isSuccessGuess)
       return;
     const newGuess = guess + key;
     setGuess(newGuess);
@@ -237,44 +254,86 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
     );
   };
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <LinearGradient
-        colors={Gradient.greyBackground}
-        style={styles.gradient}
-      >
-        <View style={styles.content}>
-          <View style={{ flex: 1 }}>
-            <HintsAndHeader
-              secretWord={props.secretWord}
-              isTimerStopped={isSuccessGuess}
-              allowedGameTime={allowedGameTime}
-              hintDisplayTime={hintDisplayTime}
-              onTimeUpdate={onTimeUpdate}
-              onExit={props.onExit}
-            />
-          </View>
-
-          <View style={styles.inputContainer}>
-            <View style={styles.guessContainer}>
-              <GuessInput />
-              <ClearInputButton />
+  if (Platform.OS === 'web') {
+    return (
+      <SafeAreaView style={styles.container}>
+        <LinearGradient
+          colors={Gradient.greyBackground}
+          style={styles.gradient}
+        >
+          <View style={styles.content}>
+            <View style={{ flex: 1 }}>
+              <HintsAndHeader
+                secretWord={props.secretWord}
+                isTimerStopped={isSuccessGuess}
+                allowedGameTime={allowedGameTime}
+                hintDisplayTime={hintDisplayTime}
+                onTimeUpdate={onTimeUpdate}
+                onExit={props.onExit}
+              />
             </View>
 
+            <View style={styles.inputContainer}>
+              <View style={styles.guessContainer}>
+                <GuessInput
+                  guess={guess}
+                  isSuccessGuess={isSuccessGuess}
+                  onChangeGuessInput={onChangeGuessInput}
+                  inputRef={inputRef}
+                  closeness={closeness}
+                />
+                <ClearInputButton />
+              </View>
 
+              <KeyboardToggle />
 
-            <KeyboardToggle />
-
-            {showKeyboard && (
-              <VirtualKeyboard
-                onKeyPress={handleKeyPress}
-              />
-            )}
+              {showKeyboard && (
+                <VirtualKeyboard
+                  onKeyPress={handleKeyPress}
+                />
+              )}
+            </View>
           </View>
-        </View>
-      </LinearGradient>
+        </LinearGradient>
+      </SafeAreaView>
+    );
+  }
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <KeyboardAvoidingView  
+        behavior={ Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={0}
+      >
+          <View style={styles.content}>
+            <View style={{ flex: 1 }}>
+              <HintsAndHeader
+                secretWord={props.secretWord}
+                isTimerStopped={isSuccessGuess}
+                allowedGameTime={allowedGameTime}
+                hintDisplayTime={hintDisplayTime}
+                onTimeUpdate={onTimeUpdate}
+                onExit={props.onExit}
+              />
+            </View>
+
+            <View style={styles.inputContainer}>
+              <View style={styles.guessContainer}>
+                <GuessInput
+                  guess={guess}
+                  isSuccessGuess={isSuccessGuess}
+                  onChangeGuessInput={onChangeGuessInput}
+                  inputRef={inputRef}
+                  closeness={closeness}
+                />
+              </View>
+            </View>
+          </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
-  );
+
+  )
+
 };
 
 const styles = StyleSheet.create({
@@ -304,7 +363,6 @@ const styles = StyleSheet.create({
   },
   guessInputContainer: {
     flex: 1,
-    marginRight: 8,
     gap: 2,
   },
   guessInput: {
@@ -322,6 +380,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
+    marginLeft: 8,
   },
   keyboardContainer: {
     alignItems: 'center',
