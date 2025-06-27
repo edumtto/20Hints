@@ -28,7 +28,7 @@ interface HintsScreenProps {
 const KEYBOARD_LAYOUT: string[][] = [
   ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
   ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
-  ['Z', 'X', 'C', 'V', 'B', 'N', 'M', ' ']
+  ['Z', 'X', 'C', 'V', 'B', 'N', 'M']
 ];
 
 const allowedGameTime: number = 160
@@ -52,6 +52,16 @@ const VirtualKeyboard: React.FC<KeyboardProps> = ({ onKeyPress, disabledKeys = [
           ))}
         </View>
       ))}
+       <View key={3} style={styles.keyboardRow}>
+            <Pressable
+              key={'space'}
+              style={({ pressed }) => [styles.spaceButton, {opacity:pressed ? 0.5 : 1}]}
+              onPress={() => onKeyPress(' ')}
+            >
+              <Text style={styles.keyText}>{' '}</Text>
+            </Pressable>
+       </View>
+     
     </View>
   );
 };
@@ -327,6 +337,16 @@ const styles = StyleSheet.create({
     color: Color.grey900,
     fontSize: Math.min(height * 0.025, 18),
     fontFamily: 'Courier',
+  },
+  spaceButton: {
+    width: '50%',
+    backgroundColor: Color.grey500,
+    paddingHorizontal: Math.min(width * 0.03, 26),
+    paddingVertical: height * 0.015,
+    borderRadius: 5,
+    marginHorizontal: Math.min(width * 0.005, 8),
+    // minWidth: width * 0.08,
+    alignItems: 'center',
   },
   keyboardToggle: {
     borderColor: Color.grey500,
