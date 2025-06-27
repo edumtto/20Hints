@@ -1,4 +1,4 @@
-# 20 Hints
+# <img src="https://github.com/user-attachments/assets/87782bef-31cd-48f7-975b-965e7647ea34" style="border-radius:50%"/> 20 Hints
 
 Inspired by one of my favorite board games, this engaging game invites players to decipher secret words from vague clues within a limited time. Players can choose from a diverse dictionary of words organized into various categories before the game begins.
 
@@ -6,6 +6,13 @@ The game is built using React Native alongside traditional web technologies, inc
 
 <a href="[https://apps.apple.com/us/app/picklottery/id6457203925](https://apps.apple.com/us/app/20-hints/id6744703085)" rel="Link to app store">
   <img src="https://github.com/user-attachments/assets/8bda0eac-056c-4113-ba17-e79d1ec87b59" height="40px"/>
+</a>
+<br/>
+<br/>
+
+Web version: 
+<a href="http://20hints.s3-website.us-east-2.amazonaws.com/" rel="Link to app store">
+   available here
 </a>
 
 ## Future Enhancements:
