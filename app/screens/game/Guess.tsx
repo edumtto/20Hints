@@ -351,7 +351,8 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   inputContainer: {
-    paddingVertical: height * 0.02,
+    paddingTop: 8,
+    paddingBottom: Platform.OS === 'web' ? width * 0.05 : 0,
     paddingHorizontal: Platform.OS === 'web' ? width * 0.05 : 8
   },
   guessContainer: {
