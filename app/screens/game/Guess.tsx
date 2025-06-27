@@ -44,7 +44,7 @@ const VirtualKeyboard: React.FC<KeyboardProps> = ({ onKeyPress, disabledKeys = [
           {row.map((key) => (
             <Pressable
               key={key}
-              style={({ pressed }) => [styles.keyButton, {opacity:pressed ? 0.5 : 1}]}
+              style={({ pressed }) => [styles.keyButton, { opacity: pressed ? 0.5 : 1 }]}
               onPress={() => onKeyPress(key)}
             >
               <Text style={styles.keyText}>{key}</Text>
@@ -52,16 +52,16 @@ const VirtualKeyboard: React.FC<KeyboardProps> = ({ onKeyPress, disabledKeys = [
           ))}
         </View>
       ))}
-       <View key={3} style={styles.keyboardRow}>
-            <Pressable
-              key={'space'}
-              style={({ pressed }) => [styles.spaceButton, {opacity:pressed ? 0.5 : 1}]}
-              onPress={() => onKeyPress(' ')}
-            >
-              <Text style={styles.keyText}>{' '}</Text>
-            </Pressable>
-       </View>
-     
+      <View key={3} style={styles.keyboardRow}>
+        <Pressable
+          key={'space'}
+          style={({ pressed }) => [styles.spaceButton, { opacity: pressed ? 0.5 : 1 }]}
+          onPress={() => onKeyPress(' ')}
+        >
+          <Text style={styles.keyText}>{' '}</Text>
+        </Pressable>
+      </View>
+
     </View>
   );
 };
@@ -132,11 +132,41 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
   const GuessInput = () => {
     if (Platform.OS === 'web') {
       return (
+        <View style={styles.guessInputContainer}>
+          <TextInput
+            ref={inputRef}
+            style={[
+              styles.guessInput,
+              {
+                color: isSuccessGuess ? 'green' : '#000',
+                textTransform: 'uppercase'
+              }
+            ]}
+            value={guess}
+            onChangeText={onChangeGuessInput}
+            placeholder="Your guess..."
+            placeholderTextColor="#bdc3c7"
+            maxLength={30}
+            autoFocus={true}
+            autoCapitalize="characters"
+            onBlur={() => {
+              if (!isSuccessGuess) {
+                inputRef.current?.focus();
+              }
+            }}
+            editable={!isSuccessGuess}
+          />
+          <InputClosenessIndicator />
+        </View>
+      );
+    }
+
+    return (
+      <View style={styles.guessInputContainer}>
         <TextInput
-          ref={inputRef}
           style={[
-            styles.guessInput, 
-            { 
+            styles.guessInput,
+            {
               color: isSuccessGuess ? 'green' : '#000',
               textTransform: 'uppercase'
             }
@@ -146,54 +176,34 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
           placeholder="Your guess..."
           placeholderTextColor="#bdc3c7"
           maxLength={30}
-          autoFocus={true}
+          editable={!isSuccessGuess}
           autoCapitalize="characters"
-          onBlur={() => {
-            if (!isSuccessGuess) {
-              inputRef.current?.focus();
-            }
-          }}
         />
-      );
-    }
+        <InputClosenessIndicator />
+      </View>
 
-    return (
-      <TextInput
-        style={[
-          styles.guessInput, 
-          { 
-            color: isSuccessGuess ? 'green' : '#000',
-            textTransform: 'uppercase'
-          }
-        ]}
-        value={guess}
-        onChangeText={onChangeGuessInput}
-        placeholder="Your guess..."
-        placeholderTextColor="#bdc3c7"
-        maxLength={30}
-        editable={false}
-        autoCapitalize="characters"
-      />
     );
   }
 
-  const ClearInputButton = () => 
-    <Pressable 
-      style={({ pressed }) => [styles.backspaceButton, {opacity:pressed ? 0.5 : 1}]}
+  const ClearInputButton = () =>
+    <Pressable
+      style={({ pressed }) => [styles.backspaceButton, { opacity: pressed ? 0.5 : 1 }]}
       onPress={handleClearGuess}
     >
       <Feather name="delete" size={24} color="#ecf0f1" />
     </Pressable>
 
-  const inputClosenessIndicatorWidth = Math.min(width, Constants.maxWidth)
   const InputClosenessIndicator = () =>
-    <View style={{ 
-      width: inputClosenessRef.current * inputClosenessIndicatorWidth, 
-      height: 4, 
+    <View style={{
+      width: `${inputClosenessRef.current * 100}%`,
+      height: 4,
+      borderRadius: 5,
       backgroundColor: inputClosenessRef.current > 0.7 ? '#3CE8C9' : '#27ae60'
     }}></View>
-    
+
   const handleKeyPress = (key: string): void => {
+    if (isSuccessGuess) 
+      return;
     const newGuess = guess + key;
     setGuess(newGuess);
     onChangeGuessInput(newGuess)
@@ -209,19 +219,19 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
 
   const KeyboardToggle = () => {
     if (Platform.OS !== 'web') return null;
-    
+
     return (
-      <Pressable 
+      <Pressable
         style={({ pressed }) => [
           styles.keyboardToggle,
           { opacity: pressed ? 0.5 : 1 }
         ]}
         onPress={() => setShowKeyboard(!showKeyboard)}
       >
-        <Feather 
-          name={showKeyboard ? "chevron-down" : "chevron-up"} 
-          size={24} 
-          color={Color.grey800} 
+        <Feather
+          name={showKeyboard ? "chevron-down" : "chevron-up"}
+          size={24}
+          color={Color.grey800}
         />
       </Pressable>
     );
@@ -251,10 +261,10 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
               <ClearInputButton />
             </View>
 
-            <InputClosenessIndicator />
+
 
             <KeyboardToggle />
-            
+
             {showKeyboard && (
               <VirtualKeyboard
                 onKeyPress={handleKeyPress}
@@ -290,18 +300,20 @@ const styles = StyleSheet.create({
   guessContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    // paddingHorizontal: 8,
-    marginBottom: 14,
+    marginBottom: 2,
+  },
+  guessInputContainer: {
+    flex: 1,
+    marginRight: 8,
+    gap: 2,
   },
   guessInput: {
-    flex: 1,
     backgroundColor: Color.grey900,
     height: 48,
     borderRadius: 5,
-    paddingHorizontal: 16,
     fontSize: Math.min(height * 0.025, 18),
     fontFamily: 'Courier',
-    marginRight: 8,
+    paddingHorizontal: 16,
   },
   backspaceButton: {
     backgroundColor: Color.grey500,
@@ -326,7 +338,6 @@ const styles = StyleSheet.create({
     paddingVertical: height * 0.015,
     borderRadius: 5,
     marginHorizontal: Math.min(width * 0.005, 8),
-    // minWidth: width * 0.08,
     alignItems: 'center',
   },
   keyButtonDisabled: {
@@ -339,13 +350,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Courier',
   },
   spaceButton: {
-    width: '50%',
+    width: Math.min(width, Constants.maxWidth) * 0.45,
     backgroundColor: Color.grey500,
     paddingHorizontal: Math.min(width * 0.03, 26),
     paddingVertical: height * 0.015,
     borderRadius: 5,
     marginHorizontal: Math.min(width * 0.005, 8),
-    // minWidth: width * 0.08,
     alignItems: 'center',
   },
   keyboardToggle: {
