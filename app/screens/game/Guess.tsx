@@ -215,7 +215,7 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
       style={({ pressed }) => [styles.backspaceButton, { opacity: pressed ? 0.5 : 1 }]}
       onPress={handleClearGuess}
     >
-      <Feather name="delete" size={24} color="#ecf0f1" />
+      <Feather name="x" size={24} color="#ecf0f1" />
     </Pressable>
 
   const handleKeyPress = (key: string): void => {
@@ -228,9 +228,8 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
 
   const handleClearGuess = (): void => {
     if (guess !== '') {
-      let newGuess = guess.slice(0, -1)
-      setGuess(newGuess)
-      onChangeGuessInput(newGuess)
+      setGuess('')
+      onChangeGuessInput('')
     }
   };
 
@@ -326,14 +325,13 @@ const GuessScreen: React.FC<HintsScreenProps> = (props) => {
                   inputRef={inputRef}
                   closeness={closeness}
                 />
+                <ClearInputButton />
               </View>
             </View>
           </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
-
   )
-
 };
 
 const styles = StyleSheet.create({
